@@ -4,19 +4,40 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
+  display: grid;
+  grid-template-rows: 105px auto;
+  grid-template-areas: 
+    "header" 
+    "content";
+
+    > main {
+      grid-area: content;
+      overflow-y: scroll;
+      pad: 64px 0;
+    }
+`;
+
+export const Links = styled.ul`
+  list-style: none;
+
+  > li {
+    margin-top: 12px;
+
+    a {
+      color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+  }
 `;
 
 export const Content = styled.div`
-width: 100%;
+  max-width: 550px;
   margin: 0 auto;
-  padding: 28px 123px;
-
 
   display: flex;
   flex-direction: column;
 
   > button:first-child {
-
+    align-self: end;
   }
 
   > h1 {

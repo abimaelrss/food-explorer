@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Container, Links, Content } from './styles';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Container, Content } from "./styles";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { api } from '../../services/api';
+import { api } from "../../services/api";
 
-import { Header } from '../../components/Header';
-import { Button } from '../../components/Button';
-import { ButtonText } from '../../components/ButtonText';
-import { Section } from '../../components/Section';
-import { Tag } from '../../components/Tag';
+import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
+import { ButtonText } from "../../components/ButtonText";
+import { Section } from "../../components/Section";
+import { Tag } from "../../components/Tag";
+import { Footer } from "../../components/Footer";
 
 export function Details() {
   const [data, setData] = useState(null);
@@ -41,64 +42,28 @@ export function Details() {
   return (
     <Container>
       <Header />
-      {
-        data &&
+      {data && (
         <main>
           <Content>
+            <ButtonText title="Voltar" onClick={handleBack} />
 
-            <ButtonText
-              title="Excluir nota"
-              onClick={handleRemove}
-            />
+            <h1>{data.title}</h1>
 
-            <h1>
-              {data.title}
-            </h1>
+            <p>{data.description}</p>
 
-            <p>
-              {data.description}
-            </p>
-
-            {
-              data.links &&
-              <Section title="Links úteis">
-                <Links>
-                  {
-                    data.links.map(link => (
-                      <li key={String(link.id)}>
-                        <a href={link.url} target='_blank'>
-                          {link.url}
-                        </a>
-                      </li>
-                    ))
-                  }
-                </Links>
-              </Section>
-            }
-
-            {
-              data.tags &&
+            {data.tags && (
               <Section title="Marcadores">
-                {
-                  data.tags.map(tag => (
-                    <Tag
-                      key={String(tag.id)}
-                      title={tag.name}
-                    />
-                  ))
-                }
+                {data.tags.map((tag) => (
+                  <Tag key={String(tag.id)} title={tag.name} />
+                ))}
               </Section>
-            }
+            )}
 
-            <Button
-              title="Voltar"
-              onClick={handleBack}
-            />
-
+            <Button title="Voltar" onClick={handleBack} />
           </Content>
         </main>
-      }
+      )}
+      <Footer />
     </Container>
-  )
-
+  );
 }

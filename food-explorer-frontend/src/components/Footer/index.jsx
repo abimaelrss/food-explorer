@@ -3,8 +3,7 @@ import { RiShutDownLine } from "react-icons/ri";
 import { useAuth } from "../../hooks/auth";
 
 import { api } from "../../services/api";
-import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
-import imageBrand from "../../assets/polygon1.png";
+import imageBrand from "../../assets/polygon2.svg";
 
 import { Container } from "./styles";
 

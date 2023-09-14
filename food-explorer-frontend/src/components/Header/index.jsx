@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { RiShutDownLine } from "react-icons/ri";
+import { GoSignOut } from "react-icons/go";
 import { useAuth } from "../../hooks/auth";
 
 import { api } from "../../services/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
-import imageBrand from "../../assets/polygon1.png";
+import imageBrand from "../../assets/polygon1.svg";
 
 import { Container, Brand, Search, Logout } from "./styles";
 import { Button } from "../Button";
@@ -28,7 +28,7 @@ export function Header() {
     <Container>
       <Brand>
         <img src={imageBrand} alt="" />
-        <h2>food explorer</h2>
+        <h1>food explorer</h1>
       </Brand>
 
       <Search>
@@ -42,7 +42,7 @@ export function Header() {
       <Button title="Pedidos (0)" />
 
       <Logout onClick={handleSignOu}>
-        <RiShutDownLine />
+        <GoSignOut/>
       </Logout>
     </Container>
   );

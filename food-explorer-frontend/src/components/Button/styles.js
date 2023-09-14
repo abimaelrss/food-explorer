@@ -1,16 +1,26 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-  width: 216px;
+  width: auto;
+
+  margin-right: 32px;
+  padding: 12px 24px;
+  
+  border: 0;
+  border-radius: 5px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   background-color: ${({ theme } ) => theme.COLORS.TINTS_TOMATO_100};
   color: ${({ theme } ) => theme.COLORS.LIGHT_100};
-
-  height: 56px;
-  border: 0;
-  padding: 0 16px;
-  margin-top: 16px;
-  border-radius: 10px;
-  font-weight: 500;
+  
+  > img {
+    width: 32px;
+    padding-right: 8px;
+  }
 
   &:disabled {
     opacity: 0.5;

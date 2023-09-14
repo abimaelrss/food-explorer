@@ -1,7 +1,7 @@
-import { Container } from './styles';
+import { Card } from "../Card";
+import { Container } from "./styles";
 
-
-export function Section ({ title, children}) {
+export function Section({ title, children }) {
   return (
     <Container>
       <h2>{title}</h2>

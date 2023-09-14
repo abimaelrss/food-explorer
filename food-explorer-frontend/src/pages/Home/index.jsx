@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FiPlus, FiSearch } from "react-icons/fi";
 
+import imageBanner from "../../assets/mask-group.png";
 import { api } from "../../services/api";
 
-import { Container, Brand, Menu, Search, Content } from "./styles";
+import { Container, Content, Banner } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -12,6 +12,7 @@ import { Section } from "../../components/Section";
 import { Note } from "../../components/Note";
 import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
+import { Card } from "../../components/Card";
 
 export function Home() {
   const [search, setSearch] = useState("");
@@ -62,46 +63,36 @@ export function Home() {
 
   return (
     <Container>
-
       <Header />
 
-      <Menu>
-        <li>
-          <ButtonText
-            title="Todos"
-            onClick={() => handleTagSelected("all")}
-            $isactive={tagsSelected.length === 0}
-          />
-        </li>
-        {tags &&
-          tags.map((tag) => (
-            <li key={String(tag.id)}>
-              <ButtonText
-                title={tag.name}
-                onClick={() => handleTagSelected(tag.name)}
-                $isactive={tagsSelected.includes(tag.name)}
-              />
-            </li>
-          ))}
-      </Menu>
-
-      <Search>
-        <Input
-          placeholder="Pesquisar pelo título"
-          icon={FiSearch}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </Search>
-
       <Content>
-        <Section title="Minhas notas">
-          {notes.map((note) => (
-            <Note
-              key={String(note.id)}
-              data={note}
-              onClick={() => handleDetails(note.id)}
-            />
-          ))}
+        <Banner>
+          <img src={imageBanner} alt="" />
+          <div className="sabores">
+            <h2>Sabores inigualéveis</h2>
+            <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
+          </div>
+        </Banner>
+
+        <Section title="Refeições">
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
+        </Section>
+        
+        <Section title="Sobremesas">
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
+        </Section>
+
+        <Section title="Bebidas">
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
         </Section>
       </Content>
 
