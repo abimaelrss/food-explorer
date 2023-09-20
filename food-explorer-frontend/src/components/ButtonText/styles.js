@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   border: none;
-  font-size: 16px;
+  font-size: 2.4rem;
 
   display: flex;
   align-items: center;

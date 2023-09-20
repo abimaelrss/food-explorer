@@ -5,9 +5,12 @@ import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 import imageBrand from "../../assets/polygon1.svg";
+import imageMenu1 from "../../assets/icons/Menu.svg";
+import imageMenu2 from "../../assets/icons/Close.svg";
 
-import { Container, Brand, Search, Logout } from "./styles";
-import { Button } from "../Button";
+import { Component, Container, Menu, Brand, Search, Button, Logout } from "./styles";
+// import { Button } from "../Button";
+// import { Menu } from "../Menu";
 import { Input } from "../Input";
 import { FiSearch } from "react-icons/fi";
 
@@ -25,25 +28,39 @@ export function Header() {
     : avatarPlaceholder;
 
   return (
-    <Container>
-      <Brand>
-        <img src={imageBrand} alt="" />
-        <h1>food explorer</h1>
-      </Brand>
+    <Component>
+      <Container>
+        <Menu>
+          <button className="btn1">
+            <img src={imageMenu1} alt="" />
+          </button>
+          <button className="btn2">
+            <img src={imageMenu2} alt="" />
+          </button>
+          <p>Menu</p>
 
-      <Search>
-        <Input
-          placeholder="Pesquisar pelo título"
-          icon={FiSearch}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </Search>
+          <Search />
+        </Menu>
+        <Brand>
+          <img src={imageBrand} alt="" />
+          <h1>food explorer</h1>
+          <p>admin</p>
+        </Brand>
 
-      <Button title="Pedidos (0)" />
+        <Search>
+          <Input
+            placeholder="Busque por pratos ou ingredientes"
+            icon={FiSearch}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Search>
 
-      <Logout onClick={handleSignOu}>
-        <GoSignOut/>
-      </Logout>
-    </Container>
+        <Button title="Novo prato">Novo prato</Button>
+
+        <Logout onClick={handleSignOu}>
+          <GoSignOut />
+        </Logout>
+      </Container>
+    </Component>
   );
 }

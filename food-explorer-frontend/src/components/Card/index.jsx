@@ -1,22 +1,23 @@
 import { Button } from "../Button";
 import { Container } from "./styles";
 
-import imageDish from "../../assets/dish.png";
+import imageDish from "../../assets/mobile/dish.png";
 import imageFavorite from "../../assets/favorite.svg";
+import imagePencil from "../../assets/pencil.png";
 
 export function Card({ title, children }) {
   return (
     <Container>
-      <img src={imageFavorite} alt="" id="favorite"/>
+      <img src={imagePencil} alt="" className="favorite"/>
       <img src={imageDish} alt="" />
-      <h2>Torradas de Parma</h2>
+      <h2>Salada ravanello </h2>
       <h2>{title}</h2>
-      <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
-      <p>R$ 25,97</p>
-      <div className="quantity">
+      <p>Massa fresca com camarão</p>
+      <span>R$ 25,97</span>
+      {/* <div className="quantity">
         <p>- 01 +</p>
         <Button title="incluir" />
-      </div>
+      </div> */}
       {children}
     </Container>
   );

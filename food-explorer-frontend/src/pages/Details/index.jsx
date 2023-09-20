@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
 
+import imageDish from "../../assets/dish2.png";
+
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { ButtonText } from "../../components/ButtonText";
@@ -42,27 +44,20 @@ export function Details() {
   return (
     <Container>
       <Header />
-      {data && (
+      <Content>
+        <ButtonText title="voltar" onClick={handleBack} />
         <main>
-          <Content>
-            <ButtonText title="Voltar" onClick={handleBack} />
-
-            <h1>{data.title}</h1>
-
-            <p>{data.description}</p>
-
-            {data.tags && (
-              <Section title="Marcadores">
-                {data.tags.map((tag) => (
-                  <Tag key={String(tag.id)} title={tag.name} />
-                ))}
-              </Section>
-            )}
-
-            <Button title="Voltar" onClick={handleBack} />
-          </Content>
+          <img src={imageDish} alt="" />
+          <div className="desc">
+            <h2>Salada Ravanello</h2>
+            <p>
+              Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
+              O pão naan dá um toque especial.
+            </p>
+            <Button title="Editar prato" onClick={handleBack} />
+          </div>
         </main>
-      )}
+      </Content>
       <Footer />
     </Container>
   );

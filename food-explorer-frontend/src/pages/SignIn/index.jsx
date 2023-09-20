@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Container, Form, Background } from "./styles";
-import { FiMail, FiLock } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+
+import imageBrand from "../../assets/polygon1.svg";
 
 export function SignIn() {
   const [email, setEmail] = useState();
@@ -21,24 +22,25 @@ export function SignIn() {
   return (
     <Container>
       <Background>
-        <img src="./assets/polygon1.png" alt="" />
+        <img src={imageBrand} alt="" />
         <h1>food explorer</h1>
       </Background>
 
       <Form>
         <h1>Faça login</h1>
 
-        <Input
-          placeholder="E-mail"
+        <label htmlFor="">Email</label>
+        <input
           type="text"
-          icon={FiMail}
+          placeholder="Exemplo: exemplo@exemplo.com.br"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <Input
-          placeholder="Senha"
+        <label htmlFor="">Senha</label>
+
+        <input
           type="password"
-          icon={FiLock}
+          placeholder="No mínimo 6 caracteres"
           onChange={(e) => setPassword(e.target.value)}
         />
 

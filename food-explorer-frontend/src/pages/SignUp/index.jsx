@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { Container, Form, Background } from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { Container, Form, Background } from "./styles";
+import { Link, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
 
-import { FiUser, FiMail, FiLock } from 'react-icons/fi';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+
+import imageBrand from "../../assets/polygon1.svg";
 
 export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassowrd] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,57 +21,56 @@ export function SignUp() {
       return alert("Preencha todos os campos!");
     }
 
-    api.post("/users", { name, email, password }).then(() => {
-      alert("Usuário cadastrado com sucesso!");
-      navigate("/");
-    }).catch(error => {
-      if (error.response) {
-        alert(error.response.data.message);
-      } else {
-        alert("Não foi possível cadastrar!");
-      }
-    });
+    api
+      .post("/users", { name, email, password })
+      .then(() => {
+        alert("Usuário cadastrado com sucesso!");
+        navigate("/");
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert("Não foi possível cadastrar!");
+        }
+      });
   }
 
   return (
     <Container>
-      <Background />
+      <Background>
+        <img src={imageBrand} alt="" />
+        <h1>food explorer</h1>
+      </Background>
 
       <Form>
-        <h1>Rocket Notes</h1>
-        <p>Aplicação para salvar e gerenciar seus links úteis.</p>
+        <h1>Crie sua conta</h1>
 
-        <h2>Crie sua conta</h2>
-
-        <Input
-          placeholder="Nome"
+        <label htmlFor="">Seu nome</label>
+        <input
+          placeholder="Exemplo: Maria da Silva"
           type="text"
-          icon={FiUser}
-          onChange={e => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
 
-        <Input
-          placeholder="E-mail"
+        <label htmlFor="">Email</label>
+        <input
+          placeholder="Exemplo: exemplo@exemplo.com.br"
           type="text"
-          icon={FiMail}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
-        <Input
-          placeholder="Senha"
+        <label htmlFor="">Senha</label>
+        <input
+          placeholder="No mínimo 6 caracteres"
           type="password"
-          icon={FiLock}
-          onChange={e => setPassowrd(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Cadastrar" onClick={handleSignUp} />
+        <Button title="Criar conta" onClick={handleSignUp} />
 
-        <Link to="/">
-          Voltar para o login
-        </Link>
-
+        <Link to="/">Já tenho uma conta</Link>
       </Form>
-
     </Container>
   );
 }

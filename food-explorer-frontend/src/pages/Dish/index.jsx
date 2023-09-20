@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import imageBanner from "../../assets/pngegg1.png";
+import imageDish from "../../assets/prates/Dish.png";
+import imagePlus from "../../assets/icons/Plus.svg";
+import imageMinus from "../../assets/icons/Minus.svg";
+
 import { api } from "../../services/api";
 
-import { Container, Content, Banner } from "./styles";
+import { Container, Content } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -13,8 +17,10 @@ import { Note } from "../../components/Note";
 import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
+import { Button } from "../../components/Button";
+import { Tag } from "../../components/Tag";
 
-export function Home() {
+export function Dish() {
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
   const [tagsSelected, setTagsSelected] = useState([]);
@@ -67,31 +73,34 @@ export function Home() {
 
       <Container>
         <Content>
-          <div className="banner">
-            <img src={imageBanner} alt="" />
-            <Banner>
-              <div className="sabores">
-                <h2>Sabores inigualéveis</h2>
-                <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
+          <ButtonText title="voltar" />
+          <main>
+            <img src={imageDish} alt="" />
+
+            <div className="ingredients">
+              <h2>Salada ravanello</h2>
+              <p>
+                Rabanetes, folhas verdes e molho agridoce salpicados com
+                gergelim.
+              </p>
+              <Tag title="alface" />
+              <Tag title="cebola" />
+              <Tag title="pão naan" />
+              <Tag title="pepino" />
+              <Tag title="rabanete" />
+              <Tag title="tomate" />
+
+              <div className="step">
+                <div className="stepper">
+                  <img src={imagePlus} alt="" />
+                  01
+                  <img src={imageMinus} alt="" />
+                </div>
+
+                <Button title="Editar prato" />
               </div>
-            </Banner>
-          </div>
-
-          <Section title="Refeições">
-            <Card />
-            <Card />
-          </Section>
-
-          <Section title="Pratos principais">
-            <Card />
-            <Card />
-          </Section>
-
-          <Section title="Bebidas">
-            <Card />
-            <Card />
-          </Section>
-          
+            </div>
+          </main>
         </Content>
       </Container>
       <Footer />

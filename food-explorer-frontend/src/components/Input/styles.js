@@ -1,20 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 48px;
+  height: 4.8rem;
   display: flex;
   align-items: center;
-  
-  > input {
-    width: 581px;
 
-    padding: 16px 116px;
+  > input {
+    width: 24rem;
+
+    padding: 1.2rem 1.4rem;
+    /* margin-bottom: 2.4rem; */
 
     color: ${({ theme }) => theme.COLORS.LIGHT_500};
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
     border: 0;
-    border-radius: 5px;
+    border-radius: 0.8rem;
 
     &:placeholder {
       color: ${({ theme }) => theme.COLORS.GRAY_300};
@@ -22,8 +23,6 @@ export const Container = styled.div`
   }
 
   > svg {
-    transform: translateX(100px);
-    margin-left: 16px;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
 `;

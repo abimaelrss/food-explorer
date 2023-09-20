@@ -1,25 +1,27 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.section`
-  margin: 28px 0;
-  padding-top: 48px;
+  margin-bottom: 2.4rem;
 
-  display: flex;
-  align-items: center;
-  gap: 24px;
-
-  position: relative;
+  font-family: "Poppins", sans-serif;
 
   > h2 {
-    padding-bottom: 16px;
-    margin-bottom: 28px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
+    margin-bottom: 2.3rem;
+    padding-bottom: 1.6rem;
 
     color: ${({ theme }) => theme.COLORS.GRAY_100};
-    font-size: 20px;
-    font-weight: 400;
+
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    @media (min-width: 1024px) {
+      font-size: 3.2rem;
+    }
+  }
+
+  main {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
   }
 `;
