@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import imageBanner from "../../assets/pngegg1.png";
+
 import { api } from "../../services/api";
 
 import { Container, Content, Banner } from "./styles";
@@ -13,6 +14,7 @@ import { Note } from "../../components/Note";
 import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
+import { Slider } from "../../components/Slider";
 
 export function Home() {
   const [search, setSearch] = useState("");
@@ -78,22 +80,16 @@ export function Home() {
           </div>
 
           <Section title="Refeições">
-            <Card />
-            <Card />
+            <Slider>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </Slider>
           </Section>
-
-          <Section title="Pratos principais">
-            <Card />
-            <Card />
-          </Section>
-
-          <Section title="Bebidas">
-            <Card />
-            <Card />
-          </Section>
-          
         </Content>
       </Container>
+
       <Footer />
     </>
   );

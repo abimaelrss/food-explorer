@@ -1,15 +1,23 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-width: 21rem;
+  /* min-width: 21rem; */
 
   text-align: center;
 
   padding: 7rem 2.4rem;
 
-  position: relative;
+  /* position: relative; */
 
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
+
+  @media (min-width: 550px) {
+    /* min-height: 36.2rem; */
+  }
+  @media (min-width: 1024px) {
+    /* width: 30.4rem; */
+    min-height: 46.2rem;
+  }
 
   h2 {
     font-family: "Poppins" sans-serif;
@@ -62,9 +70,5 @@ export const Container = styled.div`
     position: absolute;
     top: 1.6rem;
     right: 1.8rem;
-  }
-
-  @media (min-width: 1024px) {
-    min-width: 30.4rem;
   }
 `;

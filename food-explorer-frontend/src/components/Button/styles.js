@@ -6,7 +6,7 @@ export const Container = styled.button`
   height: 4.8rem;
 
   border: 0;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-weight: 500;
 
   display: flex;
@@ -18,7 +18,7 @@ export const Container = styled.button`
 
   > img {
     width: 3.2rem;
-    padding-right: .8rem;
+    padding-right: 0.8rem;
   }
 
   &:disabled {

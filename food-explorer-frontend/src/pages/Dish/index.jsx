@@ -81,14 +81,16 @@ export function Dish() {
               <h2>Salada ravanello</h2>
               <p>
                 Rabanetes, folhas verdes e molho agridoce salpicados com
-                gergelim.
+                gergelim. O pão naan dá um toque especial.
               </p>
-              <Tag title="alface" />
-              <Tag title="cebola" />
-              <Tag title="pão naan" />
-              <Tag title="pepino" />
-              <Tag title="rabanete" />
-              <Tag title="tomate" />
+              <div className="ingredients">
+                <Tag title="alface" />
+                <Tag title="cebola" />
+                <Tag title="pão naan" />
+                <Tag title="pepino" />
+                <Tag title="rabanete" />
+                <Tag title="tomate" />
+              </div>
 
               <div className="step">
                 <div className="stepper">
@@ -103,6 +105,7 @@ export function Dish() {
           </main>
         </Content>
       </Container>
+      
       <Footer />
     </>
   );

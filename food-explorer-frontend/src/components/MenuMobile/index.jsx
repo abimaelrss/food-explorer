@@ -6,16 +6,17 @@ import { api } from "../../services/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 import imageBrand from "../../assets/polygon1.svg";
 import imageMenu1 from "../../assets/icons/Menu.svg";
-import imageMenu2 from "../../assets/icons/Close.svg";
+import imageMenuClose from "../../assets/icons/Close.svg";
 
 import { Container } from "./styles";
 // import { Button } from "../Button";
 import { Input } from "../Input";
-import { FiSearch } from "react-icons/fi";
 import { Search } from "../Header/styles";
+import { FiSearch } from "react-icons/fi";
 
-export function Menu() {
+export function MenuMobile({ visible, closeMenu }) {
   const { signOut, user } = useAuth();
+
   const navigation = useNavigate();
 
   function handleSignOu() {
@@ -28,16 +29,25 @@ export function Menu() {
     : avatarPlaceholder;
 
   return (
-    <Container>
-      <button className="btn1">
-        <img src={imageMenu1} alt="" />
-      </button>
-      <button className="btn2">
-        <img src={imageMenu2} alt="" />
-      </button>
-      <p>Menu</p>
+    <Container $visible={visible}>
+      <header>
+        <button className="buttonMenu" onClick={() => closeMenu(false)}>
+          <img src={imageMenuClose} alt="Fechar menu" />
+          <p>Menu</p>
+        </button>
+      </header>
 
-      <Search />
+      <main>
+        <Search>
+          <Input
+            placeholder="Busque por pratos ou ingredientes"
+            icon={FiSearch}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Search>
+        <button>Novo prato</button>
+        <button>Sair</button>
+      </main>
     </Container>
   );
 }

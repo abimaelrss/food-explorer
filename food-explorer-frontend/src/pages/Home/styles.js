@@ -79,6 +79,8 @@ export const Banner = styled.div`
     padding-bottom: 2.2rem;
     /* padding-right: 2.1rem; */
 
+    z-index: 100;
+
     > h2 {
       font-weight: 600;
       font-size: 1.8rem;

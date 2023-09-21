@@ -6,49 +6,43 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   margin: 0 auto;
-  
+
+  .imageMenuMobile {
+    border: none;
+    background: none;
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .searchContainer {
+    width: 100%;
+    margin: 0 3.2rem;
+
+    display: none;
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 800px) {
+    justify-content: space-between;
+  }
 `;
 
 export const Component = styled.header`
   padding: 5.6rem 2.8rem 2.4rem 2.8rem;
-
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
 `;
 
-export const Menu = styled.div`
-margin-right: 7.4rem;
-
-  background-color: ${({ theme }) => theme.COLORS.DARK_900};
-
-  .btn1 {
-    width: 2.4rem;
-    background: none;
-    border: none;
-  }
-
-  .btn1:active {
-    display: none;
-  }
-
-  .btn2 {
-    display: none;
-  }
-
-  p {
-    display: none;
-  }
-
-  @media (min-width: 1024px) {
-    display: none;
-  }
-`;
-
 export const Brand = styled.div`
-  min-width: 27.8rem;
+  min-width: 19.7rem;
   height: 3.9rem;
+
+  margin: 0 auto;
+  transform: translateX(-24px);
 
   display: flex;
   align-items: center;
@@ -73,18 +67,16 @@ export const Brand = styled.div`
 
     @media (min-width: 1024px) {
       position: absolute;
-      right: 12rem;
+      right: 4rem;
       bottom: -0.5rem;
     }
   }
 `;
 
 export const Search = styled.div`
-  min-width: 40rem;
   /* max-width: 55rem; */
   width: 100%;
   height: 4.8rem;
-  margin: 0 3.2rem;
 
   display: flex;
   align-items: center;
@@ -94,10 +86,6 @@ export const Search = styled.div`
 
   color: ${({ theme }) => theme.COLORS.LIGHT_500};
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
-
-  @media (max-width: 1024px) {
-    display: none;
-  }
 `;
 
 export const Button = styled.button`

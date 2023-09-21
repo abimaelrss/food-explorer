@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
 import { NoteItem } from "../../components/NoteItem";
@@ -134,6 +135,8 @@ export function NewDish() {
           <Button title="Salvar" onClick={handleNewNote} />
         </Form>
       </main>
+
+      <Footer />
     </Container>
   );
 }
