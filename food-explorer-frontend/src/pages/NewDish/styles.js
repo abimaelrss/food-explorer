@@ -35,11 +35,13 @@ export const Form = styled.div`
   gap: 2.4rem;
 
   button {
+    width: 100%;
     font-size: 1.6rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
     @media (min-width: 1024px) {
-      font-size: 2.4rem;
+      width: 17.2rem;
+      /* font-size: 2.4rem; */
     }
   }
 
@@ -56,24 +58,33 @@ export const Form = styled.div`
     flex-direction: column;
     gap: 3.2rem;
 
-    > label {
-      color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    }
-
     #file-input {
       display: none;
     }
 
+    /* :nth-child(2) {
+      flex: 1;
+    } */
+
     > .inputWrapper {
-      width: 100%;
+      /* width: 100%; */
+
+      color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
       .uploadFile {
-        padding: 1.2rem 3.2rem;
+        padding: 0 3.2rem;
 
         display: flex;
         align-items: center;
+
         img {
+          width: 1.9rem;
+          margin-left: 3.2rem;
           margin-right: 8px;
+        }
+
+        span {
+          color: ${({ theme }) => theme.COLORS.LIGHT_100};
         }
       }
 
@@ -82,7 +93,7 @@ export const Form = styled.div`
       .uploadFile {
         width: 100%;
 
-        padding: 1.2rem 1.4rem;
+        padding: 1.6rem 1.4rem;
 
         margin-top: 1.6rem;
 
@@ -94,11 +105,14 @@ export const Form = styled.div`
 
         border: 0;
         border-radius: 0.8rem;
-        /* resize: none; */
 
         &:placeholder {
           color: ${({ theme }) => theme.COLORS.GRAY_300};
         }
+      }
+
+      @media (min-width: 1024px) {
+        width: 25rem;
       }
     }
 

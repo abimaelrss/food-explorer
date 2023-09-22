@@ -16,6 +16,7 @@ export const Container = styled.div`
     $isnew ? `1px dashed ${theme.COLORS.LIGHT_100}` : "none"};
 
   > button {
+    /* width: 100%; */
     border: none;
     background: none;
   }
