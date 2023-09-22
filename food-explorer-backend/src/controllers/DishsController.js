@@ -1,11 +1,11 @@
 const knex = require("../database/knex");
 
-class PlatesController {
+class DishsController {
   async create(request, response) {
     const { name, description, category, ingredients, price } = request.body;
     const user_id = request.user.id;
 
-    const [plate_id] = await knex("plates").insert({
+    const [plate_id] = await knex("dishs").insert({
       name,
       description,
       category,
@@ -99,4 +99,4 @@ class PlatesController {
   // }
 }
 
-module.exports = PlatesController;
+module.exports = DishsController;

@@ -5,7 +5,7 @@ const notesRouter = require("./notes.routes");
 const tagsRouter = require("./tags.routes");
 const sessionsRouter = require("./sessions.routes");
 
-const platesRouter = require("./plates.routes");
+const dishsRouter = require("./dishs.routes");
 const categoriesRouter = require("./categories.routes");
 const ingredientsRouter = require("./ingredients.routes");
 
@@ -15,7 +15,7 @@ routes.use("/sessions", sessionsRouter);
 routes.use("/notes", notesRouter);
 routes.use("/tags", tagsRouter);
 
-routes.use("/plates", platesRouter);
+routes.use("/dishs", dishsRouter);
 routes.use("/categories", categoriesRouter);
 routes.use("/ingredients", ingredientsRouter);
 

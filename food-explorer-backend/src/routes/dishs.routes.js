@@ -1,17 +1,17 @@
 const { Router } = require("express");
 
-const PlatesController = require("../controllers/PlatesController");
+const DishsController = require("../controllers/DishsController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
-const platesRouter = Router();
+const dishsRouter = Router();
 
-const platesController = new PlatesController();
+const dishsController = new DishsController();
 
-platesRouter.use(ensureAuthenticated);
+dishsRouter.use(ensureAuthenticated);
 
-platesRouter.post("/:id", platesController.create);
+dishsRouter.post("/:id", dishsController.create);
 // platesRouter.get("/:id", platesController.show);
 // platesRouter.delete("/:id", platesController.delete);
 // platesRouter.get("/", platesController.index);
 
-module.exports = platesRouter;
+module.exports = dishsRouter;
