@@ -1,7 +1,7 @@
 import { Button } from "../Button";
 import { Container } from "./styles";
 
-import imageDish from "../../assets/mobile/dish.png";
+import imageDish from "../../assets/mobile/Dish.png";
 
 import imagePencil from "../../assets/pencil.png";
 
