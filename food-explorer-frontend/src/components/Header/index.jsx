@@ -11,6 +11,7 @@ import imageMenuClose from "../../assets/icons/Close.svg";
 import { Component, Container, Brand, Search, Button, Logout } from "./styles";
 // import { Button } from "../Button";
 import { Input } from "../Input";
+// import { Search } from "../Search";
 import { FiSearch } from "react-icons/fi";
 import { MenuMobile } from "../MenuMobile";
 import { useEffect, useState } from "react";

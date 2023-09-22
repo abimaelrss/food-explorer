@@ -35,6 +35,10 @@ export const Container = styled.div`
 export const Component = styled.header`
   padding: 5.6rem 2.8rem 2.4rem 2.8rem;
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
+
+  @media (min-width: 1024px) {
+    padding: 2.8rem 12.3rem;
+  }
 `;
 
 export const Brand = styled.div`
@@ -86,6 +90,10 @@ export const Search = styled.div`
 
   color: ${({ theme }) => theme.COLORS.LIGHT_500};
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const Button = styled.button`

@@ -13,7 +13,10 @@ import { ButtonText } from "../../components/ButtonText";
 
 import { api } from "../../services/api";
 
-import { Container, Form } from "./styles";
+import imageSelect from "../../assets/icons/UploadSimple.svg";
+import { FiUpload } from "react-icons/fi";
+
+import { Container, Content, Form } from "./styles";
 
 export function NewDish() {
   const [title, setTitle] = useState("");
@@ -80,61 +83,84 @@ export function NewDish() {
     <Container>
       <Header />
 
-      <main>
+      <Content>
         <Form>
           <ButtonText title="voltar" onClick={handleBack} />
-          <header>
-            <h1>Novo prato</h1>
-          </header>
+          <h1>Novo prato</h1>
 
-          <label htmlFor="">Imagem do prato</label>
-          <Input
-            type="file"
-            placeholder="Selecione a imagem"
-            // onChange={e => setTitle(e.target.value)}
-          />
-          <label htmlFor="">Nome</label>
-          <Input
-            placeholder="Ex.: Salada Ceasar"
-            // onChange={e => setTitle(e.target.value)}
-          />
-          <label htmlFor="">Categoria</label>
-          <select name="" id="">
-            <option value="">Refeição</option>
-          </select>
+          <div className="inputGroup">
+            <div className="inputWrapper">
+              <label htmlFor="file-input">
+                <span>Imagem do prato</span>
+                <div className="uploadFile">
+                  <img src={imageSelect} alt="" />
+                  <span>Selecione a imagem</span>
+                  <input
+                    id="file-input"
+                    type="file"
+                    placeholder="Selecione a imagem"
+                    // onChange={e => setImage(e.target.value)}
+                  />
+                </div>
+              </label>
+            </div>
 
-          <Section title="Ingredientes">
-            {links.map((link, index) => (
-              <NoteItem
-                key={String(index)}
-                value={link}
-                onClick={() => handleRemoveLink(link)}
+            <div className="inputWrapper">
+              <label htmlFor="">Nome</label>
+              <input
+                type="text"
+                placeholder="Ex.: Salada Ceasar"
+                // onChange={e => setName(e.target.value)}
               />
-            ))}
-            <NoteItem
-              isNew
-              placeholder="Novo link"
-              value={newLink}
-              onChange={(e) => setNewLink(e.target.value)}
-              onClick={handleAddLink}
-            />
-          </Section>
+            </div>
+            <div className="inputWrapper">
+              <label htmlFor="">Categoria</label>
+              <select name="" id="">
+                <option value="">Refeição</option>
+              </select>
+            </div>
+          </div>
 
-          <label htmlFor="">Nome</label>
-          <Input
-            placeholder="Ex.: Salada Ceasar"
-            // onChange={e => setTitle(e.target.value)}
-          />
+          <div className="inputGroup">
+            <Section title="Ingredientes">
+              <div className="tags">
+                {links.map((link, index) => (
+                  <NoteItem
+                    key={String(index)}
+                    value={link}
+                    onClick={() => handleRemoveLink(link)}
+                  />
+                ))}
+                <NoteItem
+                  isNew
+                  placeholder="Adicionar"
+                  value={newLink}
+                  onChange={(e) => setNewLink(e.target.value)}
+                  onClick={handleAddLink}
+                />
+              </div>
+            </Section>
+            <div className="inputGroup">
+              <div className="inputWrapper">
+                <label htmlFor="">Preço</label>
+                <input
+                  type="text"
+                  placeholder="R$ 00,00"
+                  // onChange={e => setName(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
 
           <label htmlFor="">Descrição</label>
           <TextArea
-            placeholder="Observações"
+            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <Button title="Salvar" onClick={handleNewNote} />
+          <Button title="Salvar alterações" onClick={handleNewNote} />
         </Form>
-      </main>
+      </Content>
 
       <Footer />
     </Container>

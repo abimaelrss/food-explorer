@@ -1,18 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.textarea`
   width: 100%;
-  height: 150px;
+  height: 17.2rem;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-  color: ${({ theme }) => theme.COLORS.WHITE};
+  padding: 1.4rem;
 
-  border: none;
-  resize: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
 
-  margin-bottom: 8px;
-  border-radius: 10px;
-  padding: 16px;
+  color: ${({ theme }) => theme.COLORS.LIGHT_500};
+  background-color: ${({ theme }) => theme.COLORS.DARK_800};
+
+  border: 0;
+  border-radius: 0.8rem;
 
   &::placeholder {
     color: ${({ theme }) => theme.COLORS.GRAY_300};

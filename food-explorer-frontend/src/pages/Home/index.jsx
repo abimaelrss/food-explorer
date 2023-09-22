@@ -22,6 +22,9 @@ export function Home() {
   const [tagsSelected, setTagsSelected] = useState([]);
   const [notes, setNotes] = useState([]);
 
+  const [dishs, setDishs] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+
   const navigate = useNavigate();
 
   function handleTagSelected(tagName) {
@@ -49,7 +52,13 @@ export function Home() {
       setTags(response.data);
     }
 
+    async function fetchIngredients() {
+      const response = await api.get("/ingredients");
+      setTags(response.data);
+    }
+
     fetchTags();
+    fetchIngredients();
   }, []);
 
   useEffect(() => {
@@ -60,7 +69,15 @@ export function Home() {
       setNotes(response.data);
     }
 
+    async function fetchDishs() {
+      const response = await api.get(
+        `/dishs?name=${search}&ingredients=${tagsSelected}`
+      );
+      setDishs(response.data);
+    }
+
     fetchNotes();
+    fetchDishs();
   }, [tagsSelected, search]);
 
   return (
@@ -80,6 +97,13 @@ export function Home() {
           </div>
 
           <Section title="Refeições">
+            {/* {dishs.map((dish) => (
+              <Dish
+                key={String(dish.id)}
+                data={dish}
+                onClick={() => handleDetails(dish.id)}
+              />
+            ))} */}
             <Slider>
               <Card />
               <Card />

@@ -19,7 +19,7 @@ export function MenuMobile({ visible, closeMenu }) {
 
   const navigation = useNavigate();
 
-  function handleSignOu() {
+  function handleSignOut() {
     navigation("/");
     signOut();
   }
@@ -46,7 +46,7 @@ export function MenuMobile({ visible, closeMenu }) {
           />
         </Search>
         <button>Novo prato</button>
-        <button>Sair</button>
+        <button onClick={handleSignOut}>Sair</button>
       </main>
     </Container>
   );

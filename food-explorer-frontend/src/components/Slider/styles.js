@@ -8,19 +8,20 @@ export const Container = styled.section`
 
   position: relative;
 
-  
   button {
-    /* width: 100%; */
     border: none;
     background: none;
-    
+
     position: absolute;
     bottom: 13rem;
 
     visibility: hidden;
-    
+
     @media (min-width: 800px) {
       visibility: visible;
+    }
+    @media (min-width: 1024px) {
+      bottom: 20rem;
     }
   }
 

@@ -7,13 +7,18 @@ export const Container = styled.button`
 
   border: 0;
   border-radius: 0.5rem;
-  font-weight: 500;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
+  
+
+  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   > img {

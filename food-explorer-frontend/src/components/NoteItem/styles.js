@@ -1,17 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  background-color: ${({ theme, $isnew }) => $isnew ? "transparente" : theme.COLORS.BACKGROUND_900};
-  color: ${({ theme }) => theme.COLORS.GRAY_300};
-
-  border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"};
-
-  margin-bottom: 8px;
-  border-radius: 10px;
+  border-radius: 8px;
   padding-right: 16px;
+
+  background-color: ${({ theme, $isnew }) =>
+    $isnew ? "transparente" : theme.COLORS.LIGHT_600};
+  color: ${({ theme, $isnew }) =>
+    $isnew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100};
+
+  border: ${({ theme, $isnew }) =>
+    $isnew ? `1px dashed ${theme.COLORS.LIGHT_100}` : "none"};
 
   > button {
     border: none;
@@ -19,18 +21,20 @@ export const Container = styled.div`
   }
 
   .button-delete {
-    color: ${({ theme }) => theme.COLORS.RED};
+    /* color: ${({ theme }) => theme.COLORS.RED}; */
   }
-
+  
   .button-add {
-    color: ${({ theme }) => theme.COLORS.ORANGE};
+    /* color: ${({ theme }) => theme.COLORS.ORANGE}; */
   }
 
   > input {
-    height: 56px;
-    width: 100%;
+    width: 11.8rem;
+    /* height: 3.2rem; */
 
-    padding: 12px;
+    /* margin-right: 1.6rem; */
+
+    padding: 1rem 1.6rem;
 
     color: ${({ theme }) => theme.COLORS.WHITE};
     background: transparent;
@@ -41,5 +45,4 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.GRAY_300};
     }
   }
-
 `;
