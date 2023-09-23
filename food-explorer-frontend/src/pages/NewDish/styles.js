@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import imageSelect from "../../assets/icons/ChevronDown.svg";
 
 export const Container = styled.div`
   width: 100%;
@@ -13,6 +14,8 @@ export const Container = styled.div`
     justify-content: left;
     flex-wrap: wrap;
     gap: 1.6rem;
+
+    margin-top: 1.6rem;
 
     padding: 8px 8px;
 
@@ -34,14 +37,19 @@ export const Form = styled.div`
   flex-direction: column;
   gap: 2.4rem;
 
-  button {
-    width: 100%;
-    font-size: 1.6rem;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+  .action {
+    display: flex;
+    justify-content: end;
+    
+    > button {
+      width: 100%;
 
-    @media (min-width: 1024px) {
-      width: 17.2rem;
-      /* font-size: 2.4rem; */
+      font-size: 1.4rem;
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+      @media (min-width: 1024px) {
+        width: 17.2rem;
+      }
     }
   }
 
@@ -62,12 +70,8 @@ export const Form = styled.div`
       display: none;
     }
 
-    /* :nth-child(2) {
-      flex: 1;
-    } */
-
     > .inputWrapper {
-      /* width: 100%; */
+      width: 100%;
 
       color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
@@ -106,13 +110,22 @@ export const Form = styled.div`
         border: 0;
         border-radius: 0.8rem;
 
-        &:placeholder {
-          color: ${({ theme }) => theme.COLORS.GRAY_300};
+        &::placeholder {
+          color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        }
+      }
+
+      select {
+        /* background: url(imageSelect) no-repeat; */
+        /* background: url("../../assets/icons/ChevronDown.svg") no-repeat right; */
+
+        > svg {
+          width: 2rem;
         }
       }
 
       @media (min-width: 1024px) {
-        width: 25rem;
+        /* width: 25rem; */
       }
     }
 

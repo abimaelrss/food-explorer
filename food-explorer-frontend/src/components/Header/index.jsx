@@ -7,11 +7,10 @@ import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 import imageBrand from "../../assets/polygon1.svg";
 import imageMenuOpen from "../../assets/icons/Menu.svg";
 import imageMenuClose from "../../assets/icons/Close.svg";
+import imageButton from "../../assets/receipt.svg";
 
 import { Component, Container, Brand, Search, Button, Logout } from "./styles";
-// import { Button } from "../Button";
 import { Input } from "../Input";
-// import { Search } from "../Search";
 import { FiSearch } from "react-icons/fi";
 import { MenuMobile } from "../MenuMobile";
 import { useEffect, useState } from "react";
@@ -59,7 +58,10 @@ export function Header() {
           </Search>
         </div>
 
-        <Button title="Novo prato">Novo prato</Button>
+        <Button title="Novo prato">
+          <img src={imageButton} alt="" />
+          Novo prato
+        </Button>
 
         <Logout onClick={handleSignOu}>
           <GoSignOut />

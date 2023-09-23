@@ -11,14 +11,17 @@ export const Container = styled.div`
     $isnew ? "transparente" : theme.COLORS.LIGHT_600};
   color: ${({ theme, $isnew }) =>
     $isnew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100};
-
   border: ${({ theme, $isnew }) =>
     $isnew ? `1px dashed ${theme.COLORS.LIGHT_100}` : "none"};
 
   > button {
-    /* width: 100%; */
+    width: 100%;
+
     border: none;
+    font-size: 1.6rem;
+
     background: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
   .button-delete {

@@ -122,7 +122,8 @@ export function NewDish() {
           </div>
 
           <div className="inputGroup">
-            <Section title="Ingredientes">
+            <div className="inputWrapper">
+              <label htmlFor="">Ingredientes</label>
               <div className="tags">
                 {links.map((link, index) => (
                   <NoteItem
@@ -139,7 +140,7 @@ export function NewDish() {
                   onClick={handleAddLink}
                 />
               </div>
-            </Section>
+            </div>
             <div className="inputGroup">
               <div className="inputWrapper">
                 <label htmlFor="">Preço</label>
@@ -158,7 +159,9 @@ export function NewDish() {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <Button title="Salvar alterações" onClick={handleNewNote} />
+          <div className="action">
+            <Button title="Salvar alterações"  onClick={handleNewNote} />
+          </div>
         </Form>
       </Content>
 

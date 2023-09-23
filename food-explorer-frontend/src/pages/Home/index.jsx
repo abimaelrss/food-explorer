@@ -97,13 +97,13 @@ export function Home() {
           </div>
 
           <Section title="Refeições">
-            {/* {dishs.map((dish) => (
+            {dishs.map((dish) => (
               <Dish
                 key={String(dish.id)}
                 data={dish}
                 onClick={() => handleDetails(dish.id)}
               />
-            ))} */}
+            ))}
             <Slider>
               <Card />
               <Card />

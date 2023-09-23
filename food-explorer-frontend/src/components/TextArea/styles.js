@@ -18,6 +18,6 @@ export const Container = styled.textarea`
   border-radius: 0.8rem;
 
   &::placeholder {
-    color: ${({ theme }) => theme.COLORS.GRAY_300};
+    color: ${({ theme }) => theme.COLORS.LIGHT_500};
   }
 `;

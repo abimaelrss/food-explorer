@@ -15,7 +15,7 @@ export const Container = styled.section`
     font-weight: 500;
 
     @media (min-width: 1024px) {
-      /* font-size: 3.2rem; */
+      font-size: 3.2rem;
     }
   }
 

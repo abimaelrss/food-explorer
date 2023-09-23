@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  /* width: 100%; */
-  min-width: 21.6rem;
+  width: 100%;
+  /* min-width: 16.2rem; */
   height: 4.8rem;
+
+  padding: 1.2rem 2.4rem;
 
   border: 0;
   border-radius: 0.5rem;
@@ -16,7 +18,7 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
+  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   > img {
@@ -27,4 +29,6 @@ export const Container = styled.button`
   &:disabled {
     opacity: 0.5;
   }
+
+  
 `;
