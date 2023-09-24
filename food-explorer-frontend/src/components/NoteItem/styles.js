@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  width: fit-content;
+
   border-radius: 8px;
   padding-right: 16px;
 
@@ -15,7 +17,7 @@ export const Container = styled.div`
     $isnew ? `1px dashed ${theme.COLORS.LIGHT_100}` : "none"};
 
   > button {
-    width: 100%;
+    /* width: 100%; */
 
     border: none;
     font-size: 1.6rem;
@@ -33,20 +35,21 @@ export const Container = styled.div`
   }
 
   > input {
+    /* width: 100%; */
     width: 11.8rem;
-    /* height: 3.2rem; */
+    height: 3.2rem;
 
     /* margin-right: 1.6rem; */
 
     padding: 1rem 1.6rem;
 
-    color: ${({ theme }) => theme.COLORS.WHITE};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
     background: transparent;
 
     border: none;
 
     &::placeholder {
-      color: ${({ theme }) => theme.COLORS.GRAY_300};
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
     }
   }
 `;

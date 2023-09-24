@@ -53,8 +53,8 @@ export function Home() {
     }
 
     async function fetchIngredients() {
-      const response = await api.get("/ingredients");
-      setTags(response.data);
+      // const response = await api.get("/ingredients");
+      // setTags(response.data);
     }
 
     fetchTags();
@@ -71,7 +71,8 @@ export function Home() {
 
     async function fetchDishs() {
       const response = await api.get(
-        `/dishs?name=${search}&ingredients=${tagsSelected}`
+        `/dishs/:id=${1}`
+        // `/dishs?id=${search}&ingredients=${tagsSelected}`
       );
       setDishs(response.data);
     }
@@ -97,14 +98,16 @@ export function Home() {
           </div>
 
           <Section title="Refeições">
-            {dishs.map((dish) => (
+            {/* {dishs.map((dish) => (
               <Dish
                 key={String(dish.id)}
                 data={dish}
                 onClick={() => handleDetails(dish.id)}
               />
-            ))}
+            ))} */}
             <Slider>
+              <Card />
+              <Card />
               <Card />
               <Card />
               <Card />

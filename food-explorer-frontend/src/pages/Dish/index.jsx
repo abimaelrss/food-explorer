@@ -94,9 +94,9 @@ export function Dish() {
 
               <div className="step">
                 <div className="stepper">
-                  <img src={imagePlus} alt="" />
-                  01
                   <img src={imageMinus} alt="" />
+                  01
+                  <img src={imagePlus} alt="" />
                 </div>
 
                 <Button title="Editar prato" />

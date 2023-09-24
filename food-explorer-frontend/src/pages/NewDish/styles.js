@@ -116,7 +116,7 @@ export const Form = styled.div`
       }
 
       select {
-        /* background: url(imageSelect) no-repeat; */
+          /* background: url(${imageSelect}) no-repeat; */
         /* background: url("../../assets/icons/ChevronDown.svg") no-repeat right; */
 
         > svg {
