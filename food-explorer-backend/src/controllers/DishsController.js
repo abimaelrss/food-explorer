@@ -5,7 +5,7 @@ class DishsController {
     const { name, description, category, ingredients, price } = request.body;
     const user_id = request.user.id;
 
-    const [plate_id] = await knex("dishs").insert({
+    const [dish_id] = await knex("dishs").insert({
       name,
       description,
       category,
@@ -17,7 +17,7 @@ class DishsController {
     const ingredientsInsert = ingredients.map((ingredient) => {
       return {
         name: ingredient,
-        plate_id,
+        dish_id,
       };
     });
 
@@ -31,26 +31,26 @@ class DishsController {
     //   };
     // });
 
-    await knex("categories").insert({ name: category, plate_id, user_id });
+    await knex("categories").insert({ name: category, dish_id, user_id });
 
     return response.json();
   }
 
-  // async show(request, response) {
-  //   const { id } = request.params;
+  async show(request, response) {
+    const { id } = request.params;
 
-  //   const note = await knex("notes").where({ id }).first();
-  //   const tags = await knex("tags").where({ note_id: id }).orderBy("name");
-  //   const links = await knex("links")
-  //     .where({ note_id: id })
-  //     .orderBy("created_at");
+    const dish = await knex("dishs").where({ id }).first();
+    // const tags = await knex("tags").where({ note_id: id }).orderBy("name");
+    // const links = await knex("links")
+    //   .where({ note_id: id })
+    //   .orderBy("created_at");
 
-  //   return response.json({
-  //     ...note,
-  //     tags,
-  //     links,
-  //   });
-  // }
+    return response.json({
+      ...dish,
+      // tags,
+      // links,
+    });
+  }
 
   // async delete(request, response) {
   //   const { id } = request.params;
@@ -60,43 +60,47 @@ class DishsController {
   //   return response.json();
   // }
 
-  // async index(request, response) {
-  //   const { title, tags } = request.query;
+  async index(request, response) {
+    const { name, ingredients } = request.query;
 
-  //   const user_id = request.user.id;
+    const user_id = request.user.id;
 
-  //   let notes;
+    let dishs;
 
-  //   if (tags) {
-  //     const filterTags = tags.split(",").map((tag) => tag.trim());
+    if (ingredients) {
+      const filterIngredients = ingredients
+        .split(",")
+        .map((ingredient) => ingredient.trim());
 
-  //     notes = await knex("tags")
-  //       .select(["notes.id", "notes.title", "notes.user_id"])
-  //       .where("notes.user_id", user_id)
-  //       .whereLike("notes.title", `%${title}%`)
-  //       .whereIn("name", filterTags)
-  //       .innerJoin("notes", "notes.id", "tags.note_id")
-  //       .groupBy("notes.id")
-  //       .orderBy("notes.title");
-  //   } else {
-  //     notes = await knex("notes")
-  //       .where({ user_id })
-  //       .whereLike("title", `%${title}%`)
-  //       .orderBy("title");
-  //   }
+      dishs = await knex("ingredients")
+        .select(["dishs.id", "dishs.name", "dishs.user_id"])
+        .where("dishs.user_id", user_id)
+        .whereLike("dishs.name", `%${name}%`)
+        .whereIn("name", filterIngredients)
+        .innerJoin("dishs", "dishs.id", "ingredients.dish_id")
+        .groupBy("dishs.id")
+        .orderBy("dishs.name");
+    } else {
+      dishs = await knex("dishs")
+        .where({ user_id })
+        .whereLike("name", `%${name}%`)
+        .orderBy("name");
+    }
 
-  //   const userTags = await knex("tags").where({ user_id });
-  //   const notesWithTags = notes.map((note) => {
-  //     const noteTags = userTags.filter((tag) => tag.note_id === note.id);
+    const userIngredients = await knex("ingredients").where({ user_id });
+    const dishsWithIngredients = dishs.map((dish) => {
+      const dishsIngredients = userIngredients.filter(
+        (ingredient) => ingredient.dish_id === ingredient.id
+      );
 
-  //     return {
-  //       ...note,
-  //       tags: noteTags,
-  //     };
-  //   });
+      return {
+        ...dish,
+        ingredients: dishsIngredients,
+      };
+    });
 
-  //   return response.json(notesWithTags);
-  // }
+    return response.json(dishsWithIngredients);
+  }
 }
 
 module.exports = DishsController;

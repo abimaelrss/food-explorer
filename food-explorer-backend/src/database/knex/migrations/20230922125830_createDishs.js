@@ -1,5 +1,5 @@
 exports.up = (knex) =>
-  knex.schema.createTable("plates", (table) => {
+  knex.schema.createTable("dishs", (table) => {
     table.increments("id");
     table.text("name");
     table.text("description");
@@ -10,4 +10,4 @@ exports.up = (knex) =>
     table.integer("user_id").references("id").inTable("users");
   });
 
-exports.down = (knex) => knex.schema.dropTable("plates");
+exports.down = (knex) => knex.schema.dropTable("dishs");

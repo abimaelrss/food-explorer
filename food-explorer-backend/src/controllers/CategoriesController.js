@@ -3,11 +3,11 @@ const knex = require("../database/knex");
 class CategoriesController {
   async create(request, response) {
     const { name } = request.body;
-    const paltes_id = request.body;
+    const dish_id = request.body;
 
     const [category_id] = await knex("categories").insert({
       name,
-      paltes_id
+      dish_id
     });
 
     return response.json();
