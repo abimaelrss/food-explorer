@@ -9,10 +9,11 @@ import imageMenuOpen from "../../assets/icons/Menu.svg";
 import imageMenuClose from "../../assets/icons/Close.svg";
 import imageButton from "../../assets/receipt.svg";
 
-import { Component, Container, Brand, Search, Button, Logout } from "./styles";
+import { Component, Container, Brand, Button, Logout } from "./styles";
 import { Input } from "../Input";
 import { FiSearch } from "react-icons/fi";
 import { MenuMobile } from "../MenuMobile";
+import { Search } from "../Search";
 import { useEffect, useState } from "react";
 
 export function Header() {
@@ -49,13 +50,7 @@ export function Header() {
         </Brand>
 
         <div className="searchContainer">
-          <Search>
-            <Input
-              placeholder="Busque por pratos ou ingredientes"
-              icon={FiSearch}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Search>
+          <Search />
         </div>
 
         <Button title="Novo prato">

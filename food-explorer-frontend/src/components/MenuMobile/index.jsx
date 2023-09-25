@@ -11,7 +11,7 @@ import imageMenuClose from "../../assets/icons/Close.svg";
 import { Container } from "./styles";
 // import { Button } from "../Button";
 import { Input } from "../Input";
-import { Search } from "../Header/styles";
+import { Search } from "../Search";
 import { FiSearch } from "react-icons/fi";
 
 export function MenuMobile({ visible, closeMenu }) {
@@ -38,13 +38,7 @@ export function MenuMobile({ visible, closeMenu }) {
       </header>
 
       <main>
-        <Search>
-          <Input
-            placeholder="Busque por pratos ou ingredientes"
-            icon={FiSearch}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </Search>
+        <Search />
         <button>Novo prato</button>
         <button onClick={handleSignOut}>Sair</button>
       </main>
