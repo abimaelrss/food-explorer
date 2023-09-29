@@ -15,6 +15,7 @@ import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
 import { Slider } from "../../components/Slider";
+import { Dish } from "../../components/Dish";
 
 export function Home() {
   const [search, setSearch] = useState("");
@@ -23,6 +24,7 @@ export function Home() {
   const [notes, setNotes] = useState([]);
 
   const [dishs, setDishs] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
 
   const navigate = useNavigate();
@@ -47,37 +49,38 @@ export function Home() {
   }
 
   useEffect(() => {
-    async function fetchTags() {
-      const response = await api.get("/tags");
-      setTags(response.data);
-    }
+    // async function fetchTags() {
+    //   const response = await api.get("/tags");
+    //   setTags(response.data);
+    // }
+    
+    // fetchTags();
 
-    async function fetchIngredients() {
-      // const response = await api.get("/ingredients");
-      // setTags(response.data);
-    }
+    // async function fetchCategories() {
+    //   const response = await api.get("/categories");
+    //   setCategories(response.data);
+    // }
 
-    fetchTags();
-    fetchIngredients();
+    // fetchCategories();
   }, []);
 
   useEffect(() => {
-    async function fetchNotes() {
-      const response = await api.get(
-        `/notes?title=${search}&tags=${tagsSelected}`
-      );
-      setNotes(response.data);
-    }
+    // async function fetchNotes() {
+    //   const response = await api.get(
+    //     `/notes?title=${search}&tags=${tagsSelected}`
+    //   );
+    //   setNotes(response.data);
+    // }
 
     async function fetchDishs() {
       const response = await api.get(
         `/dishs/:id=${1}`
-        // `/dishs?id=${search}&ingredients=${tagsSelected}`
+        // `/dishs?id=${search}&categories=${tagsSelected}`
       );
       setDishs(response.data);
     }
 
-    fetchNotes();
+    // fetchNotes();
     fetchDishs();
   }, [tagsSelected, search]);
 
