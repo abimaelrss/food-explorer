@@ -19,8 +19,12 @@ import { FiUpload } from "react-icons/fi";
 import { Container, Content, Form } from "./styles";
 
 export function NewDish() {
-  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [price, setPrice] = useState("");
 
   const [links, setLinks] = useState([]);
   const [newLink, setNewLink] = useState("");
@@ -51,9 +55,29 @@ export function NewDish() {
     setTags((prevState) => prevState.filter((tag) => tag !== deleted));
   }
 
-  async function handleNewNote() {
-    if (!title) {
-      return alert("Digite o título da nota!");
+  async function handleNewDish() {
+    if (!image) {
+      return alert("Informe a imagem!");
+    }
+
+    if (!name) {
+      return alert("Informe o nome!");
+    }
+
+    if (!category) {
+      return alert("Informe a categoria!");
+    }
+
+    if (!ingredients) {
+      return alert("Informe os ingredientes!");
+    }
+
+    if (!price) {
+      return alert("Informe oo preço!");
+    }
+
+    if (!description) {
+      return alert("Informe a descrição!");
     }
 
     if (newLink) {
@@ -79,6 +103,34 @@ export function NewDish() {
     navigate(-1);
   }
 
+  // async function handleNewNote() {
+  //   if (!name) {
+  //     return alert("Digite o título da nota!");
+  //   }
+
+  //   if (newLink) {
+  //     return alert(
+  //       "Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
+  //     );
+  //   }
+
+  //   if (newTag) {
+  //     return alert(
+  //       "Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
+  //     );
+  //   }
+
+  //   await api.post("/notes", {
+  //     title,
+  //     description,
+  //     tags,
+  //     links,
+  //   });
+
+  //   alert("Nota criada com sucesso!");
+  //   navigate(-1);
+  // }
+
   return (
     <Container>
       <Header />
@@ -99,7 +151,7 @@ export function NewDish() {
                     id="file-input"
                     type="file"
                     placeholder="Selecione a imagem"
-                    // onChange={e => setImage(e.target.value)}
+                    onChange={(e) => setImage(e.target.value)}
                   />
                 </div>
               </label>
@@ -110,13 +162,20 @@ export function NewDish() {
               <input
                 type="text"
                 placeholder="Ex.: Salada Ceasar"
-                // onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="inputWrapper">
               <label htmlFor="">Categoria</label>
-              <select name="" id="">
-                <option value="">Refeição</option>
+              <select
+                name="selectCategory"
+                id=""
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">Refeições</option>
+                <option value="">Pratos principais</option>
+                <option value="">Sobremesas</option>
+                <option value="">Bebidas</option>
               </select>
             </div>
           </div>
@@ -147,7 +206,7 @@ export function NewDish() {
                 <input
                   type="text"
                   placeholder="R$ 00,00"
-                  // onChange={e => setName(e.target.value)}
+                  onChange={e => setPrice(e.target.value)}
                 />
               </div>
             </div>
@@ -160,7 +219,7 @@ export function NewDish() {
           />
 
           <div className="action">
-            <Button title="Salvar alterações"  onClick={handleNewNote} />
+            <Button title="Salvar alterações" onClick={handleNewDish} />
           </div>
         </Form>
       </Content>

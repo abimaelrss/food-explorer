@@ -39,7 +39,9 @@ export function MenuMobile({ visible, closeMenu }) {
 
       <main>
         <Search />
-        <button>Novo prato</button>
+        {user.role === "admin" && (
+          <button onClick={()=>navigation("/newDish")}>Novo prato</button>
+        )}
         <button onClick={handleSignOut}>Sair</button>
       </main>
     </Container>

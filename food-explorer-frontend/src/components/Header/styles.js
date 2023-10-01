@@ -46,7 +46,7 @@ export const Brand = styled.div`
   height: 3.9rem;
 
   margin: 0 auto;
-  transform: translateX(-24px);
+  /* transform: translateX(-24px); */
 
   display: flex;
   align-items: center;
@@ -74,6 +74,36 @@ export const Brand = styled.div`
       right: 4rem;
       bottom: -0.5rem;
     }
+  }
+`;
+
+export const Order = styled.div`
+  position: relative;
+
+  span {
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: -3px;
+    right: -5px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+
+    text-align: center;
+
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+    background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
   }
 `;
 

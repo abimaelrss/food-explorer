@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   width: 100%;
-  margin-bottom: 2.4rem;
+  /* margin-bottom: 4.8rem; */
 
   font-family: "Poppins", sans-serif;
 
   position: relative;
 
-  button {
+  > button {
     border: none;
     background: none;
 
@@ -17,10 +17,8 @@ export const Container = styled.section`
 
     visibility: hidden;
 
-    @media (min-width: 800px) {
-      visibility: visible;
-    }
     @media (min-width: 1024px) {
+      visibility: visible;
       bottom: 20rem;
     }
   }

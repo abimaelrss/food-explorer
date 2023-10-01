@@ -49,38 +49,31 @@ export function Home() {
   }
 
   useEffect(() => {
-    // async function fetchTags() {
-    //   const response = await api.get("/tags");
-    //   setTags(response.data);
-    // }
-    
-    // fetchTags();
+    async function fetchTags() {
+      const response = await api.get("/tags");
+      setTags(response.data);
+    }
 
-    // async function fetchCategories() {
-    //   const response = await api.get("/categories");
-    //   setCategories(response.data);
-    // }
-
-    // fetchCategories();
+    fetchTags();
   }, []);
 
   useEffect(() => {
-    // async function fetchNotes() {
-    //   const response = await api.get(
-    //     `/notes?title=${search}&tags=${tagsSelected}`
-    //   );
-    //   setNotes(response.data);
-    // }
+    async function fetchNotes() {
+      const response = await api.get(
+        `/notes?title=${search}&tags=${tagsSelected}`
+      );
+      setNotes(response.data);
+    }
+
+    fetchNotes();
 
     async function fetchDishs() {
       const response = await api.get(
-        `/dishs/:id=${1}`
-        // `/dishs?id=${search}&categories=${tagsSelected}`
+        `/dishs?name=${search}&tags=${tagsSelected}`
       );
       setDishs(response.data);
     }
 
-    // fetchNotes();
     fetchDishs();
   }, [tagsSelected, search]);
 
@@ -101,14 +94,45 @@ export function Home() {
           </div>
 
           <Section title="Refeições">
-            {/* {dishs.map((dish) => (
-              <Dish
-                key={String(dish.id)}
-                data={dish}
-                onClick={() => handleDetails(dish.id)}
+            {/* {notes.map((note) => (
+              <Note
+                key={String(note.id)}
+                data={note}
+                onClick={() => handleDetails(note.id)}
               />
             ))} */}
+
             <Slider>
+              {dishs.map((dish) => (
+                <Dish
+                  key={String(dish.id)}
+                  data={dish}
+                  onClick={() => handleDetails(dish.id)}
+                />
+              ))}
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </Slider>
+          </Section>
+          <Section title="Pratos principais">
+            <Slider>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </Slider>
+          </Section>
+          <Section title="Bebidas">
+            <Slider>
+              <Card />
               <Card />
               <Card />
               <Card />

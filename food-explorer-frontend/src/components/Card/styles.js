@@ -19,7 +19,7 @@ export const Container = styled.div`
     min-height: 46.2rem;
   }
 
-  h2 {
+  > h2 {
     font-family: "Poppins" sans-serif;
     font-weight: 500;
     font-size: 1.4rem;
@@ -30,7 +30,7 @@ export const Container = styled.div`
     }
   }
 
-  p {
+  > p {
     display: none;
 
     @media (min-width: 1024px) {
@@ -43,6 +43,7 @@ export const Container = styled.div`
 
   > img,
   h2,
+  span,
   p {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -60,10 +61,29 @@ export const Container = styled.div`
     }
   }
 
-  .quantity {
+  .step {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+
+    margin-top: 1.2rem;
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
+
+    .stepper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      font-family: "Roboto" sans-serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+
+      margin-bottom: 2.4rem;
+    }
   }
 
   .favorite {

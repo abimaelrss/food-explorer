@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  /* margin-bottom: 2.4rem; */
+  margin-bottom: 4.8rem;
 
-  /* font-family: "Poppins", sans-serif; */
+  font-family: "Poppins", sans-serif;
 
   > h2 {
-    /* margin-bottom: 2.3rem; */
-    padding-bottom: 1.6rem;
+    margin-bottom: 2.3rem;
+    /* padding-bottom: 1.6rem; */
 
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
 

@@ -8,8 +8,9 @@ import imageBrand from "../../assets/polygon1.svg";
 import imageMenuOpen from "../../assets/icons/Menu.svg";
 import imageMenuClose from "../../assets/icons/Close.svg";
 import imageButton from "../../assets/receipt.svg";
+import imageOrder from "../../assets/receipt.svg";
 
-import { Component, Container, Brand, Button, Logout } from "./styles";
+import { Component, Container, Brand, Order, Button, Logout } from "./styles";
 import { Input } from "../Input";
 import { FiSearch } from "react-icons/fi";
 import { MenuMobile } from "../MenuMobile";
@@ -46,16 +47,31 @@ export function Header() {
         <Brand>
           <img src={imageBrand} alt="" />
           <h1>food explorer</h1>
-          <p>admin</p>
+          {user.role === "admin" && <p>admin</p>}
         </Brand>
+
+        <Order>
+          {user.role !== "admin" && (
+            <>
+              <span>{0}</span>
+              <img src={imageOrder} alt="Imagem de pedido" />
+            </>
+          )}
+        </Order>
 
         <div className="searchContainer">
           <Search />
         </div>
 
-        <Button title="Novo prato">
-          <img src={imageButton} alt="" />
-          Novo prato
+        <Button onClick={() => navigation("/newDish")}>
+          {user.role === "admin" && <>Novo prato</>}
+          {user.role !== "admin" && (
+            <>
+              <img src={imageOrder} alt="Imagem de pedido" />
+              Pedidos
+              <span>{`(0)`}</span>
+            </>
+          )}
         </Button>
 
         <Logout onClick={handleSignOu}>
