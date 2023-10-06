@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Card } from "../Card";
 import { Container } from "./styles";
 
 import imageCaretLeft from "../../assets/icons/CaretLeft.svg";

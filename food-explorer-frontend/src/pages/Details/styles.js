@@ -1,60 +1,122 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  max-width: 1122px;
+
+  margin: 0 auto;
 `;
 
 export const Content = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  padding: 28px 123px;
+  margin-top: 1.6rem;
+  margin-bottom: 3.3rem;
+  padding: 1.5rem 5.6rem;
+
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
 
-  > button:first-child {
-  }
+  font-family: "Poppins", sans-serif;
+  text-align: center;
 
-  > h1 {
-    font-size: 36px;
-    font-weight: 500;
-    padding-top: 64px;
-  }
-
-  > p {
-    font-size: 16px;
-    margin-top: 16px;
-    text-align: justify;
+  @media (min-width: 1024px) {
   }
 
   main {
     display: flex;
+    flex-direction: column;
     align-items: center;
 
-    margin-top: 42px;
+    text-align: left;
 
     > img {
-      width: 390px;
+      margin: 1.6rem 2.6rem;
+      width: 100%;
+      min-width: 26.3rem;
+      max-width: 39rem;
 
-      margin-right: 47px;
+      @media (min-width: 800px) {
+        min-width: 39rem;
+
+        /* margin-top: 4.2rem;
+        margin-right: 4.7rem; */
+      }
     }
 
-    .desc {
-      font-family: "Poppins", sans-serif;
+    @media (min-width: 800px) {
+      flex-direction: row;
+    }
+  }
 
-      h2 {
-        font-size: 40px;
-        line-height: 140%;
+  .ingredient {
+    > h2 {
+      margin-top: 1.6rem;
+
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+      font-size: 2.7rem;
+      font-weight: 500;
+
+      @media (min-width: 1024px) {
+        font-size: 4rem;
+        margin-top: 2.4rem;
       }
-      
-      p {
-        font-size: 24px;
-        line-height: 140%;
+    }
 
-        margin: 24px 0;
+    > p {
+      font-size: 1.6rem;
+
+      @media (min-width: 800px) {
+        margin-bottom: 2.4rem;
       }
+      @media (min-width: 1024px) {
+        font-size: 2.4rem;
+      }
+    }
+  }
 
+  .ingredients {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    /* padding: 0 5.6rem; */
+
+    > span {
+      padding: 4px 8px;
+      border-radius: 5px;
+      background-color: ${({ theme }) => theme.COLORS.DARK_1000};
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    @media (min-width: 800px) {
+      justify-content: start;
+      text-align: left;
+
+      gap: 1.2rem;
+    }
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    margin-top: 3rem;
+
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      font-size: 2.2rem;
     }
   }
 `;

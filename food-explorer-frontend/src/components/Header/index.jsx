@@ -63,16 +63,21 @@ export function Header() {
           <Search />
         </div>
 
-        <Button onClick={user.role === "admin" && (() => navigation("/newDish"))}>
-          {user.role === "admin" && <>Novo prato</>}
-          {user.role !== "admin" && (
+        {user.role === "admin" && (
+          <Button onClick={() => navigation("/newDish")}>
+            <>Novo prato</>
+          </Button>
+        )}
+
+        {user.role === "customer" && (
+          <Button onClick={() => navigation("/order")}>
             <>
               <img src={imageOrder} alt="Imagem de pedido" />
               Pedidos
               <span>{`(0)`}</span>
             </>
-          )}
-        </Button>
+          </Button>
+        )}
 
         <Logout onClick={handleSignOut}>
           <GoSignOut />

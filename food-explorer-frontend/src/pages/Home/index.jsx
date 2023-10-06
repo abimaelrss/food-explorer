@@ -8,13 +8,9 @@ import { api } from "../../services/api";
 import { Container, Content, Banner } from "./styles";
 
 import { Header } from "../../components/Header";
-import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
-import { Note } from "../../components/Note";
-import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
-import { Card } from "../../components/Card";
-import { Slider } from "../../components/Slider";
+import { Dish } from "../../components/Dish";
 
 export function Home() {
   const [search, setSearch] = useState("");
@@ -41,6 +37,11 @@ export function Home() {
     } else {
       setTagsSelected((prevState) => [...prevState, tagName]);
     }
+  }
+
+  function handleDetails(id) {
+    console.log(id);
+    navigate(`/details/${id}`);
   }
 
   useEffect(() => {
@@ -73,6 +74,8 @@ export function Home() {
               title={categorie.name}
               key={String(categorie.id)}
               data={categorie}
+              onClick={() => handleDetails(categorie.id)}
+
             />
           ))}
         </Content>

@@ -1,20 +1,31 @@
 import { useState, useEffect } from "react";
-import { Container, Content } from "./styles";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+import imageBanner from "../../assets/pngegg1.png";
+import imageDish from "../../assets/prates/Dish.png";
+import imagePlus from "../../assets/icons/Plus.svg";
+import imageMinus from "../../assets/icons/Minus.svg";
 
 import { api } from "../../services/api";
 
-import imageDish from "../../assets/dish2.png";
+import { Container, Content } from "./styles";
 
 import { Header } from "../../components/Header";
-import { Button } from "../../components/Button";
-import { ButtonText } from "../../components/ButtonText";
+import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
-import { Tag } from "../../components/Tag";
+import { Note } from "../../components/Note";
+import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
+import { Button } from "../../components/Button";
+import { Tag } from "../../components/Tag";
+import { Ingredient } from "../../components/Ingredient";
+import { useAuth } from "../../hooks/auth";
 
 export function Details() {
-  const [data, setData] = useState(null);
+  const { user } = useAuth();
+
+  const [dishs, setDishs] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -24,41 +35,77 @@ export function Details() {
   }
 
   async function handleRemove() {
-    const confirm = window.confirm("Deseja realmente remover a nota?");
+    const confirm = window.confirm("Deseja realmente remover o prato?");
 
     if (confirm) {
-      await api.delete(`/notes/${params.id}`);
+      await api.delete(`/dishs/${params.id}`);
       navigate(-1);
     }
   }
 
-  useEffect(() => {
-    async function fetchNote() {
-      const response = await api.get(`/notes/${params.id}`);
-      setData(response.data);
-    }
+  async function fetchDish() {
+    const response = await api.get(`/dishs/${params.id}`);
+    setDishs(response.data);
+  }
 
-    fetchNote();
+  async function fetchIngredients() {
+    console.log(params.id);
+    const response = await api.get(`/ingredients/${params.id}`);
+    setIngredients(response.data);
+  }
+
+  useEffect(() => {
+    fetchDish();
+    fetchIngredients();
   }, []);
 
   return (
-    <Container>
+    <>
       <Header />
-      <Content>
-        <ButtonText title="voltar" onClick={handleBack} />
-        <main>
-          <img src={imageDish} alt="" />
-          <div className="desc">
-            <h2>Salada Ravanello</h2>
-            <p>
-              Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
-              O pão naan dá um toque especial.
-            </p>
-            <Button title="Editar prato" onClick={handleBack} />
-          </div>
-        </main>
-      </Content>
+
+      <Container>
+        <Content>
+          <ButtonText title="voltar" onClick={handleBack} />
+          <main>
+            <img src={imageDish} alt="" />
+            {/* <img src={data.image} alt="Imagem do prato" /> */}
+
+            <div className="ingredient">
+              <h2>{dishs.name}</h2>
+              <p>{dishs.description}</p>
+              <div className="ingredients">
+                {ingredients.map((ingredient) => (
+                  <Ingredient
+                    key={String(ingredient.id)}
+                    title={ingredient.name}
+                  />
+                ))}
+
+                <Ingredient title="cebola" />
+                <Ingredient title="pão naan" />
+                <Ingredient title="pepino" />
+                <Ingredient title="rabanete" />
+                <Ingredient title="tomate" />
+              </div>
+
+              <div className="step">
+                {user.role != "admin" && (
+                  <div className="stepper">
+                    <img src={imageMinus} alt="" />
+                    01
+                    <img src={imagePlus} alt="" />
+                  </div>
+                )}
+                <div>
+                  <Button title="Editar prato" />
+                </div>
+              </div>
+            </div>
+          </main>
+        </Content>
+      </Container>
+
       <Footer />
-    </Container>
+    </>
   );
 }

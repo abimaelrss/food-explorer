@@ -20,7 +20,7 @@ import { Button } from "../../components/Button";
 import { Tag } from "../../components/Tag";
 import { Ingredient } from "../../components/Ingredient";
 
-export function Dish() {
+export function Order() {
   const [data, setData] = useState(null);
 
   const params = useParams();
@@ -54,43 +54,19 @@ export function Dish() {
 
       <Container>
         <Content>
-          <ButtonText title="voltar" onclick={handleBack} />
+          <ButtonText title="voltar" onClick={handleBack} />
           <main>
-            <img src={imageDish} alt="" />
-            {/* <img src={data.image} alt="Imagem do prato" /> */}
-
-            <div className="ingredients">
-              {/* <h2>{data.name}</h2> */}
-              <p>
-              {/* {data.description} */}
-              </p>
-              <div className="ingredients">
-
-              {/* {data.ingredients.map(ingredient => (
-                ))} */}
-
-                <Ingredient title="alface" />
-                <Ingredient title="cebola" />
-                <Ingredient title="pão naan" />
-                <Ingredient title="pepino" />
-                <Ingredient title="rabanete" />
-                <Ingredient title="tomate" />
-              </div>
-
-              <div className="step">
-                <div className="stepper">
-                  <img src={imageMinus} alt="" />
-                  01
-                  <img src={imagePlus} alt="" />
-                </div>
-
-                <Button title="Editar prato" />
-              </div>
+            <div className="order">
+              <h2>Meu pedido</h2>
+            </div>
+            <div className="payment">
+              <h2>Pagamento</h2>
+              
             </div>
           </main>
         </Content>
       </Container>
-      
+
       <Footer />
     </>
   );

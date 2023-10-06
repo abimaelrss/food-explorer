@@ -11,7 +11,7 @@ export function Section({ data, title }) {
 
   function handleDetails(id) {
     console.log(id);
-    navigate(`/dish/${id}`);
+    navigate(`/details/${id}`);
   }
 
   async function fetchDishs() {
@@ -32,8 +32,7 @@ export function Section({ data, title }) {
             <Dish
               key={String(dish.id)}
               data={dish}
-              onClick={() => handleDetails(dish.id)}
-              onchange={() => handleDetails(dish.id)}
+              // onClick={() => handleDetails(dish.id)}
             />
           ))}
         </Slider>
