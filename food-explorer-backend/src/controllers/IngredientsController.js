@@ -35,13 +35,13 @@ class IngredientsController {
   // }
 
   async index(request, response) {
-    const { dish_id } = request.query;
+    const { id } = request.params;
 
-    console.log(dish_id);
+    console.log(id);
 
     let ingredients;
 
-    ingredients = await knex("ingredients").where("dish_id", dish_id);
+    ingredients = await knex("ingredients").where("dish_id", id);
 
     console.log(ingredients);
     return response.json(ingredients);

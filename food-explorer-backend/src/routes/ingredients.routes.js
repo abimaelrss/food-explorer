@@ -10,7 +10,7 @@ const ingredientsController = new IngredientsController();
 ingredientsRouter.use(ensureAuthenticated);
 
 // ingredientsRouter.post("/", ingredientsController.create);
-ingredientsRouter.get("/", ingredientsController.show);
+// ingredientsRouter.get("/", ingredientsController.show);
 // ingredientsRouter.delete("/:id", ingredientsController.delete);
 ingredientsRouter.get("/:id", ingredientsController.index);
 
