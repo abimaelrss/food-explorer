@@ -77,8 +77,11 @@ export const Brand = styled.div`
   }
 `;
 
-export const Order = styled.div`
+export const Order = styled.button`
   position: relative;
+
+  background: none;
+  border: none;
 
   span {
     width: 2rem;

@@ -50,7 +50,7 @@ export function Header() {
           {user.role === "admin" && <p>admin</p>}
         </Brand>
 
-        <Order>
+        <Order onClick={() => navigation("/order")}>
           {user.role !== "admin" && (
             <>
               <span>{0}</span>
