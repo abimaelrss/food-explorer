@@ -29,7 +29,7 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
 
-    text-align: left;
+    text-align: center;
 
     > img {
       margin: 1.6rem 2.6rem;
@@ -47,10 +47,13 @@ export const Content = styled.div`
 
     @media (min-width: 800px) {
       flex-direction: row;
+    text-align: left;
+
     }
   }
 
   .ingredient {
+    
     > h2 {
       margin-top: 1.6rem;
 
@@ -83,16 +86,12 @@ export const Content = styled.div`
     justify-content: center;
     flex-wrap: wrap;
 
+    
+
     /* padding: 0 5.6rem; */
 
     > span {
-      padding: 4px 8px;
-      border-radius: 5px;
-      background-color: ${({ theme }) => theme.COLORS.DARK_1000};
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
-
-      font-size: 1.4rem;
-      font-weight: 500;
+      
     }
 
     @media (min-width: 800px) {
@@ -106,9 +105,14 @@ export const Content = styled.div`
   .step {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1.6rem;
 
     margin-top: 3rem;
+
+    @media (min-width: 800px) {
+      justify-content: start;
+    }
 
     .stepper {
       display: flex;

@@ -9,11 +9,6 @@ import { Slider } from "../Slider";
 export function Section({ data, title }) {
   const [dishs, setDishs] = useState([]);
 
-  function handleDetails(id) {
-    console.log(id);
-    navigate(`/details/${id}`);
-  }
-
   async function fetchDishs() {
     const response = await api.get(`/dishs?category_id=${data.id}`);
     setDishs(response.data);
@@ -29,11 +24,7 @@ export function Section({ data, title }) {
       {dishs != 0 && (
         <Slider>
           {dishs.map((dish) => (
-            <Dish
-              key={String(dish.id)}
-              data={dish}
-              // onClick={() => handleDetails(dish.id)}
-            />
+            <Dish key={String(dish.id)} data={dish} />
           ))}
         </Slider>
       )}

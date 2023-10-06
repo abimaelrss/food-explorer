@@ -80,12 +80,6 @@ export function Details() {
                     title={ingredient.name}
                   />
                 ))}
-
-                <Ingredient title="cebola" />
-                <Ingredient title="pão naan" />
-                <Ingredient title="pepino" />
-                <Ingredient title="rabanete" />
-                <Ingredient title="tomate" />
               </div>
 
               <div className="step">
