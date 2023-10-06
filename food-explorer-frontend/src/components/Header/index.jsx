@@ -23,7 +23,7 @@ export function Header() {
 
   const navigation = useNavigate();
 
-  function handleSignOu() {
+  function handleSignOut() {
     navigation("/");
     signOut();
   }
@@ -63,7 +63,7 @@ export function Header() {
           <Search />
         </div>
 
-        <Button onClick={() => navigation("/newDish")}>
+        <Button onClick={user.role === "admin" && (() => navigation("/newDish"))}>
           {user.role === "admin" && <>Novo prato</>}
           {user.role !== "admin" && (
             <>
@@ -74,7 +74,7 @@ export function Header() {
           )}
         </Button>
 
-        <Logout onClick={handleSignOu}>
+        <Logout onClick={handleSignOut}>
           <GoSignOut />
         </Logout>
       </Container>

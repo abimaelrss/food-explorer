@@ -15,7 +15,6 @@ import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
 import { Slider } from "../../components/Slider";
-import { Dish } from "../../components/Dish";
 
 export function Home() {
   const [search, setSearch] = useState("");
@@ -44,38 +43,14 @@ export function Home() {
     }
   }
 
-  function handleDetails(id) {
-    navigate(`/details/${id}`);
-  }
-
   useEffect(() => {
-    async function fetchTags() {
-      const response = await api.get("/tags");
-      setTags(response.data);
+    async function fetchCategories() {
+      const response = await api.get(`/categories`);
+      setCategories(response.data);
     }
 
-    fetchTags();
+    fetchCategories();
   }, []);
-
-  useEffect(() => {
-    async function fetchNotes() {
-      const response = await api.get(
-        `/notes?title=${search}&tags=${tagsSelected}`
-      );
-      setNotes(response.data);
-    }
-
-    fetchNotes();
-
-    async function fetchDishs() {
-      const response = await api.get(
-        `/dishs?name=${search}&tags=${tagsSelected}`
-      );
-      setDishs(response.data);
-    }
-
-    fetchDishs();
-  }, [tagsSelected, search]);
 
   return (
     <>
@@ -93,54 +68,13 @@ export function Home() {
             </Banner>
           </div>
 
-          <Section title="Refeições">
-            {/* {notes.map((note) => (
-              <Note
-                key={String(note.id)}
-                data={note}
-                onClick={() => handleDetails(note.id)}
-              />
-            ))} */}
-
-            <Slider>
-              {dishs.map((dish) => (
-                <Dish
-                  key={String(dish.id)}
-                  data={dish}
-                  onClick={() => handleDetails(dish.id)}
-                />
-              ))}
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </Slider>
-          </Section>
-          <Section title="Pratos principais">
-            <Slider>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </Slider>
-          </Section>
-          <Section title="Bebidas">
-            <Slider>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </Slider>
-          </Section>
+          {categories.map((categorie) => (
+            <Section
+              title={categorie.name}
+              key={String(categorie.id)}
+              data={categorie}
+            />
+          ))}
         </Content>
       </Container>
 

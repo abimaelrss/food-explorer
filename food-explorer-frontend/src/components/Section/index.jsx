@@ -1,11 +1,43 @@
-import { Card } from "../Card";
-import { Container } from "./styles";
+import { useState, useEffect } from "react";
 
-export function Section({ title, children }) {
+import { api } from "../../services/api";
+
+import { Container } from "./styles";
+import { Dish } from "../Dish";
+import { Slider } from "../Slider";
+
+export function Section({ data, title }) {
+  const [dishs, setDishs] = useState([]);
+
+  function handleDetails(id) {
+    console.log(id);
+    navigate(`/dish/${id}`);
+  }
+
+  async function fetchDishs() {
+    const response = await api.get(`/dishs?category_id=${data.id}`);
+    setDishs(response.data);
+  }
+
+  useEffect(() => {
+    fetchDishs();
+  }, []);
+
   return (
     <Container>
       <h2>{title}</h2>
-      <main>{children}</main>
+      {dishs != 0 && (
+        <Slider>
+          {dishs.map((dish) => (
+            <Dish
+              key={String(dish.id)}
+              data={dish}
+              onClick={() => handleDetails(dish.id)}
+              onchange={() => handleDetails(dish.id)}
+            />
+          ))}
+        </Slider>
+      )}
     </Container>
   );
 }

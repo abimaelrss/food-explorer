@@ -14,7 +14,8 @@ export function AppRoutes() {
       <Route path="/new" element={<New />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/details/:id" element={<Details />} />
-      <Route path="/dish" element={<Dish />} />
+      {/* <Route path="/dish" element={<Dish />} /> */}
+      <Route path="/dish/:id" element={<Dish />} />
       <Route path="/newDish" element={<NewDish />} />
     </Routes>
   );

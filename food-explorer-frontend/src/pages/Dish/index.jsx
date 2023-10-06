@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import imageBanner from "../../assets/pngegg1.png";
 import imageDish from "../../assets/prates/Dish.png";
@@ -19,53 +19,35 @@ import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
 import { Button } from "../../components/Button";
 import { Tag } from "../../components/Tag";
+import { Ingredient } from "../../components/Ingredient";
 
 export function Dish() {
-  const [search, setSearch] = useState("");
-  const [tags, setTags] = useState([]);
-  const [tagsSelected, setTagsSelected] = useState([]);
-  const [notes, setNotes] = useState([]);
+  const [data, setData] = useState(null);
 
+  const params = useParams();
   const navigate = useNavigate();
 
-  function handleTagSelected(tagName) {
-    if (tagName === "all") {
-      return setTagsSelected([]);
-    }
-
-    const alreadySelected = tagsSelected.includes(tagName);
-
-    if (alreadySelected) {
-      const filteredTags = tagsSelected.filter((tag) => tag !== tagName);
-      setTagsSelected(filteredTags);
-    } else {
-      setTagsSelected((prevState) => [...prevState, tagName]);
-    }
+  function handleBack() {
+    navigate(-1);
   }
 
-  function handleDetails(id) {
-    navigate(`/details/${id}`);
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover o prato?");
+
+    if (confirm) {
+      await api.delete(`/dishs/${params.id}`);
+      navigate(-1);
+    }
   }
 
   useEffect(() => {
-    async function fetchTags() {
-      const response = await api.get("/tags");
-      setTags(response.data);
+    async function fetchDish() {
+      const response = await api.get(`/dish/${params.id}`);
+      setData(response.data);
     }
 
-    fetchTags();
+    fetchDish();
   }, []);
-
-  useEffect(() => {
-    async function fetchNotes() {
-      const response = await api.get(
-        `/notes?title=${search}&tags=${tagsSelected}`
-      );
-      setNotes(response.data);
-    }
-
-    fetchNotes();
-  }, [tagsSelected, search]);
 
   return (
     <>
@@ -73,23 +55,27 @@ export function Dish() {
 
       <Container>
         <Content>
-          <ButtonText title="voltar" />
+          <ButtonText title="voltar" onclick={handleBack} />
           <main>
             <img src={imageDish} alt="" />
+            {/* <img src={data.image} alt="Imagem do prato" /> */}
 
             <div className="ingredients">
-              <h2>Salada ravanello</h2>
+              {/* <h2>{data.name}</h2> */}
               <p>
-                Rabanetes, folhas verdes e molho agridoce salpicados com
-                gergelim. O pão naan dá um toque especial.
+              {/* {data.description} */}
               </p>
               <div className="ingredients">
-                <Tag title="alface" />
-                <Tag title="cebola" />
-                <Tag title="pão naan" />
-                <Tag title="pepino" />
-                <Tag title="rabanete" />
-                <Tag title="tomate" />
+
+              {/* {data.ingredients.map(ingredient => (
+                ))} */}
+
+                <Ingredient title="alface" />
+                <Ingredient title="cebola" />
+                <Ingredient title="pão naan" />
+                <Ingredient title="pepino" />
+                <Ingredient title="rabanete" />
+                <Ingredient title="tomate" />
               </div>
 
               <div className="step">

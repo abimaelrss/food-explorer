@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   /* min-width: 21rem; */
-  
   text-align: center;
 
   padding: 7rem 2.4rem;
@@ -65,9 +64,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    
     margin-top: 1.2rem;
-
+    
     @media (min-width: 1024px) {
       flex-direction: row;
     }

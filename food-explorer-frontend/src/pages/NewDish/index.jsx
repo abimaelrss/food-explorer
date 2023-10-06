@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,19 +12,35 @@ import { Button } from "../../components/Button";
 import { ButtonText } from "../../components/ButtonText";
 
 import { api } from "../../services/api";
+import imagePlaceholder from "../../assets/avatar_placeholder.svg";
 
 import imageSelect from "../../assets/icons/UploadSimple.svg";
 import { FiUpload } from "react-icons/fi";
 
 import { Container, Content, Form } from "./styles";
+import { IngredientItem } from "../../components/IngredientItem";
 
 export function NewDish() {
-  const [image, setImage] = useState("");
+  const [dish] = useState("");
+
+  const imageUrl = dish.image
+    ? `${api.defaults.baseURL}/files/${dish.image}`
+    : imagePlaceholder;
+
+  const [image, setImage] = useState(imageUrl);
+  const [imageFile, setImageFile] = useState(null);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [ingredients, setIngredients] = useState("");
+
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
+
   const [price, setPrice] = useState("");
+
+  const [ingredients, setIngredients] = useState([]);
+  const [newIngredient, setNewIngredient] = useState("");
 
   const [links, setLinks] = useState([]);
   const [newLink, setNewLink] = useState("");
@@ -38,21 +54,15 @@ export function NewDish() {
     navigate(-1);
   }
 
-  function handleAddLink() {
-    setLinks((prevState) => [...prevState, newLink]);
-    setNewLink("");
+  function handleAddIngredient() {
+    setIngredients((prevState) => [...prevState, newIngredient]);
+    setNewIngredient("");
   }
 
-  function handleRemoveLink(deleted) {
-    setLinks((prevState) => prevState.filter((link) => link !== deleted));
-  }
-
-  function handleAddTag() {
-    setTags((prevState) => [...prevState, newTag]);
-    setNewTag("");
-  }
-  function handleRemoveTag(deleted) {
-    setTags((prevState) => prevState.filter((tag) => tag !== deleted));
+  function handleRemoveIngredient(deleted) {
+    setIngredients((prevState) =>
+      prevState.filter((ingredient) => ingredient !== deleted)
+    );
   }
 
   async function handleNewDish() {
@@ -64,7 +74,7 @@ export function NewDish() {
       return alert("Informe o nome!");
     }
 
-    if (!category) {
+    if (!selectedCategory) {
       return alert("Informe a categoria!");
     }
 
@@ -80,56 +90,42 @@ export function NewDish() {
       return alert("Informe a descrição!");
     }
 
-    if (newLink) {
+    if (newIngredient) {
       return alert(
-        "Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
+        "Você deixou um ingrediente no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
       );
     }
 
-    if (newTag) {
-      return alert(
-        "Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
-      );
-    }
-
-    await api.post("/notes", {
-      title,
+    await api.post("/dishs", {
+      name,
       description,
-      tags,
-      links,
+      category: selectedCategory,
+      ingredients,
+      price,
     });
 
-    alert("Nota criada com sucesso!");
+    // await updateProfile({ user: userUpdated, avatarFile });
+
+    alert("Prato criado com sucesso!");
     navigate(-1);
   }
 
-  // async function handleNewNote() {
-  //   if (!name) {
-  //     return alert("Digite o título da nota!");
-  //   }
+  function hendleChangeImage(event) {
+    const file = event.target.files[0];
+    setImageFile(file);
 
-  //   if (newLink) {
-  //     return alert(
-  //       "Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
-  //     );
-  //   }
+    const imagePreview = URL.createObjectURL(file);
+    setImage(imagePreview);
+  }
 
-  //   if (newTag) {
-  //     return alert(
-  //       "Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
-  //     );
-  //   }
+  async function fetchCategories() {
+    const response = await api.get(`/categories`);
+    setCategories(response.data);
+  }
 
-  //   await api.post("/notes", {
-  //     title,
-  //     description,
-  //     tags,
-  //     links,
-  //   });
-
-  //   alert("Nota criada com sucesso!");
-  //   navigate(-1);
-  // }
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   return (
     <Container>
@@ -151,7 +147,7 @@ export function NewDish() {
                     id="file-input"
                     type="file"
                     placeholder="Selecione a imagem"
-                    onChange={(e) => setImage(e.target.value)}
+                    onChange={hendleChangeImage}
                   />
                 </div>
               </label>
@@ -165,17 +161,20 @@ export function NewDish() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
+
             <div className="inputWrapper">
-              <label htmlFor="">Categoria</label>
+              <label htmlFor="selectCategory">Categoria</label>
               <select
-                name="selectCategory"
-                id=""
-                onChange={(e) => setCategory(e.target.value)}
+                value={selectedCategory}
+                id="selectCategory"
+                onChange={(e) => setSelectedCategory(e.target.value)}
               >
-                <option value="">Refeições</option>
-                <option value="">Pratos principais</option>
-                <option value="">Sobremesas</option>
-                <option value="">Bebidas</option>
+                <option value="">Selecione</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -184,19 +183,19 @@ export function NewDish() {
             <div className="inputWrapper">
               <label htmlFor="">Ingredientes</label>
               <div className="tags">
-                {links.map((link, index) => (
-                  <NoteItem
+                {ingredients.map((ingredient, index) => (
+                  <IngredientItem
                     key={String(index)}
-                    value={link}
-                    onClick={() => handleRemoveLink(link)}
+                    value={ingredient}
+                    onClick={() => handleRemoveIngredient(ingredient)}
                   />
                 ))}
-                <NoteItem
+                <IngredientItem
                   isNew
                   placeholder="Adicionar"
-                  value={newLink}
-                  onChange={(e) => setNewLink(e.target.value)}
-                  onClick={handleAddLink}
+                  value={newIngredient}
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  onClick={handleAddIngredient}
                 />
               </div>
             </div>
@@ -206,7 +205,7 @@ export function NewDish() {
                 <input
                   type="text"
                   placeholder="R$ 00,00"
-                  onChange={e => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
             </div>

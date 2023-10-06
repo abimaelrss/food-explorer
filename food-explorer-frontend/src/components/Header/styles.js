@@ -165,7 +165,7 @@ export const Logout = styled.button`
   display: flex;
 
   > svg {
-    color: ${({ theme }) => theme.COLORS.GRAY_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.2rem;
   }
 

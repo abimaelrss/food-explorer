@@ -9,7 +9,7 @@ import imagePlus from "../../assets/icons/Plus.svg";
 
 import { useAuth } from "../../hooks/auth";
 
-export function Card({ title }) {
+export function Card({ data }) {
   const { user } = useAuth();
 
   return (
@@ -22,10 +22,10 @@ export function Card({ title }) {
       )}
 
       <img src={imageDish} alt="" />
-      <h2>Salada ravanello </h2>
-      <h2>{title}</h2>
-      <p>Massa fresca com camarão</p>
-      <span>R$ 25,97</span>
+      <img src={data.image} alt="Imagem do prato" />
+      <h2>{data.name}</h2>
+      <p>{data.description}</p>
+      <span>R$ {data.price}</span>
 
       {user.role !== "admin" && (
         <div className="step">
