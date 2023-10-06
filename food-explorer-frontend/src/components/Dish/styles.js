@@ -1,22 +1,8 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Container = styled.div`
-  /* min-width: 21rem; */
-  text-align: center;
-
-  padding: 7rem 2.4rem;
-
-  /* position: relative; */
-
-  background-color: ${({ theme }) => theme.COLORS.DARK_200};
-
-  @media (min-width: 550px) {
-    /* min-height: 36.2rem; */
-  }
-  @media (min-width: 1024px) {
-    /* width: 30.4rem; */
-    min-height: 46.2rem;
-  }
+export const Asd = styled(Link)`
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   > h2 {
     font-family: "Poppins" sans-serif;
@@ -38,6 +24,24 @@ export const Container = styled.div`
       font-weight: 400;
       font-size: 1.4rem;
     }
+  }
+`;
+export const Container = styled.div`
+  /* min-width: 21rem; */
+  text-align: center;
+
+  padding: 7rem 2.4rem;
+
+  /* position: relative; */
+
+  background-color: ${({ theme }) => theme.COLORS.DARK_200};
+
+  @media (min-width: 550px) {
+    /* min-height: 36.2rem; */
+  }
+  @media (min-width: 1024px) {
+    /* width: 30.4rem; */
+    min-height: 46.2rem;
   }
 
   > img,
@@ -64,9 +68,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     margin-top: 1.2rem;
-    
+
     @media (min-width: 1024px) {
       flex-direction: row;
     }

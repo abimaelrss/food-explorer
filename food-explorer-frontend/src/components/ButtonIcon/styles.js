@@ -8,10 +8,16 @@ export const Container = styled.button`
   align-items: center;
 
   background: none;
-  
-  svg {
-    color: ${({ theme, $isactive }) =>
-    $isactive ? theme.COLORS.LIGHT_300 : theme.COLORS.TINTS_TOMATO_100};
+
+  button {
+    background: none;
+    border: none;
+
+    svg {
+      width: 2.4rem;
+      height: 2.2rem;
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
   }
 
   p {

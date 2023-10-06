@@ -49,7 +49,6 @@ export function Details() {
   }
 
   async function fetchIngredients() {
-    console.log(params.id);
     const response = await api.get(`/ingredients/${params.id}`);
     setIngredients(response.data);
   }

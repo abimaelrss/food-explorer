@@ -1,5 +1,5 @@
 import { Button } from "../Button";
-import { Container } from "./styles";
+import { Container, Asd } from "./styles";
 
 import imageDish from "../../assets/mobile/Dish.png";
 
@@ -16,27 +16,27 @@ export function Dish({ data }) {
   const navigate = useNavigate();
 
   return (
-    <Container
-      className="keen-slider__slide"
-      onClick={() => navigate(`/details/${data.id}`)}
-    >
+    <Container className="keen-slider__slide">
       <ButtonIcon title="icon" className="favorite" />
 
-      <img src={imageDish} alt="" />
-      {/* <img src={data.image} alt="Imagem do prato" /> */}
-      <h2>{data.name}</h2>
-      <p>{data.description}</p>
+      <Asd to={`/details/${data.id}`}>
+        <img src={imageDish} alt="" />
+        {/* <img src={data.image} alt="Imagem do prato" /> */}
+        <h2>{data.name}</h2>
+        <p>{data.description}</p>
+      </Asd>
+
       <span>R$ {data.price}</span>
 
       {user.role !== "admin" && (
-          <div className="step">
-            <div className="stepper">
-              <img src={imageMinus} alt="" />
-              01
-              <img src={imagePlus} alt="" />
-            </div>
-            <Button title="Incluir" />
+        <div className="step">
+          <div className="stepper">
+            <img src={imageMinus} alt="" />
+            01
+            <img src={imagePlus} alt="" />
           </div>
+          <Button title="Incluir" />
+        </div>
       )}
     </Container>
   );
