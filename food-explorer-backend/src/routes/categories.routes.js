@@ -12,6 +12,6 @@ categoriesRouter.use(ensureAuthenticated);
 categoriesRouter.post("/", categoriesController.create);
 // categoriesRouter.get("/:id", categoriesController.show);
 // categoriesRouter.delete("/:id", categoriesController.delete);
-// categoriesRouter.get("/", categoriesController.index);
+categoriesRouter.get("/", categoriesController.index);
 
 module.exports = categoriesRouter;

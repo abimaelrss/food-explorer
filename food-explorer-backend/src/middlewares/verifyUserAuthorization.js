@@ -1,6 +1,6 @@
 const AppError = require("../utils/AppError");
 
-// ['admin', 'customer', 'sale'].includes('sale');
+// ['admin', 'customer'].includes('admin');
 
 function verifyUserAuthorization(roleToVerify) {
   return (request, response, next) => {
