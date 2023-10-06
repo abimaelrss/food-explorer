@@ -7,25 +7,24 @@ class IngredientsController {
 
     const [ingredient_id] = await knex("ingredients").insert({
       name,
-      dish_id
+      dish_id,
     });
 
     return response.json();
   }
 
-  // async show(request, response) {
-  //   const { id } = request.params;
+  async show(request, response) {
+    const { dish_id } = request.params;
 
-  //   const note = await knex("notes").where({ id }).first();
-  //   const tags = await knex("tags").where({ note_id: id }).orderBy("name");
-  //   const links = await knex("links").where({ note_id: id }).orderBy("created_at");
+    console.log(dish_id);
 
-  //   return response.json({
-  //     ...note,
-  //     tags,
-  //     links
-  //   });
-  // }
+    let ingredients;
+
+    ingredients = await knex("ingredients").where("dish_id", dish_id);
+
+    console.log(ingredients);
+    return response.json(ingredients);
+  }
 
   // async delete(request, response) {
   //   const { id } = request.params;
@@ -35,50 +34,18 @@ class IngredientsController {
   //   return response.json();
   // }
 
-  // async index(request, response) {
-  //   const { title, tags } = request.query;
+  async index(request, response) {
+    const { dish_id } = request.query;
 
-  //   const user_id = request.user.id;
+    console.log(dish_id);
 
-  //   let notes;
+    let ingredients;
 
-  //   if (tags) {
-  //     const filterTags = tags.split(',').map(tag => tag.trim());
+    ingredients = await knex("ingredients").where("dish_id", dish_id);
 
-  //     notes = await knex("tags")
-  //     .select([
-  //       "notes.id",
-  //       "notes.title",
-  //       "notes.user_id",
-  //     ])
-  //     .where("notes.user_id", user_id)
-  //     .whereLike("notes.title", `%${title}%`)
-  //     .whereIn("name", filterTags)
-  //     .innerJoin("notes", "notes.id", "tags.note_id",)
-  //     .groupBy("notes.id")
-  //     .orderBy("notes.title")
-      
-  //   } else {
-
-  //     notes = await knex("notes")
-  //       .where({ user_id })
-  //       .whereLike("title", `%${title}%`)
-  //       .orderBy("title");
-
-  //   }
-
-  //   const userTags = await knex("tags").where({ user_id });
-  //   const notesWithTags = notes.map(note => {
-  //     const noteTags = userTags.filter(tag => tag.note_id === note.id);
-
-  //     return {
-  //       ...note,
-  //       tags: noteTags
-  //     }
-  //   });
-
-  //   return response.json(notesWithTags);
-  // }
+    console.log(ingredients);
+    return response.json(ingredients);
+  }
 }
 
 module.exports = IngredientsController;

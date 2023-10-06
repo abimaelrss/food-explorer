@@ -37,7 +37,7 @@ class DishsController {
     //   .orderBy("created_at");
 
     return response.json(
-      [dish]
+      dish
       // tags,
       // links,
     );
