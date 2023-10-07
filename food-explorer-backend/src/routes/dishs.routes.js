@@ -19,11 +19,7 @@ dishsRouter.post("/", verifyUserAuthorization("admin"), dishsController.create);
 dishsRouter.get("/:id", dishsController.show);
 // dishsRouter.delete("/:id", dishsController.delete);
 dishsRouter.get("/", dishsController.index);
-dishsRouter.patch(
-  "/imageDish",
-  ensureAuthenticated,
-  upload.single("imageDish"),
-  dishImageController.update
+dishsRouter.patch("/avatar", ensureAuthenticated, upload.single("avatar"), dishImageController.update
 );
 
 module.exports = dishsRouter;

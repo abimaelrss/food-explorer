@@ -1,14 +1,26 @@
 const knex = require("../database/knex");
+const DiskStorage = require("../providers/DiskStorage");
+
 
 class DishsController {
   async create(request, response) {
     const { name, description, category, ingredients, price } = request.body;
     const user_id = request.user.id;
 
+    // const avatarFilename = request;
+    console.log(avatarFilename)
+
+    const diskStorage = new DiskStorage();
+
+    const filename = await diskStorage.saveFile(avatarFilename);
+    // dish.image = filename;
+
+
     const [dish_id] = await knex("dishs").insert({
       name,
       description,
       price,
+      image: filename,
       user_id,
       category_id: category,
     });

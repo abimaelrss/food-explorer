@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Asd = styled(Link)`
+export const Render = styled(Link)`
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   > h2 {
@@ -68,6 +68,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     margin-top: 1.2rem;
 
@@ -86,6 +87,16 @@ export const Container = styled.div`
       font-size: 1.6rem;
 
       margin-bottom: 2.4rem;
+
+      button {
+        background: none;
+        border: none;
+      }
+
+      @media (min-width: 1024px) {
+        margin-bottom: 0;
+
+      }
     }
   }
 

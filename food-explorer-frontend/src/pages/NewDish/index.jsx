@@ -13,6 +13,7 @@ import { ButtonText } from "../../components/ButtonText";
 
 import { api } from "../../services/api";
 import imagePlaceholder from "../../assets/avatar_placeholder.svg";
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 import imageSelect from "../../assets/icons/UploadSimple.svg";
 import { FiUpload } from "react-icons/fi";
@@ -22,13 +23,6 @@ import { IngredientItem } from "../../components/IngredientItem";
 
 export function NewDish() {
   const [dish] = useState("");
-
-  const imageUrl = dish.image
-    ? `${api.defaults.baseURL}/files/${dish.image}`
-    : imagePlaceholder;
-
-  const [image, setImage] = useState(imageUrl);
-  const [imageFile, setImageFile] = useState(null);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -48,6 +42,13 @@ export function NewDish() {
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
 
+  const avatarUrl = dish.image
+    ? `${api.defaults.baseURL}/files/${dish.image}`
+    : avatarPlaceholder;
+
+  const [avatar, setAvatar] = useState(avatarUrl);
+  const [avatarFile, setAvatarFile] = useState(null);
+
   const navigate = useNavigate();
 
   function handleBack() {
@@ -66,9 +67,9 @@ export function NewDish() {
   }
 
   async function handleNewDish() {
-    if (!image) {
-      return alert("Informe a imagem!");
-    }
+    // if (!image) {
+    //   return alert("Informe a imagem!");
+    // }
 
     if (!name) {
       return alert("Informe o nome!");
@@ -96,12 +97,23 @@ export function NewDish() {
       );
     }
 
+    console.log(avatarFile)
+
+    if (avatarFile) {
+      const fileUploadForm = new FormData();
+      fileUploadForm.append("avatar", avatarFile);
+
+      const response = await api.patch("/dish/avatar", fileUploadForm);
+      user.avatar = response.data.avatar;
+    }
+
     await api.post("/dishs", {
       name,
       description,
       category: selectedCategory,
       ingredients,
       price,
+      image: avatarFile,
     });
 
     // await updateProfile({ user: userUpdated, avatarFile });
@@ -110,12 +122,12 @@ export function NewDish() {
     navigate(-1);
   }
 
-  function hendleChangeImage(event) {
+  function hendleChangeAvatar(event) {
     const file = event.target.files[0];
-    setImageFile(file);
+    setAvatarFile(file);
 
     const imagePreview = URL.createObjectURL(file);
-    setImage(imagePreview);
+    setAvatar(imagePreview);
   }
 
   async function fetchCategories() {
@@ -138,16 +150,16 @@ export function NewDish() {
 
           <div className="inputGroup">
             <div className="inputWrapper">
-              <label htmlFor="file-input">
+              <label htmlFor="avatar">
                 <span>Imagem do prato</span>
                 <div className="uploadFile">
                   <img src={imageSelect} alt="" />
                   <span>Selecione a imagem</span>
                   <input
-                    id="file-input"
+                    id="avatar"
                     type="file"
                     placeholder="Selecione a imagem"
-                    onChange={hendleChangeImage}
+                    onChange={hendleChangeAvatar}
                   />
                 </div>
               </label>

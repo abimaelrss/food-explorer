@@ -26,18 +26,18 @@ export function ButtonIcon({ title, color, isActive = false, ...rest }) {
   return (
     <Container type="button" $isactive={isActive.toString()} {...rest}>
       {user.role === "admin" && (
-        // <img src={imagePencil} alt="" className="favorite" />
-        <FiHeart />
+        <img src={imagePencil} alt="" className="favorite" />
       )}
       {user.role !== "admin" && (
-        // <img src={imageHeart} alt="" className="favorite" />
         <>
           <button
             className={`botao-like ${liked ? "liked" : ""}`}
             onClick={handleClick}
           >
-            {/* {liked ? "❤️" : "♡"} */}
-            {liked ? <FcLike /> : <FiHeart />}
+            {
+              liked ? <FcLike /> : <FiHeart />
+              // <img src={imageHeart} alt="" className="favorite" />
+            }
           </button>
         </>
       )}
