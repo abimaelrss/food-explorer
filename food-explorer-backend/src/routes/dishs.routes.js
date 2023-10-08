@@ -17,7 +17,7 @@ dishsRouter.use(ensureAuthenticated);
 
 dishsRouter.post("/", verifyUserAuthorization("admin"), dishsController.create);
 dishsRouter.get("/:id", dishsController.show);
-// dishsRouter.delete("/:id", dishsController.delete);
+dishsRouter.delete("/:id", dishsController.delete);
 dishsRouter.get("/", dishsController.index);
 dishsRouter.patch("/avatar", ensureAuthenticated, upload.single("avatar"), dishImageController.update
 );

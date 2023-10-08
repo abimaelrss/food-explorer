@@ -7,18 +7,18 @@ class DishsController {
     const user_id = request.user.id;
 
     // const avatarFilename = request;
-    console.log(avatarFilename);
+    // console.log(avatarFilename);
 
     const diskStorage = new DiskStorage();
 
-    const filename = await diskStorage.saveFile(avatarFilename);
+    // const filename = await diskStorage.saveFile(avatarFilename);
     // dish.image = filename;
 
     const [dish_id] = await knex("dishs").insert({
       name,
       description,
       price,
-      image: filename,
+      // image: filename,
       user_id,
       category_id: category,
     });
@@ -38,30 +38,22 @@ class DishsController {
   async show(request, response) {
     const { id } = request.params;
 
-    // console.log(id)
-
     const dish = await knex("dishs").where({ id }).first();
     const ingredients = await knex("ingredients").where({ dish_id: id });
-
-    console.log(ingredients);
-    // const links = await knex("links")
-    //   .where({ note_id: id })
-    //   .orderBy("created_at");
 
     return response.json({
       ...dish,
       ingredients,
-      // links,
     });
   }
 
-  // async delete(request, response) {
-  //   const { id } = request.params;
+  async delete(request, response) {
+    const { id } = request.params;
 
-  //   await knex("notes").where({ id }).delete();
+    await knex("dishs").where({ id }).delete();
 
-  //   return response.json();
-  // }
+    return response.json();
+  }
 
   async index(request, response) {
     const { category_id } = request.query;
