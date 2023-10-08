@@ -8,13 +8,12 @@ import imageBanner from "../../assets/pngegg1.png";
 
 import { api } from "../../services/api";
 
-import { Container, Content, Banner } from "./styles";
+import { Container, Content, Banner, Search } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Section } from "../../components/Section";
 import { Footer } from "../../components/Footer";
 import { Dish } from "../../components/Dish";
-import { Search } from "../../components/Search";
 import { Input } from "../../components/Input";
 
 export function Home() {
@@ -34,7 +33,7 @@ export function Home() {
   useEffect(() => {
     async function fetchCategories() {
       // const response = await api.get(`/categories`);
-      const response = await api.get(`/categories?name=${search}`);
+      const response = await api.get(`/categories`);
       setCategories(response.data);
     }
 
@@ -53,7 +52,7 @@ export function Home() {
 
       <Search>
         <Input
-          placeholder="Pesquisar pelo título"
+          placeholder="Busque por pratos ou ingredientes"
           icon={FiSearch}
           onChange={(e) => setSearch(e.target.value)}
         />

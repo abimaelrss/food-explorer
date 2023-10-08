@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   width: 100%;
-  max-width: 31.6rem;
+  /* max-width: 31.6rem; */
 
   height: 4.8rem;
 
@@ -19,7 +19,18 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
+  background-color: ${(props) => {
+    if (props.color == "save") {
+      return ({ theme }) => theme.COLORS.TINTS_TOMATO_100;
+    }
+    if (props.color == "alter") {
+      return ({ theme }) => theme.COLORS.TINTS_TOMATO_400;
+    }
+    if (props.color == "delete") {
+      return ({ theme }) => theme.COLORS.DARK_800;
+    }
+  }};
+  
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   > img {
@@ -36,6 +47,6 @@ export const Container = styled.button`
   }
 
   @media (min-width: 800px) {
-    max-width: 16.2rem;
+    max-width: 17.2rem;
   }
 `;

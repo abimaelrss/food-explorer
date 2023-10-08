@@ -6,6 +6,7 @@ import { Details } from "../pages/Details";
 import { Profile } from "../pages/Profile";
 import { Dish } from "../pages/Dish";
 import { NewDish } from "../pages/NewDish";
+import { AlterDish } from "../pages/AlterDish";
 import { Order } from "../pages/Order";
 
 export function AppRoutes() {
@@ -18,6 +19,7 @@ export function AppRoutes() {
       {/* <Route path="/dish" element={<Dish />} /> */}
       <Route path="/dish/:id" element={<Dish />} />
       <Route path="/newDish" element={<NewDish />} />
+      <Route path="/alterDish/:id" element={<AlterDish />} />
       <Route path="/order" element={<Order />} />
     </Routes>
   );

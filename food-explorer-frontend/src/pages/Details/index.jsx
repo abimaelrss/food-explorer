@@ -30,6 +30,7 @@ export function Details() {
   const [ingredients, setIngredients] = useState([]);
 
   const params = useParams();
+
   const navigate = useNavigate();
 
   function handleBack() {
@@ -46,13 +47,8 @@ export function Details() {
     }
   }
 
-  async function handleRemove() {
-    const confirm = window.confirm("Deseja realmente remover o prato?");
-
-    if (confirm) {
-      await api.delete(`/dishs/${params.id}`);
-      navigate(-1);
-    }
+  function handleUpdate(id) {
+    navigate(`/alterDish/${id}`);
   }
 
   async function fetchDish() {
@@ -101,18 +97,21 @@ export function Details() {
                       </button>
                     </div>
                   )}
+                  {user.role === "admin" ? (
+                    <Button
+                      title="Editar prato"
+                      onClick={handleUpdate(data.id)}
+                    />
+                  ) : (
                     <Button
                       title={
-                        user.role !== "admin" ? (
-                          <>
-                            <img src={imageOrder} alt="Imagem de pedido" />
-                            pedir R$: {data.price}
-                          </>
-                        ) : (
-                          "Editar prato"
-                        )
+                        <>
+                          <img src={imageOrder} alt="Imagem de pedido" />
+                          pedir R$: {data.price}
+                        </>
                       }
                     />
+                  )}
                 </div>
               </div>
             </main>

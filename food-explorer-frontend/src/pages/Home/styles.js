@@ -9,6 +9,21 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const Search = styled.div`
+  /* max-width: 55rem; */
+  width: 100%;
+  height: 4.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.5rem;
+
+  color: ${({ theme }) => theme.COLORS.LIGHT_500};
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+`;
+
 export const Content = styled.div`
   padding-left: 3rem;
   padding-right: 1.6rem;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -21,8 +21,8 @@ import { FiUpload } from "react-icons/fi";
 import { Container, Content, Form } from "./styles";
 import { IngredientItem } from "../../components/IngredientItem";
 
-export function NewDish() {
-  const [dish] = useState("");
+export function AlterDish() {
+  const [dish, setData] = useState("");
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -36,18 +36,14 @@ export function NewDish() {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
-  const [links, setLinks] = useState([]);
-  const [newLink, setNewLink] = useState("");
-
-  const [tags, setTags] = useState([]);
-  const [newTag, setNewTag] = useState("");
-
   const avatarUrl = dish.image
     ? `${api.defaults.baseURL}/files/${dish.image}`
     : avatarPlaceholder;
 
   const [avatar, setAvatar] = useState(avatarUrl);
   const [avatarFile, setAvatarFile] = useState(null);
+
+  const params = useParams();
 
   const navigate = useNavigate();
 
@@ -97,7 +93,7 @@ export function NewDish() {
       );
     }
 
-    console.log(avatarFile)
+    console.log(avatarFile);
 
     if (avatarFile) {
       const fileUploadForm = new FormData();
@@ -122,6 +118,15 @@ export function NewDish() {
     navigate(-1);
   }
 
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover o prato?");
+
+    if (confirm) {
+      await api.delete(`/dishs/${params.id}`);
+      navigate(-1);
+    }
+  }
+
   function hendleChangeAvatar(event) {
     const file = event.target.files[0];
     setAvatarFile(file);
@@ -135,8 +140,18 @@ export function NewDish() {
     setCategories(response.data);
   }
 
+  async function fetchDish() {
+    const response = await api.get(`/dishs/${params.id}`);
+    setName(response.data.name);
+    setSelectedCategory(response.data.category_id);
+    setIngredients(response.data.ingredients)
+    setPrice(response.data.price);
+    setDescription(response.data.description);
+  }
+
   useEffect(() => {
     fetchCategories();
+    fetchDish();
   }, []);
 
   return (
@@ -146,11 +161,11 @@ export function NewDish() {
       <Content>
         <Form>
           <ButtonText title="voltar" onClick={handleBack} />
-          <h1>Novo prato</h1>
+          <h1>Editar prato</h1>
 
           <div className="inputGroup">
             <div className="inputWrapper">
-              <label htmlFor="file-input">
+              <label htmlFor="#file-input">
                 <span>Imagem do prato</span>
                 <div className="uploadFile">
                   <img src={imageSelect} alt="" />
@@ -169,7 +184,7 @@ export function NewDish() {
               <label htmlFor="">Nome</label>
               <input
                 type="text"
-                placeholder="Ex.: Salada Ceasar"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -216,7 +231,7 @@ export function NewDish() {
                 <label htmlFor="">Preço</label>
                 <input
                   type="text"
-                  placeholder="R$ 00,00"
+                  value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
@@ -225,12 +240,21 @@ export function NewDish() {
 
           <label htmlFor="">Descrição</label>
           <TextArea
-            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+            defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
           <div className="action">
-            <Button color="alter" title="Salvar alterações" onClick={handleNewDish} />
+            <Button
+              color="delete"
+              title="Excluir prato"
+              onClick={handleRemove}
+            />
+            <Button
+              color="alter"
+              title="Salvar alterações"
+              onClick={handleNewDish}
+            />
           </div>
         </Form>
       </Content>
