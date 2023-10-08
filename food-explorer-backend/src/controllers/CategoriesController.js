@@ -36,7 +36,7 @@ class CategoriesController {
   // }
 
   async index(request, response) {
-    const { name } = request.query;
+    const { name,  } = request.query;
 
     const user_id = request.user.id;
 
