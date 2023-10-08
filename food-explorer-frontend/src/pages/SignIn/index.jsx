@@ -16,6 +16,14 @@ export function SignIn() {
   const { signIn } = useAuth();
 
   function handleSingIn() {
+    if (!email) {
+      return alert("Informe o email!");
+    }
+
+    if (!email || !password) {
+      return alert("Informe a senha!");
+    }
+
     signIn({ email, password });
   }
 
@@ -44,7 +52,7 @@ export function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Entrar" onClick={handleSingIn} />
+        <button onClick={handleSingIn}>Entrar</button>
 
         <Link to="/register">Criar uma conta</Link>
       </Form>

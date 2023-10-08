@@ -5,6 +5,7 @@ import imageBanner from "../../assets/pngegg1.png";
 import imageDish from "../../assets/prates/Dish.png";
 import imagePlus from "../../assets/icons/Plus.svg";
 import imageMinus from "../../assets/icons/Minus.svg";
+import imageOrder from "../../assets/receipt.svg";
 
 import { api } from "../../services/api";
 
@@ -23,8 +24,9 @@ import { useAuth } from "../../hooks/auth";
 
 export function Details() {
   const { user } = useAuth();
+  const [count, setCount] = useState(1);
 
-  const [dishs, setDishs] = useState([]);
+  const [data, setData] = useState(null);
   const [ingredients, setIngredients] = useState([]);
 
   const params = useParams();
@@ -32,6 +34,16 @@ export function Details() {
 
   function handleBack() {
     navigate(-1);
+  }
+
+  function countPlus() {
+    setCount(count + 1);
+  }
+
+  function countMinus() {
+    if (count > 1) {
+      setCount(count - 1);
+    }
   }
 
   async function handleRemove() {
@@ -45,17 +57,11 @@ export function Details() {
 
   async function fetchDish() {
     const response = await api.get(`/dishs/${params.id}`);
-    setDishs(response.data);
-  }
-
-  async function fetchIngredients() {
-    const response = await api.get(`/ingredients/${params.id}`);
-    setIngredients(response.data);
+    setData(response.data);
   }
 
   useEffect(() => {
     fetchDish();
-    fetchIngredients();
   }, []);
 
   return (
@@ -65,36 +71,52 @@ export function Details() {
       <Container>
         <Content>
           <ButtonText title="voltar" onClick={handleBack} />
-          <main>
-            <img src={imageDish} alt="" />
-            {/* <img src={data.image} alt="Imagem do prato" /> */}
+          {data && (
+            <main>
+              <img src={imageDish} alt="" />
+              {/* <img src={data.image} alt="Imagem do prato" /> */}
 
-            <div className="ingredient">
-              <h2>{dishs.name}</h2>
-              <p>{dishs.description}</p>
-              <div className="ingredients">
-                {ingredients.map((ingredient) => (
-                  <Ingredient
-                    key={String(ingredient.id)}
-                    title={ingredient.name}
-                  />
-                ))}
-              </div>
+              <div className="ingredient">
+                <h2>{data.name}</h2>
+                <p>{data.description}</p>
+                <div className="ingredients">
+                  {data.ingredients.map((ingredient) => (
+                    <Ingredient
+                      key={String(ingredient.id)}
+                      title={ingredient.name}
+                    />
+                  ))}
+                </div>
 
-              <div className="step">
-                {user.role != "admin" && (
-                  <div className="stepper">
-                    <img src={imageMinus} alt="" />
-                    01
-                    <img src={imagePlus} alt="" />
-                  </div>
-                )}
-                <div>
-                  <Button title="Editar prato" />
+                <div className="step">
+                  {user.role != "admin" && (
+                    <div className="stepper">
+                      <button onClick={countMinus}>
+                        <img src={imageMinus} alt="" />
+                      </button>
+                      {count < 10 && 0}
+                      {count}
+                      <button onClick={countPlus}>
+                        <img src={imagePlus} alt="" />
+                      </button>
+                    </div>
+                  )}
+                    <Button
+                      title={
+                        user.role !== "admin" ? (
+                          <>
+                            <img src={imageOrder} alt="Imagem de pedido" />
+                            pedir R$: {data.price}
+                          </>
+                        ) : (
+                          "Editar prato"
+                        )
+                      }
+                    />
                 </div>
               </div>
-            </div>
-          </main>
+            </main>
+          )}
         </Content>
       </Container>
 

@@ -10,11 +10,11 @@ import imageMenuClose from "../../assets/icons/Close.svg";
 import imageButton from "../../assets/receipt.svg";
 import imageOrder from "../../assets/receipt.svg";
 
-import { Component, Container, Brand, Order, Button, Logout } from "./styles";
+import { Component, Container, Brand, Search, Order, Button, Logout } from "./styles";
 import { Input } from "../Input";
 import { FiSearch } from "react-icons/fi";
 import { MenuMobile } from "../MenuMobile";
-import { Search } from "../Search";
+// import { Search } from "../Search";
 import { useEffect, useState } from "react";
 
 export function Header() {
@@ -44,7 +44,7 @@ export function Header() {
 
         <MenuMobile visible={isVisibleMenu} closeMenu={setIsVisibleMenu} />
 
-        <Brand>
+        <Brand to="/">
           <img src={imageBrand} alt="" />
           <h1>food explorer</h1>
           {user.role === "admin" && <p>admin</p>}
@@ -60,7 +60,13 @@ export function Header() {
         </Order>
 
         <div className="searchContainer">
-          <Search />
+          <Search>
+            <Input
+              placeholder="Busque por pratos ou ingredientes"
+              icon={FiSearch}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </Search>
         </div>
 
         {user.role === "admin" && (

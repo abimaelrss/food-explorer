@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   background: none;
 
-  button {
+  .button-like {
     background: none;
     border: none;
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -41,7 +42,7 @@ export const Component = styled.header`
   }
 `;
 
-export const Brand = styled.div`
+export const Brand = styled(Link)`
   min-width: 19.7rem;
   height: 3.9rem;
 
@@ -52,6 +53,9 @@ export const Brand = styled.div`
   align-items: center;
 
   position: relative;
+
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   > img {
     margin-right: 0.8rem;

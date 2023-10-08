@@ -34,7 +34,6 @@ export const Background = styled.div`
     font-family: "Roboto", sans-serif;
     font-size: 3.7rem;
     font-weight: bold;
-
   }
 `;
 
@@ -59,7 +58,6 @@ export const Form = styled.div`
     margin-bottom: 32px;
 
     display: none;
-
   }
 
   label {
@@ -89,6 +87,28 @@ export const Form = styled.div`
 
     @media (min-width: 768px) {
       background-color: ${({ theme }) => theme.COLORS.LIGHT_900};
+    }
+  }
+
+  button {
+    width: 100%;
+
+    height: 4.8rem;
+
+    padding: 1.2rem 2.4rem;
+
+    border: 0;
+    border-radius: 0.5rem;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+
+    background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    
+    &:disabled {
+      opacity: 0.5;
     }
   }
 

@@ -13,6 +13,8 @@ export const Content = styled.div`
   margin-bottom: 3.3rem;
   padding: 1.5rem 5.6rem;
 
+
+
   overflow-y: auto;
 
   display: flex;
@@ -25,11 +27,14 @@ export const Content = styled.div`
   }
 
   main {
+  /* max-width: 60rem; */
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
     text-align: center;
+
 
     > img {
       margin: 1.6rem 2.6rem;
@@ -47,33 +52,39 @@ export const Content = styled.div`
 
     @media (min-width: 800px) {
       flex-direction: row;
-    text-align: left;
-
+      text-align: left;
     }
   }
 
   .ingredient {
-    
     > h2 {
-      margin-top: 1.6rem;
-
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
       font-size: 2.7rem;
       font-weight: 500;
 
+      @media (min-width: 900px) {
+        font-size: 3.8rem;
+      }
+
       @media (min-width: 1024px) {
         font-size: 4rem;
-        margin-top: 2.4rem;
       }
     }
 
     > p {
       font-size: 1.6rem;
 
+      margin: 2.4rem 0;
+
       @media (min-width: 800px) {
         margin-bottom: 2.4rem;
       }
+
+      @media (min-width: 900px) {
+        font-size: 2rem;
+      }
+
       @media (min-width: 1024px) {
         font-size: 2.4rem;
       }
@@ -85,13 +96,11 @@ export const Content = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 2.4rem;
 
-    
-
-    /* padding: 0 5.6rem; */
+    margin-bottom: 4.8rem;
 
     > span {
-      
     }
 
     @media (min-width: 800px) {
@@ -121,6 +130,15 @@ export const Content = styled.div`
       gap: 1.5rem;
 
       font-size: 2.2rem;
+
+      button {
+        background: none;
+        border: none;
+      }
+
+      @media (min-width: 800px) {
+        font-size: 2rem;
+      }
     }
   }
 `;

@@ -13,14 +13,14 @@ import { useEffect, useState } from "react";
 export function Dish({ data }) {
   const { user } = useAuth();
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   function countPlus() {
     setCount(count + 1);
   }
 
   function countMinus() {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   }
@@ -44,6 +44,7 @@ export function Dish({ data }) {
             <button onClick={countMinus}>
               <img src={imageMinus} alt="" />
             </button>
+            {count < 10 && 0}
             {count}
             <button onClick={countPlus}>
               <img src={imagePlus} alt="" />

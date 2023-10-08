@@ -92,6 +92,28 @@ export const Form = styled.div`
     }
   }
 
+  button {
+    width: 100%;
+
+    height: 4.8rem;
+
+    padding: 1.2rem 2.4rem;
+
+    border: 0;
+    border-radius: 0.5rem;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+
+    background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
   > a {
     margin-top: 3.2rem;
     text-align: center;
