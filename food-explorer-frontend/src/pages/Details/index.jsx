@@ -99,18 +99,14 @@ export function Details() {
                   )}
                   {user.role === "admin" ? (
                     <Button
+                      actived
                       title="Editar prato"
-                      onClick={handleUpdate(data.id)}
+                      handleClick={() => handleUpdate(data.id)}
                     />
                   ) : (
-                    <Button
-                      title={
-                        <>
-                          <img src={imageOrder} alt="Imagem de pedido" />
-                          pedir R$: {data.price}
-                        </>
-                      }
-                    />
+                    <Button actived title={`pedir R$: ${data.price}`}>
+                      <img src={imageOrder} alt="Imagem de pedido" />
+                    </Button>
                   )}
                 </div>
               </div>

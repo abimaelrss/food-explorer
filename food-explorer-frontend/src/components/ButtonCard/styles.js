@@ -18,7 +18,14 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
+  background-color: ${({ theme, $actived }) =>
+    $actived ? theme.COLORS.TINTS_TOMATO_100 : theme.COLORS.TINTS_TOMATO_400};
+
+  &:hover {
+    background-color: ${({ theme, $actived }) =>
+      $actived && theme.COLORS.TINTS_TOMATO_200};
+  }
+
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   > img {

@@ -19,19 +19,16 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: ${(props) => {
-    if (props.color == "save") {
-      return ({ theme }) => theme.COLORS.TINTS_TOMATO_100;
-    }
-    if (props.color == "alter") {
-      return ({ theme }) => theme.COLORS.TINTS_TOMATO_400;
-    }
-    if (props.color == "delete") {
-      return ({ theme }) => theme.COLORS.DARK_800;
-    }
-  }};
-  
+  background-color: ${({ theme, $actived }) =>
+    $actived ? theme.COLORS.TINTS_TOMATO_100 : theme.COLORS.TINTS_TOMATO_400};
+
+  &:hover {
+    background-color: ${({ theme, $actived }) =>
+      $actived && theme.COLORS.TINTS_TOMATO_200};
+  }
+
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
 
   > img {
     width: 3.2rem;
@@ -40,10 +37,6 @@ export const Container = styled.button`
     @media (min-width: 800px) {
       display: none;
     }
-  }
-
-  &:disabled {
-    opacity: 0.5;
   }
 
   @media (min-width: 800px) {

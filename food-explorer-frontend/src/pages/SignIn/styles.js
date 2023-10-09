@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-width: 42.8rem;
+  /* min-width: 42.8rem; */
   height: 100vh;
   margin: 0 auto;
+
+  padding: 0 4rem;
+
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  padding-top: 15.8rem 6.5rem;
-
+  
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
-
-    padding: 0 10rem;
+    
+    padding: 15.8rem 6.5rem;
+    /* padding: 0 10rem; */
   }
 `;
 
@@ -24,6 +27,8 @@ export const Background = styled.div`
   min-width: 32.4rem;
   display: flex;
   align-items: center;
+
+  margin-bottom: 7.3rem;
 
   > img {
     width: 4.3rem;
@@ -38,11 +43,11 @@ export const Background = styled.div`
 `;
 
 export const Form = styled.div`
-  width: 47.6rem;
-  padding: 6.4rem;
-
+width: 100%;
   display: flex;
   flex-direction: column;
+
+  /* padding: 0 6.5rem; */
 
   border-radius: 1.6rem;
 
@@ -70,7 +75,7 @@ export const Form = styled.div`
   }
 
   > input {
-    min-width: 34.8rem;
+    width: 100%;
 
     padding: 1.2rem 1.4rem;
     margin-bottom: 3.2rem;
@@ -86,6 +91,8 @@ export const Form = styled.div`
     }
 
     @media (min-width: 768px) {
+      min-width: 34.8rem;
+
       background-color: ${({ theme }) => theme.COLORS.LIGHT_900};
     }
   }
@@ -106,7 +113,7 @@ export const Form = styled.div`
 
     background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    
+
     &:disabled {
       opacity: 0.5;
     }
@@ -119,6 +126,9 @@ export const Form = styled.div`
   }
 
   @media (min-width: 768px) {
+    width: 47.6rem;
+    padding: 6.4rem;
+
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
     h1 {

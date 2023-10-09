@@ -42,12 +42,12 @@ export function NewDish() {
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
 
-  const avatarUrl = dish.image
+  const imageUrl = dish.image
     ? `${api.defaults.baseURL}/files/${dish.image}`
     : avatarPlaceholder;
 
-  const [avatar, setAvatar] = useState(avatarUrl);
-  const [avatarFile, setAvatarFile] = useState(null);
+  const [image, setImage] = useState(imageUrl);
+  const [imageFile, setImageFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -97,37 +97,43 @@ export function NewDish() {
       );
     }
 
-    console.log(avatarFile)
-
-    if (avatarFile) {
-      const fileUploadForm = new FormData();
-      fileUploadForm.append("avatar", avatarFile);
-
-      const response = await api.patch("/dish/avatar", fileUploadForm);
-      user.avatar = response.data.avatar;
-    }
-
-    await api.post("/dishs", {
+    const response = await api.post("/dishs", {
       name,
       description,
       category: selectedCategory,
       ingredients,
       price,
-      image: avatarFile,
     });
+    const dishId = response.data;
+    console.log(response.data)
+    try {
+    
+      if (imageFile) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append("image", imageFile);
 
-    // await updateProfile({ user: userUpdated, avatarFile });
+        const response = await api.patch(`/dishs/image/${dishId}`, fileUploadForm);
+        // setImage(response.data.image);
+        // user.avatar = response.data.avatar;
+      }
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Não foi possível atualizar o prato!");
+      }
+    }
 
     alert("Prato criado com sucesso!");
     navigate(-1);
   }
 
-  function hendleChangeAvatar(event) {
+  function hendleChangeImage(event) {
     const file = event.target.files[0];
-    setAvatarFile(file);
+    setImageFile(file);
 
     const imagePreview = URL.createObjectURL(file);
-    setAvatar(imagePreview);
+    setImage(imagePreview);
   }
 
   async function fetchCategories() {
@@ -159,7 +165,7 @@ export function NewDish() {
                     id="file-input"
                     type="file"
                     placeholder="Selecione a imagem"
-                    onChange={hendleChangeAvatar}
+                    onChange={hendleChangeImage}
                   />
                 </div>
               </label>
@@ -230,7 +236,11 @@ export function NewDish() {
           />
 
           <div className="action">
-            <Button color="alter" title="Salvar alterações" onClick={handleNewDish} />
+            <Button
+              color="alter"
+              title="Salvar alterações"
+              onClick={handleNewDish}
+            />
           </div>
         </Form>
       </Content>

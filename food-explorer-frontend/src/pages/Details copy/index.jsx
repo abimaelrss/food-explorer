@@ -10,7 +10,7 @@ import { ButtonText } from '../../components/ButtonText';
 import { Section } from '../../components/Section';
 import { Tag } from '../../components/Tag';
 
-export function Details() {
+export function Detailss() {
   const [data, setData] = useState(null);
 
   const params = useParams();

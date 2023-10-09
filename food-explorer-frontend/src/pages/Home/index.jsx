@@ -50,13 +50,13 @@ export function Home() {
     <>
       <Header />
 
-      <Search>
+      {/* <Search>
         <Input
           placeholder="Busque por pratos ou ingredientes"
           icon={FiSearch}
           onChange={(e) => setSearch(e.target.value)}
         />
-      </Search>
+      </Search> */}
 
       <Container>
         <Content>
@@ -75,7 +75,7 @@ export function Home() {
               title={categorie.name}
               key={String(categorie.id)}
               data={categorie}
-              onClick={() => handleDetails(categorie.id)}
+              // onClick={() => handleDetails(categorie.id)}
 
             />
           ))}

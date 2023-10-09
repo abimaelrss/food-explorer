@@ -9,6 +9,7 @@ import imagePlus from "../../assets/icons/Plus.svg";
 import { useAuth } from "../../hooks/auth";
 import { ButtonIcon } from "../ButtonIcon";
 import { useEffect, useState } from "react";
+import { ButtonCard } from "../ButtonCard";
 
 export function Dish({ data }) {
   const { user } = useAuth();
@@ -50,7 +51,7 @@ export function Dish({ data }) {
               <img src={imagePlus} alt="" />
             </button>
           </div>
-          <Button title="Incluir" />
+          <Button actived title="Incluir" />
         </div>
       )}
     </Container>

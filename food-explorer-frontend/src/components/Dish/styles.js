@@ -26,6 +26,7 @@ export const Render = styled(Link)`
     }
   }
 `;
+
 export const Container = styled.div`
   /* min-width: 21rem; */
   text-align: center;

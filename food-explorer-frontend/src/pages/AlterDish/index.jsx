@@ -22,7 +22,14 @@ import { Container, Content, Form } from "./styles";
 import { IngredientItem } from "../../components/IngredientItem";
 
 export function AlterDish() {
-  const [dish, setData] = useState("");
+  const [dish, setDish] = useState();
+
+  // const imageUrl = dish.image
+  //   ? `${api.defaults.baseURL}/files/${dish.image}`
+  //   : avatarPlaceholder;
+
+  // const [image, setImage] = useState(imageUrl);
+  const [imageFile, setImageFile] = useState(null);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -35,13 +42,6 @@ export function AlterDish() {
 
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
-
-  const avatarUrl = dish.image
-    ? `${api.defaults.baseURL}/files/${dish.image}`
-    : avatarPlaceholder;
-
-  const [avatar, setAvatar] = useState(avatarUrl);
-  const [avatarFile, setAvatarFile] = useState(null);
 
   const params = useParams();
 
@@ -62,62 +62,6 @@ export function AlterDish() {
     );
   }
 
-  async function handleNewDish() {
-    // if (!image) {
-    //   return alert("Informe a imagem!");
-    // }
-
-    if (!name) {
-      return alert("Informe o nome!");
-    }
-
-    if (!selectedCategory) {
-      return alert("Informe a categoria!");
-    }
-
-    if (!ingredients) {
-      return alert("Informe os ingredientes!");
-    }
-
-    if (!price) {
-      return alert("Informe oo preço!");
-    }
-
-    if (!description) {
-      return alert("Informe a descrição!");
-    }
-
-    if (newIngredient) {
-      return alert(
-        "Você deixou um ingrediente no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio!"
-      );
-    }
-
-    console.log(avatarFile);
-
-    if (avatarFile) {
-      const fileUploadForm = new FormData();
-      fileUploadForm.append("avatar", avatarFile);
-
-      const response = await api.patch("/dish/avatar", fileUploadForm);
-      user.avatar = response.data.avatar;
-    }
-
-    await api.post("/dishs", {
-      name,
-      description,
-      category: selectedCategory,
-      ingredients,
-      price,
-      image: avatarFile,
-    });
-
-    // await updateProfile({ user: userUpdated, avatarFile });
-
-    alert("Prato criado com sucesso!");
-    navigate(-1);
-  }
-
   async function handleRemove() {
     const confirm = window.confirm("Deseja realmente remover o prato?");
 
@@ -127,12 +71,42 @@ export function AlterDish() {
     }
   }
 
-  function hendleChangeAvatar(event) {
+  async function handleUpdate() {
+    const updated = {
+      name,
+      category: selectedCategory,
+      ingredients,
+      price,
+      description,
+    };
+
+    const dishUpdated = Object.assign(dish, updated);
+
+    try {
+      const id = await api.put(`/dishs/${params.id}`, updated);
+
+      if (imageFile) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append("image", imageFile);
+
+        const response = await api.patch(`/dishs/image/${id}`, fileUploadForm);
+        // dishUpdated.image = response.data.image;
+      }
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Não foi possível atualizar o prato!");
+      }
+    }
+  }
+
+  function hendleChangeImage(event) {
     const file = event.target.files[0];
-    setAvatarFile(file);
+    setImageFile(file);
 
     const imagePreview = URL.createObjectURL(file);
-    setAvatar(imagePreview);
+    setImage(imagePreview);
   }
 
   async function fetchCategories() {
@@ -144,7 +118,7 @@ export function AlterDish() {
     const response = await api.get(`/dishs/${params.id}`);
     setName(response.data.name);
     setSelectedCategory(response.data.category_id);
-    setIngredients(response.data.ingredients)
+    setIngredients(response.data.ingredients);
     setPrice(response.data.price);
     setDescription(response.data.description);
   }
@@ -174,7 +148,7 @@ export function AlterDish() {
                     id="file-input"
                     type="file"
                     placeholder="Selecione a imagem"
-                    onChange={hendleChangeAvatar}
+                    onChange={hendleChangeImage}
                   />
                 </div>
               </label>
@@ -213,7 +187,7 @@ export function AlterDish() {
                 {ingredients.map((ingredient, index) => (
                   <IngredientItem
                     key={String(index)}
-                    value={ingredient}
+                    value={ingredient.name}
                     onClick={() => handleRemoveIngredient(ingredient)}
                   />
                 ))}
@@ -246,14 +220,14 @@ export function AlterDish() {
 
           <div className="action">
             <Button
-              color="delete"
+              actived
               title="Excluir prato"
               onClick={handleRemove}
             />
             <Button
-              color="alter"
+              actived
               title="Salvar alterações"
-              onClick={handleNewDish}
+              onClick={handleUpdate}
             />
           </div>
         </Form>
