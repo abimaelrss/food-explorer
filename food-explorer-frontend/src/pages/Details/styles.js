@@ -127,6 +127,10 @@ export const Content = styled.div`
       font-size: 2.2rem;
 
       button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         background: none;
         border: none;
       }

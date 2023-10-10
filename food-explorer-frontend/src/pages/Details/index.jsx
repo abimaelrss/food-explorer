@@ -73,17 +73,17 @@ export function Details() {
           {data && (
             <main>
               {/* <img src={imageDish} alt="" /> */}
-              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="Imagem do prato" />
+              <img
+                src={`${api.defaults.baseURL}/files/${data.image}`}
+                alt="Imagem do prato"
+              />
 
               <div className="ingredient">
                 <h2>{data.name}</h2>
                 <p>{data.description}</p>
                 <div className="ingredients">
                   {data.ingredients.map((ingredient, index) => (
-                    <Ingredient
-                      key={String(index)}
-                      title={ingredient}
-                    />
+                    <Ingredient key={String(index)} title={ingredient} />
                   ))}
                 </div>
 
@@ -102,12 +102,11 @@ export function Details() {
                   )}
                   {user.role === "admin" ? (
                     <Button
-                      actived
                       title="Editar prato"
                       onClick={() => handleUpdate(data.id)}
                     />
                   ) : (
-                    <Button actived title={`pedir R$: ${data.price}`}>
+                    <Button title={`pedir R$: ${data.price}`}>
                       <img src={imageOrder} alt="Imagem de pedido" />
                     </Button>
                   )}

@@ -49,7 +49,6 @@ export function AlterDish() {
 
   function handleAddIngredient() {
     setIngredients((prevState) => [...prevState, newIngredient]);
-    // setIngredientsAlter([newIngredient]);
     setNewIngredient("");
   }
 
@@ -68,7 +67,6 @@ export function AlterDish() {
       price,
       description,
     };
-    console.log(ingredients);
     const response = await api.put(`/dishs/${params.id}`, updated);
 
     const dishId = response.data;
@@ -225,8 +223,8 @@ export function AlterDish() {
           />
 
           <div className="action">
-            <Button title="Excluir prato" onClick={handleRemove} />
-            <Button actived title="Salvar alterações" onClick={handleUpdate} />
+            <Button model="DELETE" title="Excluir prato" onClick={handleRemove} />
+            <Button model="DEFAULT" title="Salvar alterações" onClick={handleUpdate} />
           </div>
         </Form>
       </Content>

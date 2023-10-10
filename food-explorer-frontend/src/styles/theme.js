@@ -1,6 +1,18 @@
 export default {
-  COLORS: {
+  BUTTON: {
+    DELETE: {
+      BACKGROUND: "#4D585E",
+      HOVER: "#4D5850",
+      DISABLE: "#4D58",
+    },
+    DEFAULT: {
+      BACKGROUND: "#750310",
+      HOVER: "#92000E",
+      DISABLE: "#AB4D55",
+    },
+  },
 
+  COLORS: {
     LIGHT_100: "#FFFFFF",
     LIGHT_200: "#FFFAF1",
     LIGHT_300: "#E1E1E6",
@@ -31,14 +43,9 @@ export default {
     TINTS_CARROT_100: "#FBA94C",
 
     TINTS_MINT_100: "#04D361",
-    
+
     TINTS_CAKE_100: "#065E7C",
     TINTS_CAKE_200: "#82F3FF",
-
-
-
-
-
 
     BACKGROUND_900: "#232129",
     BACKGROUND_800: "#312E38",
@@ -50,6 +57,6 @@ export default {
     GRAY_100: "#999591",
     GRAY_300: "#666360",
 
-    RED: "#FF002E"
-  }
-}
+    RED: "#FF002E",
+  },
+};

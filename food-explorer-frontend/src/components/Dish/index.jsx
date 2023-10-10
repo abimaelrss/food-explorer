@@ -55,7 +55,7 @@ export function Dish({ data }) {
               <img src={imagePlus} alt="" />
             </button>
           </div>
-          <Button actived title="Incluir" />
+          <Button title="Incluir" />
         </div>
       )}
     </Container>

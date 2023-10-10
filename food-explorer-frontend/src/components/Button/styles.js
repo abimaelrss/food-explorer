@@ -19,12 +19,10 @@ export const Container = styled.button`
 
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-  background-color: ${({ theme, $actived }) =>
-    $actived ? theme.COLORS.TINTS_TOMATO_100 : theme.COLORS.TINTS_TOMATO_400};
+  background-color: ${({ theme, $model }) => theme.BUTTON[$model].BACKGROUND };
 
   &:hover {
-    background-color: ${({ theme, $actived }) =>
-      $actived && theme.COLORS.TINTS_TOMATO_200};
+    background-color: ${({ theme, $model }) => theme.BUTTON[$model].HOVER };
   }
 
   > img {
