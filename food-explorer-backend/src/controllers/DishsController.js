@@ -6,19 +6,10 @@ class DishsController {
     const { name, description, category, ingredients, price } = request.body;
     const user_id = request.user.id;
 
-    // const avatarFilename = request;
-    // console.log(avatarFilename);
-
-    const diskStorage = new DiskStorage();
-
-    // const filename = await diskStorage.saveFile(avatarFilename);
-    // dish.image = filename;
-
     const [dish_id] = await knex("dishs").insert({
       name,
       description,
       price,
-      // image: filename,
       user_id,
       category_id: category,
     });
@@ -32,7 +23,43 @@ class DishsController {
 
     await knex("ingredients").insert(ingredientsInsert);
 
-    return response.json();
+    // return response.json();
+    return response.json(dish_id);
+  }
+
+  async update(request, response) {
+    const { name, category, ingredients, price, description } = request.body;
+    const id = request.params.id;
+
+    console.log(id)
+    const [dish_id] = await knex("dishs").where({ id });
+    console.log(dish_id)
+
+    if (!dish_id) {
+      throw new AppError("Prato não encontrado!");
+    }
+
+    // await knex("ingredients").where({ id }).delete();
+
+    // const ingredientsInsert = ingredients.map((ingredient) => {
+    //   return {
+    //     dish_id,
+    //     name: ingredient,
+    //   };
+    // });
+
+    // await knex("ingredients").insert(ingredientsInsert);
+
+    await knex("dishs")
+      .update({
+        name: name,
+        category_id: category,
+        price: price,
+        description: description,
+      })
+      .where({ id });
+
+    return response.json(id);
   }
 
   async show(request, response) {

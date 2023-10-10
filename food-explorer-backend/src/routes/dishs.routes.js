@@ -16,10 +16,10 @@ const dishImageController = new DishImageController();
 dishsRouter.use(ensureAuthenticated);
 
 dishsRouter.post("/", verifyUserAuthorization("admin"), dishsController.create);
+dishsRouter.put("/:id", dishsController.update);
 dishsRouter.get("/:id", dishsController.show);
 dishsRouter.delete("/:id", dishsController.delete);
 dishsRouter.get("/", dishsController.index);
-dishsRouter.patch("/avatar", ensureAuthenticated, upload.single("avatar"), dishImageController.update
-);
+dishsRouter.patch("/image/:dish_id", upload.single("image"), dishImageController.update);
 
 module.exports = dishsRouter;

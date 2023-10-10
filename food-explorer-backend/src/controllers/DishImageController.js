@@ -3,19 +3,20 @@ const AppError = require("../utils/AppError");
 const DiskStorage = require("../providers/DiskStorage");
 
 class DishImageController {
-
   async update(request, response) {
-    const dish_id = request.user.id;
+    const { dish_id } = request.params;
     const imageFilename = request.file.filename;
 
-    console.log(request);
     const diskStorage = new DiskStorage();
 
     const dish = await knex("dishs").where({ id: dish_id }).first();
 
-    if (!dish) {
-      throw new AppError("Somente usuários autenticados podem mudar a imagem!");
-    }
+    // console.log(dish_id)
+    console.log(dish);
+
+    // if (!dish) {
+    //   throw new AppError("Somente usuários autenticados podem mudar a imagem!");
+    // }
 
     if (dish.image) {
       await diskStorage.deleteFile(dish.image);
