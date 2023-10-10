@@ -79,10 +79,10 @@ export function Details() {
                 <h2>{data.name}</h2>
                 <p>{data.description}</p>
                 <div className="ingredients">
-                  {data.ingredients.map((ingredient) => (
+                  {data.ingredients.map((ingredient, index) => (
                     <Ingredient
-                      key={String(ingredient.id)}
-                      title={ingredient.name}
+                      key={String(index)}
+                      title={ingredient}
                     />
                   ))}
                 </div>

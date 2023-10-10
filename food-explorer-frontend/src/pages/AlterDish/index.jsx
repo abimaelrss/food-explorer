@@ -26,16 +26,11 @@ export function AlterDish() {
 
   const params = useParams();
 
-  const imageUrl = `${api.defaults.baseURL}/files/${params.id}`;
-
-  const [image, setImage] = useState(
-    `${api.defaults.baseURL}/files/${params.id}`
-  );
+  const [image, setImage] = useState();
   const [imageFile, setImageFile] = useState(null);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
 
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
@@ -43,6 +38,7 @@ export function AlterDish() {
   const [price, setPrice] = useState("");
 
   const [ingredients, setIngredients] = useState([]);
+  const [ingredientsAlter, setIngredientsAlter] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
   const navigate = useNavigate();
@@ -53,6 +49,7 @@ export function AlterDish() {
 
   function handleAddIngredient() {
     setIngredients((prevState) => [...prevState, newIngredient]);
+    // setIngredientsAlter([newIngredient]);
     setNewIngredient("");
   }
 
@@ -67,10 +64,11 @@ export function AlterDish() {
       name,
       category: selectedCategory,
       ingredients,
+      ingredientsAlter,
       price,
       description,
     };
-
+    console.log(ingredients);
     const response = await api.put(`/dishs/${params.id}`, updated);
 
     const dishId = response.data;
@@ -122,6 +120,7 @@ export function AlterDish() {
 
   async function fetchDish() {
     const response = await api.get(`/dishs/${params.id}`);
+    // setImage(response.data.image);
     setName(response.data.name);
     setSelectedCategory(response.data.category_id);
     setIngredients(response.data.ingredients);
@@ -194,7 +193,7 @@ export function AlterDish() {
                 {ingredients.map((ingredient, index) => (
                   <IngredientItem
                     key={String(index)}
-                    value={ingredient.name}
+                    value={ingredient}
                     onClick={() => handleRemoveIngredient(ingredient)}
                   />
                 ))}

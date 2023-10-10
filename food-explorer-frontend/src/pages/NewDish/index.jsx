@@ -36,10 +36,6 @@ export function NewDish() {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
-  const imageUrl = dish.image
-    ? `${api.defaults.baseURL}/files/${dish.image}`
-    : avatarPlaceholder;
-
   const [image, setImage] = useState();
   const [imageFile, setImageFile] = useState(null);
 
@@ -93,10 +89,10 @@ export function NewDish() {
 
     const response = await api.post("/dishs", {
       name,
-      description,
       category: selectedCategory,
       ingredients,
       price,
+      description,
     });
 
     const dishId = response.data;

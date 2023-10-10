@@ -40,7 +40,7 @@ export const Form = styled.div`
   .action {
     display: flex;
     justify-content: end;
-    
+
     > button {
       width: 100%;
 
@@ -67,7 +67,7 @@ export const Form = styled.div`
     gap: 3.2rem;
 
     #file-input {
-      /* display: none; */
+      display: none;
     }
 
     > .inputWrapper {
@@ -80,6 +80,7 @@ export const Form = styled.div`
 
         display: flex;
         align-items: center;
+        /* justify-content: center; */
 
         img {
           width: 1.9rem;
@@ -116,7 +117,7 @@ export const Form = styled.div`
       }
 
       select {
-          /* background: url(${imageSelect}) no-repeat; */
+        /* background: url(${imageSelect}) no-repeat; */
         /* background: url("../../assets/icons/ChevronDown.svg") no-repeat right; */
 
         > svg {
