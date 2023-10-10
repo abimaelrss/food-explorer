@@ -29,6 +29,9 @@ export function Details() {
   const [data, setData] = useState(null);
   const [ingredients, setIngredients] = useState([]);
 
+  // const imageUrl = `${api.defaults.baseURL}/files/${data.image}`;
+  // const [image, setImage] = useState(imageUrl);
+
   const params = useParams();
 
   const navigate = useNavigate();
@@ -69,8 +72,8 @@ export function Details() {
           <ButtonText title="voltar" onClick={handleBack} />
           {data && (
             <main>
-              <img src={imageDish} alt="" />
-              {/* <img src={data.image} alt="Imagem do prato" /> */}
+              {/* <img src={imageDish} alt="" /> */}
+              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="Imagem do prato" />
 
               <div className="ingredient">
                 <h2>{data.name}</h2>
@@ -101,7 +104,7 @@ export function Details() {
                     <Button
                       actived
                       title="Editar prato"
-                      handleClick={() => handleUpdate(data.id)}
+                      onClick={() => handleUpdate(data.id)}
                     />
                   ) : (
                     <Button actived title={`pedir R$: ${data.price}`}>

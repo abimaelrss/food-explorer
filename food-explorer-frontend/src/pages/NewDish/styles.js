@@ -67,7 +67,7 @@ export const Form = styled.div`
     gap: 3.2rem;
 
     #file-input {
-      display: none;
+      /* display: none; */
     }
 
     > .inputWrapper {

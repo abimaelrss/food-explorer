@@ -4,6 +4,16 @@ import { Link } from "react-router-dom";
 export const Render = styled(Link)`
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
+  img {
+    width: 100%;
+    max-width: 8.8rem;
+
+    @media (min-width: 800px) {
+      width: 100%;
+      max-width: 17.6rem;
+    }
+  }
+
   > h2 {
     font-family: "Poppins" sans-serif;
     font-weight: 500;
@@ -96,7 +106,6 @@ export const Container = styled.div`
 
       @media (min-width: 1024px) {
         margin-bottom: 0;
-
       }
     }
   }

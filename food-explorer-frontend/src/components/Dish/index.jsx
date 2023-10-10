@@ -1,6 +1,8 @@
 import { Button } from "../Button";
 import { Container, Render } from "./styles";
 
+import { api } from "../../services/api";
+
 import imageDish from "../../assets/mobile/Dish.png";
 
 import imageMinus from "../../assets/icons/Minus.svg";
@@ -9,12 +11,14 @@ import imagePlus from "../../assets/icons/Plus.svg";
 import { useAuth } from "../../hooks/auth";
 import { ButtonIcon } from "../ButtonIcon";
 import { useEffect, useState } from "react";
-import { ButtonCard } from "../ButtonCard";
 
 export function Dish({ data }) {
   const { user } = useAuth();
 
   const [count, setCount] = useState(1);
+
+  // const imageUrl = `${api.defaults.baseURL}/files/${data.image}`;
+  // const [image, setImage] = useState(imageUrl);
 
   function countPlus() {
     setCount(count + 1);
@@ -31,8 +35,8 @@ export function Dish({ data }) {
       <ButtonIcon title="icon" className="favorite" />
 
       <Render to={`/details/${data.id}`}>
-        <img src={imageDish} alt="" />
-        {/* <img src={data.image} alt="Imagem do prato" /> */}
+        {/* <img src={imageDish} alt="" /> */}
+        <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="Imagem do prato" />
         <h2>{data.name}</h2>
         <p>{data.description}</p>
       </Render>

@@ -24,11 +24,13 @@ import { IngredientItem } from "../../components/IngredientItem";
 export function AlterDish() {
   const [dish, setDish] = useState();
 
-  // const imageUrl = dish.image
-  //   ? `${api.defaults.baseURL}/files/${dish.image}`
-  //   : avatarPlaceholder;
+  const params = useParams();
 
-  // const [image, setImage] = useState(imageUrl);
+  const imageUrl = `${api.defaults.baseURL}/files/${params.id}`;
+
+  const [image, setImage] = useState(
+    `${api.defaults.baseURL}/files/${params.id}`
+  );
   const [imageFile, setImageFile] = useState(null);
 
   const [name, setName] = useState("");
@@ -42,8 +44,6 @@ export function AlterDish() {
 
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
-
-  const params = useParams();
 
   const navigate = useNavigate();
 
@@ -62,15 +62,6 @@ export function AlterDish() {
     );
   }
 
-  async function handleRemove() {
-    const confirm = window.confirm("Deseja realmente remover o prato?");
-
-    if (confirm) {
-      await api.delete(`/dishs/${params.id}`);
-      navigate(-1);
-    }
-  }
-
   async function handleUpdate() {
     const updated = {
       name,
@@ -80,17 +71,20 @@ export function AlterDish() {
       description,
     };
 
-    const dishUpdated = Object.assign(dish, updated);
+    const response = await api.put(`/dishs/${params.id}`, updated);
+
+    const dishId = response.data;
 
     try {
-      const id = await api.put(`/dishs/${params.id}`, updated);
-
       if (imageFile) {
         const fileUploadForm = new FormData();
         fileUploadForm.append("image", imageFile);
 
-        const response = await api.patch(`/dishs/image/${id}`, fileUploadForm);
-        // dishUpdated.image = response.data.image;
+        const response = await api.patch(
+          `/dishs/image/${dishId}`,
+          fileUploadForm
+        );
+        setImage(response.data.image);
       }
     } catch (error) {
       if (error.response) {
@@ -98,6 +92,18 @@ export function AlterDish() {
       } else {
         alert("Não foi possível atualizar o prato!");
       }
+    }
+
+    alert("Prato atualizado com sucesso!");
+    navigate(-1);
+  }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover o prato?");
+
+    if (confirm) {
+      await api.delete(`/dishs/${params.id}`);
+      navigate("/");
     }
   }
 
@@ -139,10 +145,11 @@ export function AlterDish() {
 
           <div className="inputGroup">
             <div className="inputWrapper">
-              <label htmlFor="#file-input">
+              <label htmlFor="file-input">
                 <span>Imagem do prato</span>
                 <div className="uploadFile">
                   <img src={imageSelect} alt="" />
+                  <img src={image} alt="" />
                   <span>Selecione a imagem</span>
                   <input
                     id="file-input"
@@ -219,16 +226,8 @@ export function AlterDish() {
           />
 
           <div className="action">
-            <Button
-              actived
-              title="Excluir prato"
-              onClick={handleRemove}
-            />
-            <Button
-              actived
-              title="Salvar alterações"
-              onClick={handleUpdate}
-            />
+            <Button title="Excluir prato" onClick={handleRemove} />
+            <Button actived title="Salvar alterações" onClick={handleUpdate} />
           </div>
         </Form>
       </Content>

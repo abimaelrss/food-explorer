@@ -13,8 +13,6 @@ export const Content = styled.div`
   margin-bottom: 3.3rem;
   padding: 1.5rem 5.6rem;
 
-
-
   overflow-y: auto;
 
   display: flex;
@@ -27,14 +25,13 @@ export const Content = styled.div`
   }
 
   main {
-  /* max-width: 60rem; */
+    /* max-width: 60rem; */
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     text-align: center;
-
 
     > img {
       margin: 1.6rem 2.6rem;
@@ -43,10 +40,8 @@ export const Content = styled.div`
       max-width: 39rem;
 
       @media (min-width: 800px) {
-        min-width: 39rem;
-
-        /* margin-top: 4.2rem;
-        margin-right: 4.7rem; */
+        margin-top: 4.2rem;
+        margin-right: 4.7rem;
       }
     }
 

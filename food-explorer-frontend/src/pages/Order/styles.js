@@ -15,24 +15,14 @@ export const Content = styled.div`
 
   overflow-y: auto;
 
-  
   font-family: "Poppins", sans-serif;
-  
+
   @media (min-width: 1024px) {
   }
-  
-  main {
-    display: flex;
 
+  main {
     margin-top: 3.4rem;
 
-    .order {
-      width: 40%;
-    }
-
-    .payment {
-      width: 60%;
-    }
+    text-align: center;
   }
-
 `;

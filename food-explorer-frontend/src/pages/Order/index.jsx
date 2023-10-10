@@ -21,32 +21,11 @@ import { Tag } from "../../components/Tag";
 import { Ingredient } from "../../components/Ingredient";
 
 export function Order() {
-  const [data, setData] = useState(null);
-
-  const params = useParams();
   const navigate = useNavigate();
 
   function handleBack() {
     navigate(-1);
   }
-
-  async function handleRemove() {
-    const confirm = window.confirm("Deseja realmente remover o prato?");
-
-    if (confirm) {
-      await api.delete(`/dishs/${params.id}`);
-      navigate(-1);
-    }
-  }
-
-  useEffect(() => {
-    async function fetchDish() {
-      const response = await api.get(`/dish/${params.id}`);
-      setData(response.data);
-    }
-
-    fetchDish();
-  }, []);
 
   return (
     <>
@@ -56,13 +35,7 @@ export function Order() {
         <Content>
           <ButtonText title="voltar" onClick={handleBack} />
           <main>
-            <div className="order">
-              <h2>Meu pedido</h2>
-            </div>
-            <div className="payment">
-              <h2>Pagamento</h2>
-              
-            </div>
+            <h2>Pedido</h2>
           </main>
         </Content>
       </Container>

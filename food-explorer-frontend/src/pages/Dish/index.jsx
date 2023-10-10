@@ -56,7 +56,6 @@ export function Dish() {
         <Content>
           <ButtonText title="voltar" onclick={handleBack} />
           <main>
-            <img src={imageDish} alt="" />
             <img src={data.image} alt="Imagem do prato" />
 
             <div className="ingredients">

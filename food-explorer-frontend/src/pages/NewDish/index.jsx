@@ -36,17 +36,11 @@ export function NewDish() {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
-  const [links, setLinks] = useState([]);
-  const [newLink, setNewLink] = useState("");
-
-  const [tags, setTags] = useState([]);
-  const [newTag, setNewTag] = useState("");
-
   const imageUrl = dish.image
     ? `${api.defaults.baseURL}/files/${dish.image}`
     : avatarPlaceholder;
 
-  const [image, setImage] = useState(imageUrl);
+  const [image, setImage] = useState();
   const [imageFile, setImageFile] = useState(null);
 
   const navigate = useNavigate();
@@ -66,7 +60,7 @@ export function NewDish() {
     );
   }
 
-  async function handleNewDish() {
+  async function handleNew() {
     // if (!image) {
     //   return alert("Informe a imagem!");
     // }
@@ -104,27 +98,26 @@ export function NewDish() {
       ingredients,
       price,
     });
+
     const dishId = response.data;
-    console.log(response.data)
+
     try {
-    
       if (imageFile) {
         const fileUploadForm = new FormData();
         fileUploadForm.append("image", imageFile);
 
         const response = await api.patch(`/dishs/image/${dishId}`, fileUploadForm);
-        // setImage(response.data.image);
-        // user.avatar = response.data.avatar;
+        setImage(response.data.image);
       }
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
       } else {
-        alert("Não foi possível atualizar o prato!");
+        alert("Não foi possível cadastrar o prato!");
       }
     }
 
-    alert("Prato criado com sucesso!");
+    alert("Prato cadastrado com sucesso!");
     navigate(-1);
   }
 
@@ -160,6 +153,7 @@ export function NewDish() {
                 <span>Imagem do prato</span>
                 <div className="uploadFile">
                   <img src={imageSelect} alt="" />
+                  <img src={image} alt="" />
                   <span>Selecione a imagem</span>
                   <input
                     id="file-input"
@@ -239,7 +233,7 @@ export function NewDish() {
             <Button
               color="alter"
               title="Salvar alterações"
-              onClick={handleNewDish}
+              onClick={handleNew}
             />
           </div>
         </Form>

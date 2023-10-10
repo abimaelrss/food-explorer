@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   width: 100%;
-  /* max-width: 31.6rem; */
-
   height: 4.8rem;
 
   padding: 1.2rem 2.4rem;
@@ -19,6 +17,8 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
   background-color: ${({ theme, $actived }) =>
     $actived ? theme.COLORS.TINTS_TOMATO_100 : theme.COLORS.TINTS_TOMATO_400};
 
@@ -26,9 +26,6 @@ export const Container = styled.button`
     background-color: ${({ theme, $actived }) =>
       $actived && theme.COLORS.TINTS_TOMATO_200};
   }
-
-  color: ${({ theme }) => theme.COLORS.LIGHT_100};
-
 
   > img {
     width: 3.2rem;
