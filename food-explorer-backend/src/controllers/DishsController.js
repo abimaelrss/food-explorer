@@ -3,15 +3,15 @@ const DiskStorage = require("../providers/DiskStorage");
 
 class DishsController {
   async create(request, response) {
-    const { name, description, category, ingredients, price } = request.body;
+    const { name, category, ingredients, price, description } = request.body;
     const user_id = request.user.id;
 
     const [dish_id] = await knex("dishs").insert({
       name,
-      description,
-      price,
-      user_id,
       category_id: category,
+      price,
+      description,
+      user_id,
     });
 
     const ingredientsInsert = ingredients.map((ingredient) => {
@@ -31,24 +31,24 @@ class DishsController {
     const { name, category, ingredients, price, description } = request.body;
     const id = request.params.id;
 
-    console.log(id)
-    const [dish_id] = await knex("dishs").where({ id });
-    console.log(dish_id)
+    try {
+      
+      await knex("ingredients").where({ dish_id: id }).delete();
 
-    if (!dish_id) {
-      throw new AppError("Prato não encontrado!");
+      if (ingredients.length !== 0) {
+        console.log("if")
+        const ingredientsInsert = ingredients.map((ingredient) => {
+          return {
+            name: ingredient,
+            dish_id: id,
+          };
+        });
+
+        await knex("ingredients").insert(ingredientsInsert);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-
-    // await knex("ingredients").where({ id }).delete();
-
-    // const ingredientsInsert = ingredients.map((ingredient) => {
-    //   return {
-    //     dish_id,
-    //     name: ingredient,
-    //   };
-    // });
-
-    // await knex("ingredients").insert(ingredientsInsert);
 
     await knex("dishs")
       .update({
@@ -59,7 +59,7 @@ class DishsController {
       })
       .where({ id });
 
-    return response.json(id);
+    return response.json();
   }
 
   async show(request, response) {
@@ -68,9 +68,13 @@ class DishsController {
     const dish = await knex("dishs").where({ id }).first();
     const ingredients = await knex("ingredients").where({ dish_id: id });
 
+    const ingredientsSerialized = ingredients.map(
+      (ingredient) => ingredient.name
+    );
+
     return response.json({
       ...dish,
-      ingredients,
+      ingredients: ingredientsSerialized,
     });
   }
 
