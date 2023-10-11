@@ -13,9 +13,9 @@
 </p>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/calebesg/proffy">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/abiamaelrss/food-explorer">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/calebesg/proffy">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/abiamaelrss/food-explorer">
 
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License MIT">
@@ -47,6 +47,8 @@ This app features all the latest tools and practices in mobile development!
 
 ### ☁️ Getting started food-explorer-backend
 
+[Available in Render](https://food-explorer-backend-hamk.onrender.com)
+
 1. Move yourself to the server directory: ``cd food-explorer-backend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
 3. Run ``npm run migrate`` to create the database
@@ -54,6 +56,8 @@ This app features all the latest tools and practices in mobile development!
 5. Run ``npm run dev`` inicialize server
 
 ### 💻 Getting started food-explorer-frontend
+
+[Available in Vercel](https://food-explorer-nu.vercel.app/)
 
 1. Move yourself to the web directory: ``cd food-explorer-frontend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
