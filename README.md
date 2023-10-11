@@ -49,8 +49,8 @@ This app features all the latest tools and practices in mobile development!
 
 1. Move yourself to the server directory: ``cd food-explorer-backend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
-3. Run ``npm run knex:migrate`` to create the database
-4. Run ``npm run knex:seed`` to save the initial database data
+3. Run ``npm run migrate`` to create the database
+4. Run ``npm run seed`` to save the initial database data
 5. Run ``npm run dev`` inicialize server
 
 ### 💻 Getting started food-explorer-frontend
