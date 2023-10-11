@@ -1,9 +1,9 @@
 <h1 align="center">
-  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/cfd53583-1638-4e05-8226-0d6d49f9d74c" alt="Logo" width="110">
+  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/cfd53583-1638-4e05-8226-0d6d49f9d74c" alt="Logo" width="200">
 </h1>
 <br>
 
-<p align="center"><b>Food Explorer</b></p>
+<p align="center"><b>Final challenge resolution Explorer</b></p>
 
 <p align="center">
   <a href="#-About">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -13,9 +13,9 @@
 </p>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/abiamaelrss/food-explorer">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/abimaelrss/food-explorer">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/abiamaelrss/food-explorer">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/abimaelrss/food-explorer">
 
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License MIT">
@@ -37,8 +37,11 @@ Final challenge proposed by the Explorer by Rocketseat program. food-explorer is
 ## 💻 Technologies
 This app features all the latest tools and practices in mobile development!
 
-- ⚛️ **React Js** — A JavaScript library for building user interfaces
-- 💹 **Node Js** — A web framework for Node Js
+- [**React Js**](https://react.dev/) — A JavaScript library for building user interfaces
+- [**Node Js**](https://nodejs.org/en) — A web framework for Node Js
+- [**SQLite**](https://www.sqlite.org/index.html) — SQLite is the most used database engine in the world
+- [**Styled components**](https://styled-components.com/) — Framework CSS
+- [**Knex.js**](https://knexjs.org/) — Query builder for SGBDs
 
 ## 🏃💨 Getting started
 
