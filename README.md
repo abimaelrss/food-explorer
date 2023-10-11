@@ -43,7 +43,7 @@ This app features all the latest tools and practices in mobile development!
 ## 🏃💨 Getting started
 
 1. Clone this repo with ``git clone https://github.com/food-explorer.git``
-2. Move yourself to the proffy directory: ``food-explorer``
+2. Move yourself to the food-explorer directory: ``food-explorer``
 
 ### ☁️ Getting started food-explorer-backend
 
