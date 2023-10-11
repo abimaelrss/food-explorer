@@ -1,10 +1,9 @@
 <h1 align="center">
-  <img src="[https://github.com/abimaelrss/food-explorer/assets/14807515/b674b9df-3e2b-474d-a94d-efffd4e3f1eb.svg" alt="Logo doe" width="110">
-
+  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/cfd53583-1638-4e05-8226-0d6d49f9d74c" alt="Logo" width="110">
 </h1>
 <br>
 
-<p align="center"><b>👩‍🏫 Build in a Next-Level-Week #2 🚀</b></p>
+<p align="center"><b>Food Explorer</b></p>
 
 <p align="center">
   <a href="#-About">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -26,47 +25,39 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/66a34537-23df-409e-a684-72a7e3c84300.png" alt="demo" width="90%">
+  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/88cf6250-1de8-493f-adbf-d1f165c40553.png" alt="demo" width="90%">
 </p>
 
 <hr />
 
 ## 🏷️ About
 
-Presented by Rocketseat at Next Level Week #2. The proffy helps to bring together teachers from different disciplines to interested students.
+Final challenge proposed by the Explorer by Rocketseat program. food-explorer is a system for simple restaurant management.
 
 ## 💻 Technologies
 This app features all the latest tools and practices in mobile development!
 
 - ⚛️ **React Js** — A JavaScript library for building user interfaces
-- ⚛️ **React Native(expo)** — A lib that provides a way to create native apps for Android and iOS
 - 💹 **Node Js** — A web framework for Node Js
 
 ## 🏃💨 Getting started
 
-1. Clone this repo with ``git clone https://github.com/calebesg/proffy.git``
-2. Move yourself to the proffy directory: ``cd proffy``
+1. Clone this repo with ``git clone https://github.com/food-explorer.git``
+2. Move yourself to the food-explorer directory: ``food-explorer``
 
-### ☁️ Getting started server
+### ☁️ Getting started food-explorer-backend
 
-1. Move yourself to the server directory: ``cd server``
+1. Move yourself to the server directory: ``cd food-explorer-backend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
 3. Run ``npm run knex:migrate`` to create the database
 4. Run ``npm run knex:seed`` to save the initial database data
 5. Run ``npm run dev`` inicialize server
 
-### 💻 Getting started web
+### 💻 Getting started food-explorer-frontend
 
-1. Move yourself to the web directory: ``cd web``
+1. Move yourself to the web directory: ``cd food-explorer-frontend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
-3. Run ``npm start`` to start project
-
-### 📱 Getting started mobile
-
-1. Move yourself to the mobile directory: ``cd mobile``
-2. Run ``yarn`` or ``npm install`` to install all dependencies
-3. Run ``npm start`` to start project
-4. Scan QRcode in browser with expo app on ``Android OS`` or camera app on ``IOS``
+3. Run ``npm run dev`` to start project
 
 ## 📝 License
 
