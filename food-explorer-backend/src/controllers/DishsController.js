@@ -23,7 +23,6 @@ class DishsController {
 
     await knex("ingredients").insert(ingredientsInsert);
 
-    // return response.json();
     return response.json(dish_id);
   }
 

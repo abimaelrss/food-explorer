@@ -7,7 +7,7 @@ exports.seed = async function(knex) {
   // await knex('categories').del()
   await knex('categories').truncate()
   await knex('categories').insert([
-    {id: 1, name: 'Pratos principais'},
+    {id: 1, name: 'Refeições'},
     {id: 2, name: 'Sobremesas'},
     {id: 3, name: 'Bebidas'}
   ]);

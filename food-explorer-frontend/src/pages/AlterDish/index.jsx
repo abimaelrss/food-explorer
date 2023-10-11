@@ -61,14 +61,11 @@ export function AlterDish() {
 
     const dishId = response.data;
 
-    console.log(dishId);
-
     try {
       if (imageFile) {
         const fileUploadForm = new FormData();
         fileUploadForm.append("image", imageFile);
 
-        console.log("response")
         const response = await api.patch(
           `/dishs/image/${dishId}`,
           fileUploadForm

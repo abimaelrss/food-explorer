@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { api } from "../../services/api";
+
 import imagePlus from "../../assets/icons/Plus.svg";
 import imageMinus from "../../assets/icons/Minus.svg";
 import imageOrder from "../../assets/receipt.svg";
 
-import { api } from "../../services/api";
+import imagePlaceholder from "../../assets/image-dish-placeholder.png";
 
 import { Container, Content } from "./styles";
 
@@ -21,6 +23,10 @@ export function Details() {
   const [count, setCount] = useState(1);
 
   const [data, setData] = useState(null);
+
+  // const imageUrl = data.image
+  //   ? `${api.defaults.baseURL}/files/${data.image}`
+  //   : imagePlaceholder;
 
   const params = useParams();
 
@@ -62,17 +68,22 @@ export function Details() {
           <ButtonText title="voltar" onClick={handleBack} />
           {data && (
             <main>
-              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="Imagem do prato" />
+              {/* <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="Imagem do prato" /> */}
+              <img
+                src={
+                  data.image
+                    ? `${api.defaults.baseURL}/files/${data.image}`
+                    : imagePlaceholder
+                }
+                alt="Imagem do prato"
+              />
 
               <div className="ingredient">
                 <h2>{data.name}</h2>
                 <p>{data.description}</p>
                 <div className="ingredients">
                   {data.ingredients.map((ingredient, index) => (
-                    <Ingredient
-                      key={String(index)}
-                      title={ingredient}
-                    />
+                    <Ingredient key={String(index)} title={ingredient} />
                   ))}
                 </div>
 
@@ -91,7 +102,6 @@ export function Details() {
                   )}
                   {user.role === "admin" ? (
                     <Button
-                      
                       title="Editar prato"
                       onClick={() => handleUpdate(data.id)}
                     />
