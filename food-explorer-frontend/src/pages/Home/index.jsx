@@ -1,8 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-import {  FiSearch } from 'react-icons/fi';
-
 
 import imageBanner from "../../assets/pngegg1.png";
 
@@ -13,35 +9,26 @@ import { Container, Content, Banner, Search } from "./styles";
 import { Header } from "../../components/Header";
 import { Section } from "../../components/Section";
 import { Footer } from "../../components/Footer";
-import { Dish } from "../../components/Dish";
-import { Input } from "../../components/Input";
 
 export function Home() {
   const [search, setSearch] = useState("");
 
   const [dishs, setDishs] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [ingredients, setIngredients] = useState([]);
 
-  const navigate = useNavigate();
+  async function fetchCategories() {
+    const response = await api.get(`/categories`);
+    setCategories(response.data);
+  }
 
-  function handleDetails(id) {
-    console.log(id);
-    navigate(`/details/${id}`);
+  async function fetchDishs() {
+    const response = await api.get(
+      `/dishs?name=${search}&ingredients=${search}`
+    );
+    setDishs(response.data);
   }
 
   useEffect(() => {
-    async function fetchCategories() {
-      // const response = await api.get(`/categories`);
-      const response = await api.get(`/categories`);
-      setCategories(response.data);
-    }
-
-    async function fetchDishs() {
-      const response = await api.get(`/dishs?name=${search}&ingredients=${search}`);
-      setDishs(response.data);
-    }
-
     fetchCategories();
     // fetchDishs();
   }, [search]);
@@ -76,9 +63,17 @@ export function Home() {
               key={String(categorie.id)}
               data={categorie}
               // onClick={() => handleDetails(categorie.id)}
-
             />
           ))}
+
+          {/* {dishs.map((dish) => (
+            <Section
+              title={dish.name}
+              key={String(dish.id)}
+              data={dish.dishs}
+              // onClick={() => handleDetails(categorie.id)}
+            />
+          ))} */}
         </Content>
       </Container>
 

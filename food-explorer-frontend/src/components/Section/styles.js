@@ -7,7 +7,6 @@ export const Container = styled.section`
 
   > h2 {
     margin-bottom: 2.3rem;
-    /* padding-bottom: 1.6rem; */
 
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
 

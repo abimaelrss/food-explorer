@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import imageBanner from "../../assets/pngegg1.png";
-import imageDish from "../../assets/prates/Dish.png";
 import imagePlus from "../../assets/icons/Plus.svg";
 import imageMinus from "../../assets/icons/Minus.svg";
 import imageOrder from "../../assets/receipt.svg";
@@ -12,13 +10,9 @@ import { api } from "../../services/api";
 import { Container, Content } from "./styles";
 
 import { Header } from "../../components/Header";
-import { Input } from "../../components/Input";
-import { Section } from "../../components/Section";
-import { Note } from "../../components/Note";
 import { ButtonText } from "../../components/ButtonText";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
-import { Tag } from "../../components/Tag";
 import { Ingredient } from "../../components/Ingredient";
 import { useAuth } from "../../hooks/auth";
 
@@ -27,10 +21,6 @@ export function Details() {
   const [count, setCount] = useState(1);
 
   const [data, setData] = useState(null);
-  const [ingredients, setIngredients] = useState([]);
-
-  // const imageUrl = `${api.defaults.baseURL}/files/${data.image}`;
-  // const [image, setImage] = useState(imageUrl);
 
   const params = useParams();
 
@@ -72,18 +62,17 @@ export function Details() {
           <ButtonText title="voltar" onClick={handleBack} />
           {data && (
             <main>
-              {/* <img src={imageDish} alt="" /> */}
-              <img
-                src={`${api.defaults.baseURL}/files/${data.image}`}
-                alt="Imagem do prato"
-              />
+              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="Imagem do prato" />
 
               <div className="ingredient">
                 <h2>{data.name}</h2>
                 <p>{data.description}</p>
                 <div className="ingredients">
                   {data.ingredients.map((ingredient, index) => (
-                    <Ingredient key={String(index)} title={ingredient} />
+                    <Ingredient
+                      key={String(index)}
+                      title={ingredient}
+                    />
                   ))}
                 </div>
 
@@ -102,6 +91,7 @@ export function Details() {
                   )}
                   {user.role === "admin" ? (
                     <Button
+                      
                       title="Editar prato"
                       onClick={() => handleUpdate(data.id)}
                     />

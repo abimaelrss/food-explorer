@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import imageSelect from "../../assets/icons/ChevronDown.svg";
 
 export const Container = styled.div`
   width: 100%;
@@ -121,16 +120,12 @@ export const Form = styled.div`
       }
 
       select {
-        /* background: url(${imageSelect}) no-repeat; */
-        /* background: url("../../assets/icons/ChevronDown.svg") no-repeat right; */
-
         > svg {
           width: 2rem;
         }
       }
 
       @media (min-width: 1024px) {
-        /* width: 25rem; */
       }
     }
 

@@ -4,19 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
-import { NoteItem } from "../../components/NoteItem";
-import { Section } from "../../components/Section";
 import { Button } from "../../components/Button";
 import { ButtonText } from "../../components/ButtonText";
 
 import { api } from "../../services/api";
-import imagePlaceholder from "../../assets/avatar_placeholder.svg";
-import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 import imageSelect from "../../assets/icons/UploadSimple.svg";
-import { FiUpload } from "react-icons/fi";
 
 import { Container, Content, Form } from "./styles";
 import { IngredientItem } from "../../components/IngredientItem";
@@ -26,7 +20,6 @@ export function NewDish() {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
 
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
@@ -57,10 +50,6 @@ export function NewDish() {
   }
 
   async function handleNew() {
-    // if (!image) {
-    //   return alert("Informe a imagem!");
-    // }
-
     if (!name) {
       return alert("Informe o nome!");
     }
@@ -229,7 +218,7 @@ export function NewDish() {
             <Button
               color="alter"
               title="Salvar alterações"
-              onClick={handleNew}
+              handleClick={handleNew}
             />
           </div>
         </Form>

@@ -47,7 +47,6 @@ export const Brand = styled(Link)`
   height: 3.9rem;
 
   margin: 0 auto;
-  /* transform: translateX(-24px); */
 
   display: flex;
   align-items: center;
@@ -134,8 +133,8 @@ export const Search = styled.div`
 `;
 
 export const Button = styled.button`
-  /* width: 100%; */
-  min-width: 21.6rem;
+  width: 100%;
+  max-width: 21.6rem;
   height: 4.8rem;
 
   border: 0;
@@ -146,16 +145,20 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
 
   > img {
     width: 3.2rem;
     padding-right: 0.8rem;
   }
 
-  &:disabled {
-    opacity: 0.5;
+  > span {
+    margin-left: 0.5rem;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_200};
   }
 
   @media (max-width: 1024px) {

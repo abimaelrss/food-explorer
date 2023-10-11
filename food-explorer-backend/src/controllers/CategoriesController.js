@@ -7,7 +7,7 @@ class CategoriesController {
 
     const [category_id] = await knex("categories").insert({
       name,
-      dish_id
+      dish_id,
     });
 
     return response.json();
@@ -35,8 +35,10 @@ class CategoriesController {
   //   return response.json();
   // }
 
+  
+
   async index(request, response) {
-    const { name,  } = request.query;
+    const { name } = request.query;
 
     const user_id = request.user.id;
 
@@ -45,7 +47,6 @@ class CategoriesController {
     categories = await knex("categories");
 
     // console.log(categories)
-
 
     return response.json(categories);
   }

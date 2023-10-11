@@ -12,7 +12,7 @@ class DishImageController {
     const dish = await knex("dishs").where({ id: dish_id }).first();
 
     // console.log(dish_id)
-    console.log(dish);
+    console.log(dish, "aqui");
 
     // if (!dish) {
     //   throw new AppError("Somente usuários autenticados podem mudar a imagem!");

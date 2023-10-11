@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   width: 100%;
+
   height: 4.8rem;
 
   padding: 1.2rem 2.4rem;
@@ -19,10 +20,10 @@ export const Container = styled.button`
 
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-  background-color: ${({ theme, $model }) => theme.BUTTON[$model].BACKGROUND };
+  background-color: ${({ theme, $model }) => theme.BUTTON[$model].BACKGROUND};
 
   &:hover {
-    background-color: ${({ theme, $model }) => theme.BUTTON[$model].HOVER };
+    background-color: ${({ theme, $model }) => theme.BUTTON[$model].HOVER};
   }
 
   > img {

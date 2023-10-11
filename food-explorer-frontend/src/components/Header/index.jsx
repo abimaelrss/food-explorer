@@ -79,7 +79,7 @@ export function Header() {
           <Button onClick={() => navigation("/order")}>
             <>
               <img src={imageOrder} alt="Imagem de pedido" />
-              Pedidos
+              Pedidos 
               <span>{`(0)`}</span>
             </>
           </Button>

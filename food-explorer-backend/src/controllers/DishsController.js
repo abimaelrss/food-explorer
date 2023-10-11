@@ -32,11 +32,9 @@ class DishsController {
     const id = request.params.id;
 
     try {
-      
       await knex("ingredients").where({ dish_id: id }).delete();
 
       if (ingredients.length !== 0) {
-        console.log("if")
         const ingredientsInsert = ingredients.map((ingredient) => {
           return {
             name: ingredient,
@@ -59,7 +57,7 @@ class DishsController {
       })
       .where({ id });
 
-    return response.json();
+    return response.json(id);
   }
 
   async show(request, response) {
@@ -86,53 +84,66 @@ class DishsController {
     return response.json();
   }
 
+  async searchByNameAndIngredient(request, response) {
+    const { name, ingredients } = request.query;
+
+    let dishs = [];
+
+    if (ingredients) {
+      const filterIngredients = ingredients
+        .split(",")
+        .map((ingredient) => ingredient.trim());
+
+      dishs = await knex("ingredients")
+        .select("*")
+        .whereLike("dishs.name", `%${name}%`)
+        .whereIn("ingredients.name", filterIngredients)
+        .innerJoin("dishs", "dishs.id", "ingredients.dish_id")
+        .groupBy("dishs.id");
+    } else {
+      dishs = await knex("ingredients")
+        .select("*")
+        .whereLike("dishs.name", `%${name}%`)
+        .innerJoin("dishs", "dishs.id", "ingredients.dish_id")
+        .groupBy("dishs.id");
+    }
+
+    const categoriesDB = await knex("categories").select("*");
+    const ingredientsDB = await knex("ingredients").select("*");
+
+    dishs = dishs.map((dish) => {
+      const ingredientsIncluded = ingredientsDB.filter(
+        (ingredient) => dish.id == ingredient.dish_id
+      );
+
+      return {
+        ...dish,
+        ingredients: ingredientsIncluded,
+      };
+    });
+
+    const categoriesWithDishs = categoriesDB.map((category) => {
+      const dishsIncluded = dishs.filter(
+        (dish) => dish.category_id == category.id
+      );
+
+      return {
+        id: category.id,
+        name: category.name,
+        dishs: dishsIncluded,
+      };
+    });
+
+    return response.json(categoriesWithDishs);
+  }
+
   async index(request, response) {
     const { category_id } = request.query;
-    const { name, ingredients } = request.query;
-    const user_id = request.user.id;
 
     let dishs;
 
     dishs = await knex("dishs").where("category_id", category_id);
 
-    // if (ingredients) {
-    //   const filterIngredients = ingredients.split(',').map(ingredient => ingredient.trim());
-
-    //   dishs = await knex("ingredients")
-    //   .select([
-    //     "dishs.id",
-    //     "dishs.name",
-    //     "dishs.user_id",
-    //   ])
-    //   .where("dishs.user_id", user_id)
-    //   .whereLike("dishs.name", `%${name}%`)
-    //   .whereIn("name", filterIngredients)
-    //   .innerJoin("dishs", "dishs.id", "ingredients.dish_id",)
-    //   .groupBy("dishs.id")
-    //   .orderBy("dishs.name")
-
-    // } else {
-
-    //   dishs = await knex("dishs")
-    //     .where("name", `%${name}%`)
-    //     .orderBy("name");
-
-    // }
-
-    // const userTags = await knex("ingredients").where({ name });
-    // const dishWithIngredients = dishs.map(dish => {
-    //   const dishIngredients = userTags.filter(ingredient => ingredient.dish_id === dish.id);
-
-    //   return {
-    //     ...dish,
-    //     ingredients: dishIngredients
-    //   }
-    // });
-
-    // return response.json(dishWithIngredients);
-
-    // console.log(category_id)
-    // console.log(dishs)
     return response.json(dishs);
   }
 }

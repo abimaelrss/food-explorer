@@ -4,26 +4,18 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
-import { NoteItem } from "../../components/NoteItem";
-import { Section } from "../../components/Section";
 import { Button } from "../../components/Button";
 import { ButtonText } from "../../components/ButtonText";
 
 import { api } from "../../services/api";
-import imagePlaceholder from "../../assets/avatar_placeholder.svg";
-import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 import imageSelect from "../../assets/icons/UploadSimple.svg";
-import { FiUpload } from "react-icons/fi";
 
 import { Container, Content, Form } from "./styles";
 import { IngredientItem } from "../../components/IngredientItem";
 
 export function AlterDish() {
-  const [dish, setDish] = useState();
-
   const params = useParams();
 
   const [image, setImage] = useState();
@@ -38,7 +30,6 @@ export function AlterDish() {
   const [price, setPrice] = useState("");
 
   const [ingredients, setIngredients] = useState([]);
-  const [ingredientsAlter, setIngredientsAlter] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
   const navigate = useNavigate();
@@ -63,7 +54,6 @@ export function AlterDish() {
       name,
       category: selectedCategory,
       ingredients,
-      ingredientsAlter,
       price,
       description,
     };
@@ -71,11 +61,14 @@ export function AlterDish() {
 
     const dishId = response.data;
 
+    console.log(dishId);
+
     try {
       if (imageFile) {
         const fileUploadForm = new FormData();
         fileUploadForm.append("image", imageFile);
 
+        console.log("response")
         const response = await api.patch(
           `/dishs/image/${dishId}`,
           fileUploadForm
@@ -118,7 +111,6 @@ export function AlterDish() {
 
   async function fetchDish() {
     const response = await api.get(`/dishs/${params.id}`);
-    // setImage(response.data.image);
     setName(response.data.name);
     setSelectedCategory(response.data.category_id);
     setIngredients(response.data.ingredients);
@@ -223,8 +215,16 @@ export function AlterDish() {
           />
 
           <div className="action">
-            <Button model="DELETE" title="Excluir prato" onClick={handleRemove} />
-            <Button model="DEFAULT" title="Salvar alterações" onClick={handleUpdate} />
+            <Button
+              model="DELETE"
+              title="Excluir prato"
+              handleClick={handleRemove}
+            />
+            <Button
+              model="DEFAULT"
+              title="Salvar alterações"
+              handleClick={handleUpdate}
+            />
           </div>
         </Form>
       </Content>

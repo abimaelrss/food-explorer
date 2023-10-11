@@ -28,6 +28,14 @@ export function Section({ data, title }) {
           ))}
         </Slider>
       )}
+
+      {/* {data != 0 && (
+        <Slider>
+          {data.map((dish) => (
+            <Dish key={String(dish.id)} data={dish} />
+          ))}
+        </Slider>
+      )} */}
     </Container>
   );
 }

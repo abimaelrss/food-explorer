@@ -9,7 +9,6 @@ export const Container = styled.div`
     width: 24rem;
 
     padding: 1.2rem 1.4rem;
-    /* margin-bottom: 2.4rem; */
 
     color: ${({ theme }) => theme.COLORS.LIGHT_500};
     background-color: ${({ theme }) => theme.COLORS.DARK_900};

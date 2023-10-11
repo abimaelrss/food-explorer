@@ -1,8 +1,8 @@
 export default {
   BUTTON: {
     DELETE: {
-      BACKGROUND: "#4D585E",
-      HOVER: "#4D5850",
+      BACKGROUND: "#0D161B",
+      HOVER: "#0D1D25",
       DISABLE: "#4D58",
     },
     DEFAULT: {
@@ -32,9 +32,6 @@ export default {
     DARK_900: "#0D1D25",
     DARK_1000: "#192227",
 
-    GRADIENT_100: "",
-    GRADIENT_200: "",
-
     TINTS_TOMATO_100: "#750310",
     TINTS_TOMATO_200: "#92000E",
     TINTS_TOMATO_300: "#AB222E",
@@ -51,12 +48,7 @@ export default {
     BACKGROUND_800: "#312E38",
     BACKGROUND_700: "#3E3B47",
 
-    WHITE: "#F4EDE8",
-    ORANGE: "#FF9000",
-
     GRAY_100: "#999591",
     GRAY_300: "#666360",
-
-    RED: "#FF002E",
   },
 };

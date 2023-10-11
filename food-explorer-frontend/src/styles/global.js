@@ -22,7 +22,7 @@ export default createGlobalStyle`
     font-size: 1.6rem;
     
     background-color: ${({ theme }) => theme.COLORS.DARK_400};
-    color: ${({ theme }) => theme.COLORS.WHITE};
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   }
 
@@ -34,9 +34,5 @@ export default createGlobalStyle`
     cursor: pointer;
     transition: filter 0.2s;
   
-  }
-
-  button:hover, a:hover {
-    /* filter: brightness(0.9); */
   }
 `;

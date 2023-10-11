@@ -38,20 +38,13 @@ export const Render = styled(Link)`
 `;
 
 export const Container = styled.div`
-  /* min-width: 21rem; */
   text-align: center;
 
   padding: 7rem 2.4rem;
 
-  /* position: relative; */
-
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
-  @media (min-width: 550px) {
-    /* min-height: 36.2rem; */
-  }
   @media (min-width: 1024px) {
-    /* width: 30.4rem; */
     min-height: 46.2rem;
   }
 
@@ -100,6 +93,8 @@ export const Container = styled.div`
       margin-bottom: 2.4rem;
 
       > button {
+        height: 2.4rem;
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -110,6 +105,7 @@ export const Container = styled.div`
 
       @media (min-width: 1024px) {
         margin-bottom: 0;
+        font-size: 2rem;
       }
     }
   }

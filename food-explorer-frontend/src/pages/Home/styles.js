@@ -1,16 +1,13 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
   max-width: 1122px;
-  /* height: 100vh; */
 
   margin: 0 auto;
 `;
 
 export const Search = styled.div`
-  /* max-width: 55rem; */
   width: 100%;
   height: 4.8rem;
 
@@ -92,7 +89,6 @@ export const Banner = styled.div`
 
     padding-top: 3.6rem;
     padding-bottom: 2.2rem;
-    /* padding-right: 2.1rem; */
 
     z-index: 100;
 

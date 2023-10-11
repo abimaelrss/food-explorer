@@ -3,15 +3,9 @@ import { Container } from "./styles";
 import { FiHeart } from "react-icons/fi";
 import { FcLike } from "react-icons/fc";
 
-import theme from "../../styles/theme";
-
 import imagePencil from "../../assets/icons/Pencil.svg";
-import imageHeart from "../../assets/icons/Heart.svg";
-
-import HeartIcon from "../HeartIcon";
 
 import { useEffect, useState } from "react";
-// import { icons } from "react-icons";
 
 export function ButtonIcon({ title, color, isActive = false, ...rest }) {
   const { user } = useAuth();
@@ -39,11 +33,7 @@ export function ButtonIcon({ title, color, isActive = false, ...rest }) {
             className={`button-like ${liked ? "liked" : ""}`}
             onClick={handleClick}
           >
-            {
-              // liked ? <HeartIcon /> : <FiHeart />
-              liked ? <FcLike /> : <FiHeart />
-              // <img src={imageHeart} alt="" className="favorite" />
-            }
+            {liked ? <FcLike /> : <FiHeart />}
           </button>
         </>
       )}

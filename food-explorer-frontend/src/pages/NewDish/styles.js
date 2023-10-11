@@ -80,7 +80,6 @@ export const Form = styled.div`
 
         display: flex;
         align-items: center;
-        /* justify-content: center; */
 
         img {
           width: 1.9rem;
@@ -117,16 +116,12 @@ export const Form = styled.div`
       }
 
       select {
-        /* background: url(${imageSelect}) no-repeat; */
-        /* background: url("../../assets/icons/ChevronDown.svg") no-repeat right; */
-
         > svg {
           width: 2rem;
         }
       }
 
       @media (min-width: 1024px) {
-        /* width: 25rem; */
       }
     }
 

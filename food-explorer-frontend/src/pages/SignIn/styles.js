@@ -1,25 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* min-width: 42.8rem; */
+  max-width: 120rem;
   height: 100vh;
   margin: 0 auto;
 
   padding: 0 4rem;
-
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
-    
+
     padding: 15.8rem 6.5rem;
-    /* padding: 0 10rem; */
   }
 `;
 
@@ -43,11 +40,9 @@ export const Background = styled.div`
 `;
 
 export const Form = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-
-  /* padding: 0 6.5rem; */
 
   border-radius: 1.6rem;
 

@@ -7,7 +7,6 @@ exports.up = (knex) =>
     table.text("image");
     table.integer("user_id").references("id").inTable("users");
     table.integer("category_id").references("id").inTable("categories");
-    table.integer("ingredient_id").references("id").inTable("ingredients");
   });
 
 exports.down = (knex) => knex.schema.dropTable("dishs");

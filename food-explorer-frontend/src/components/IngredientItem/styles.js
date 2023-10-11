@@ -17,8 +17,6 @@ export const Container = styled.div`
     $isnew ? `1px dashed ${theme.COLORS.LIGHT_100}` : "none"};
 
   > button {
-    /* width: 100%; */
-
     border: none;
     font-size: 1.6rem;
 
@@ -26,20 +24,9 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
-  .button-delete {
-    /* color: ${({ theme }) => theme.COLORS.RED}; */
-  }
-  
-  .button-add {
-    /* color: ${({ theme }) => theme.COLORS.ORANGE}; */
-  }
-
   > input {
-    /* width: 100%; */
     width: 11.8rem;
     height: 3.2rem;
-
-    /* margin-right: 1.6rem; */
 
     padding: 1rem 1.6rem;
 

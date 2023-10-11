@@ -1,18 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { GoSignOut } from "react-icons/go";
 import { useAuth } from "../../hooks/auth";
 
-import { api } from "../../services/api";
-import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
-import imageBrand from "../../assets/polygon1.svg";
-import imageMenu1 from "../../assets/icons/Menu.svg";
 import imageMenuClose from "../../assets/icons/Close.svg";
 
 import { Container } from "./styles";
-// import { Button } from "../Button";
-import { Input } from "../Input";
 import { Search } from "../Search";
-import { FiSearch } from "react-icons/fi";
 
 export function MenuMobile({ visible, closeMenu }) {
   const { signOut, user } = useAuth();
@@ -23,10 +15,6 @@ export function MenuMobile({ visible, closeMenu }) {
     navigation("/");
     signOut();
   }
-
-  const avatarUrl = user.avatar
-    ? `${api.defaults.baseURL}/files/${user.avatar}`
-    : avatarPlaceholder;
 
   return (
     <Container $visible={visible}>
@@ -40,7 +28,7 @@ export function MenuMobile({ visible, closeMenu }) {
       <main>
         <Search />
         {user.role === "admin" && (
-          <button onClick={()=>navigation("/newDish")}>Novo prato</button>
+          <button onClick={() => navigation("/newDish")}>Novo prato</button>
         )}
         <button onClick={handleSignOut}>Sair</button>
       </main>
