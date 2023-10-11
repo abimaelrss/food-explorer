@@ -33,40 +33,32 @@
 
 ## 🏷️ About
 
-Presented by Rocketseat at Next Level Week #2. The proffy helps to bring together teachers from different disciplines to interested students.
+Desafio final proposto pelo programa Explorer by Rocketseat. O food-explorer é um sistema para gerenciamento simples de um restaurante.
 
 ## 💻 Technologies
 This app features all the latest tools and practices in mobile development!
 
 - ⚛️ **React Js** — A JavaScript library for building user interfaces
-- ⚛️ **React Native(expo)** — A lib that provides a way to create native apps for Android and iOS
 - 💹 **Node Js** — A web framework for Node Js
 
 ## 🏃💨 Getting started
 
-1. Clone this repo with ``git clone https://github.com/calebesg/proffy.git``
-2. Move yourself to the proffy directory: ``cd proffy``
+1. Clone this repo with ``git clone https://github.com/food-explorer.git``
+2. Move yourself to the proffy directory: ``food-explorer``
 
-### ☁️ Getting started server
+### ☁️ Getting started food-explorer-backend
 
-1. Move yourself to the server directory: ``cd server``
+1. Move yourself to the server directory: ``cd food-explorer-backend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
 3. Run ``npm run knex:migrate`` to create the database
 4. Run ``npm run knex:seed`` to save the initial database data
 5. Run ``npm run dev`` inicialize server
 
-### 💻 Getting started web
+### 💻 Getting started food-explorer-frontend
 
-1. Move yourself to the web directory: ``cd web``
+1. Move yourself to the web directory: ``cd food-explorer-frontend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
-3. Run ``npm start`` to start project
-
-### 📱 Getting started mobile
-
-1. Move yourself to the mobile directory: ``cd mobile``
-2. Run ``yarn`` or ``npm install`` to install all dependencies
-3. Run ``npm start`` to start project
-4. Scan QRcode in browser with expo app on ``Android OS`` or camera app on ``IOS``
+3. Run ``npm run dev`` to start project
 
 ## 📝 License
 
