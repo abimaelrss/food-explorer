@@ -4,7 +4,7 @@
 </h1>
 <br>
 
-<p align="center"><b>👩‍🏫 Build in a Next-Level-Week #2 🚀</b></p>
+<p align="center"><b>Food Explorer</b></p>
 
 <p align="center">
   <a href="#-About">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -33,7 +33,7 @@
 
 ## 🏷️ About
 
-Desafio final proposto pelo programa Explorer by Rocketseat. O food-explorer é um sistema para gerenciamento simples de um restaurante.
+Final challenge proposed by the Explorer by Rocketseat program. food-explorer is a system for simple restaurant management.
 
 ## 💻 Technologies
 This app features all the latest tools and practices in mobile development!
