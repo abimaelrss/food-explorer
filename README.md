@@ -1,6 +1,6 @@
 <h1 align="center">
 
-  <img src="[https://github.com/abimaelrss/food-explorer/assets/14807515/cfd53583-1638-4e05-8226-0d6d49f9d74c]" alt="Logo" width="110">
+  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/cfd53583-1638-4e05-8226-0d6d49f9d74c" alt="Logo" width="110">
 
 </h1>
 <br>
