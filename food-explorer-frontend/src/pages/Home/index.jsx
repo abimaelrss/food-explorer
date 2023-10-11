@@ -14,36 +14,19 @@ export function Home() {
   const [search, setSearch] = useState("");
 
   const [dishs, setDishs] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  async function fetchCategories() {
-    const response = await api.get(`/categories`);
-    setCategories(response.data);
-  }
 
   async function fetchDishs() {
-    const response = await api.get(
-      `/dishs?name=${search}&ingredients=${search}`
-    );
+    const response = await api.get(`/dishs?name=${search}`);
     setDishs(response.data);
   }
 
   useEffect(() => {
-    fetchCategories();
     fetchDishs();
   }, [search]);
 
   return (
     <>
-      <Header />
-
-      {/* <Search>
-        <Input
-          placeholder="Busque por pratos ou ingredientes"
-          icon={FiSearch}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </Search> */}
+      <Header changeSearch={setSearch} />
 
       <Container>
         <Content>
@@ -66,14 +49,18 @@ export function Home() {
             />
           ))} */}
 
-          {dishs.map((dish) => (
-            <Section
-              title={dish.name}
-              key={String(dish.id)}
-              data={dish.dishs}
-              // onClick={() => handleDetails(categorie.id)}
-            />
-          ))}
+          {dishs.map((dish) => {
+            if (dish.dishs.length > 0) {
+              return (
+                <Section
+                  title={dish.name}
+                  key={String(dish.id)}
+                  data={dish.dishs}
+                  // onClick={() => handleDetails(categorie.id)}
+                />
+              );
+            }
+          })}
         </Content>
       </Container>
 

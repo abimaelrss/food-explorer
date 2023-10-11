@@ -6,18 +6,14 @@ import { api } from "../../services/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 import imageBrand from "../../assets/polygon1.svg";
 import imageMenuOpen from "../../assets/icons/Menu.svg";
-import imageMenuClose from "../../assets/icons/Close.svg";
-import imageButton from "../../assets/receipt.svg";
 import imageOrder from "../../assets/receipt.svg";
 
-import { Component, Container, Brand, Search, Order, Button, Logout } from "./styles";
-import { Input } from "../Input";
-import { FiSearch } from "react-icons/fi";
+import { Component, Container, Brand, Order, Button, Logout } from "./styles";
 import { MenuMobile } from "../MenuMobile";
-// import { Search } from "../Search";
-import { useEffect, useState } from "react";
+import { Search } from "../Search";
+import { useState } from "react";
 
-export function Header() {
+export function Header({ changeSearch }) {
   const { signOut, user } = useAuth();
   const [isVisibleMenu, setIsVisibleMenu] = useState(false);
 
@@ -27,10 +23,6 @@ export function Header() {
     navigation("/");
     signOut();
   }
-
-  const avatarUrl = user.avatar
-    ? `${api.defaults.baseURL}/files/${user.avatar}`
-    : avatarPlaceholder;
 
   return (
     <Component>
@@ -42,7 +34,11 @@ export function Header() {
           <img src={imageMenuOpen} alt="Fechar menu" />
         </button>
 
-        <MenuMobile visible={isVisibleMenu} closeMenu={setIsVisibleMenu} />
+        <MenuMobile
+          visible={isVisibleMenu}
+          closeMenu={setIsVisibleMenu}
+          changeSearch={changeSearch}
+        />
 
         <Brand to="/">
           <img src={imageBrand} alt="" />
@@ -60,13 +56,7 @@ export function Header() {
         </Order>
 
         <div className="searchContainer">
-          <Search>
-            <Input
-              placeholder="Busque por pratos ou ingredientes"
-              icon={FiSearch}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Search>
+          <Search changeSearch={changeSearch} />
         </div>
 
         {user.role === "admin" && (
@@ -79,7 +69,7 @@ export function Header() {
           <Button onClick={() => navigation("/order")}>
             <>
               <img src={imageOrder} alt="Imagem de pedido" />
-              Pedidos 
+              Pedidos
               <span>{`(0)`}</span>
             </>
           </Button>

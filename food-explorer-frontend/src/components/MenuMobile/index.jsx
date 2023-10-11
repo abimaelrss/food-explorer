@@ -6,7 +6,7 @@ import imageMenuClose from "../../assets/icons/Close.svg";
 import { Container } from "./styles";
 import { Search } from "../Search";
 
-export function MenuMobile({ visible, closeMenu }) {
+export function MenuMobile({ visible, closeMenu, changeSearch }) {
   const { signOut, user } = useAuth();
 
   const navigation = useNavigate();
@@ -26,10 +26,12 @@ export function MenuMobile({ visible, closeMenu }) {
       </header>
 
       <main>
-        <Search />
+        <Search changeSearch={changeSearch} />
+
         {user.role === "admin" && (
           <button onClick={() => navigation("/newDish")}>Novo prato</button>
         )}
+
         <button onClick={handleSignOut}>Sair</button>
       </main>
     </Container>

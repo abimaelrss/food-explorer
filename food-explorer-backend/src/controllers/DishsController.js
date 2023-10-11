@@ -1,6 +1,8 @@
 const knex = require("../database/knex");
 const DiskStorage = require("../providers/DiskStorage");
 
+const formatDishs = require("../utils/formatDishs");
+
 class DishsController {
   async create(request, response) {
     const { name, category, ingredients, price, description } = request.body;
@@ -84,56 +86,39 @@ class DishsController {
   }
 
   async searchByNameAndIngredient(request, response) {
-    const { name, ingredients } = request.query;
+    const { name } = request.query;
 
     let dishs = [];
 
-    if (ingredients) {
-      const filterIngredients = ingredients
-        .split(",")
-        .map((ingredient) => ingredient.trim());
+    if (!name) {
+      dishs = await knex("dishs").select("*");
 
-      dishs = await knex("ingredients")
-        .select("*")
-        .whereLike("dishs.name", `%${name}%`)
-        .whereIn("ingredients.name", filterIngredients)
-        .innerJoin("dishs", "dishs.id", "ingredients.dish_id")
-        .groupBy("dishs.id");
-    } else {
-      dishs = await knex("ingredients")
-        .select("*")
-        .whereLike("dishs.name", `%${name}%`)
-        .innerJoin("dishs", "dishs.id", "ingredients.dish_id")
-        .groupBy("dishs.id");
+      const formatedDishs = await formatDishs(dishs);
+
+      return response.json(formatedDishs);
     }
 
-    const categoriesDB = await knex("categories").select("*");
-    const ingredientsDB = await knex("ingredients").select("*");
+    const filterIngredients = name
+      .split(" ")
+      .map((ingredient) => ingredient.trim());
 
-    dishs = dishs.map((dish) => {
-      const ingredientsIncluded = ingredientsDB.filter(
-        (ingredient) => dish.id == ingredient.dish_id
-      );
+    dishs = await knex("ingredients")
+      .select("*")
+      .whereIn("ingredients.name", filterIngredients)
+      .innerJoin("dishs", "dishs.id", "ingredients.dish_id")
+      .groupBy("dishs.id");
 
-      return {
-        ...dish,
-        ingredients: ingredientsIncluded,
-      };
-    });
+    if (dishs.length > 0) {
+      const formatedDishs = await formatDishs(dishs);
 
-    const categoriesWithDishs = categoriesDB.map((category) => {
-      const dishsIncluded = dishs.filter(
-        (dish) => dish.category_id == category.id
-      );
+      return response.json(formatedDishs);
+    }
 
-      return {
-        id: category.id,
-        name: category.name,
-        dishs: dishsIncluded,
-      };
-    });
+    dishs = await knex("dishs").select("*").whereLike("name", `%${name}%`);
 
-    return response.json(categoriesWithDishs);
+    const formatedDishs = await formatDishs(dishs);
+
+    return response.json(formatedDishs);
   }
 
   async index(request, response) {

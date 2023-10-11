@@ -19,8 +19,8 @@ dishsRouter.post("/", verifyUserAuthorization("admin"), dishsController.create);
 dishsRouter.put("/:id", dishsController.update);
 dishsRouter.get("/:id", dishsController.show);
 dishsRouter.delete("/:id", dishsController.delete);
-dishsRouter.get("/", dishsController.index);
-// dishsRouter.get("/", dishsController.searchByNameAndIngredient);
+// dishsRouter.get("/", dishsController.index);
+dishsRouter.get("/", dishsController.searchByNameAndIngredient);
 dishsRouter.patch("/image/:dish_id", upload.single("image"), dishImageController.update);
 
 module.exports = dishsRouter;
