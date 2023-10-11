@@ -1,7 +1,5 @@
 <h1 align="center">
-
   <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/cfd53583-1638-4e05-8226-0d6d49f9d74c" alt="Logo" width="110">
-
 </h1>
 <br>
 
@@ -27,7 +25,7 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/66a34537-23df-409e-a684-72a7e3c84300.png" alt="demo" width="90%">
+  <img src="https://github.com/abimaelrss/food-explorer/assets/14807515/88cf6250-1de8-493f-adbf-d1f165c40553.png" alt="demo" width="90%">
 </p>
 
 <hr />
