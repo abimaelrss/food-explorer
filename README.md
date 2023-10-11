@@ -58,6 +58,7 @@ This app features all the latest tools and practices in mobile development!
 1. Move yourself to the web directory: ``cd food-explorer-frontend``
 2. Run ``yarn`` or ``npm install`` to install all dependencies
 3. Run ``npm run dev`` to start project
+4. To access as administrator, use email: ``admin@email.com`` and password: ``123``
 
 ## 📝 License
 
