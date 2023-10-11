@@ -30,7 +30,7 @@ export function Home() {
 
   useEffect(() => {
     fetchCategories();
-    // fetchDishs();
+    fetchDishs();
   }, [search]);
 
   return (
@@ -57,23 +57,23 @@ export function Home() {
             </Banner>
           </div>
 
-          {categories.map((categorie) => (
+          {/* {categories.map((categorie) => (
             <Section
               title={categorie.name}
               key={String(categorie.id)}
               data={categorie}
               // onClick={() => handleDetails(categorie.id)}
             />
-          ))}
+          ))} */}
 
-          {/* {dishs.map((dish) => (
+          {dishs.map((dish) => (
             <Section
               title={dish.name}
               key={String(dish.id)}
               data={dish.dishs}
               // onClick={() => handleDetails(categorie.id)}
             />
-          ))} */}
+          ))}
         </Content>
       </Container>
 

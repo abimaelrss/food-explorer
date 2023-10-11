@@ -21,21 +21,21 @@ export function Section({ data, title }) {
   return (
     <Container>
       <h2>{title}</h2>
-      {dishs != 0 && (
+      {/* {dishs != 0 && (
         <Slider>
           {dishs.map((dish) => (
             <Dish key={String(dish.id)} data={dish} />
           ))}
         </Slider>
-      )}
+      )} */}
 
-      {/* {data != 0 && (
+      {data != 0 && (
         <Slider>
           {data.map((dish) => (
             <Dish key={String(dish.id)} data={dish} />
           ))}
         </Slider>
-      )} */}
+      )}
     </Container>
   );
 }
